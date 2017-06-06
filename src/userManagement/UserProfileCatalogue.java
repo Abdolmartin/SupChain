@@ -26,8 +26,8 @@ public class UserProfileCatalogue {
 		return null;
 	}
 	
-	public void addUser(){
-		
+	public void addUser(UserProfile userProfile){
+		this.usersList.add(userProfile);
 	}
 	
 	public ArrayList<UserProfile> search(){
