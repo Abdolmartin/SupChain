@@ -1,5 +1,5 @@
 package userManagement;
 
-class Customer {
+class Customer extends UserProfile{
 
 }

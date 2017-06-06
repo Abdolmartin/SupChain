@@ -1,5 +1,5 @@
 package userManagement;
 
-class Manager {
+class Manager extends UserProfile{
 
 }
