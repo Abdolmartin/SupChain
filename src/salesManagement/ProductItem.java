@@ -1,0 +1,5 @@
+package salesManagement;
+
+class ProductItem {
+
+}

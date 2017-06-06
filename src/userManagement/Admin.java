@@ -1,0 +1,5 @@
+package userManagement;
+
+class Admin {
+
+}
