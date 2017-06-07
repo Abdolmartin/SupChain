@@ -3,7 +3,7 @@ package salesManagement;
 import java.util.ArrayList;
 public class ProductElementCatalogue {
 	
-	ArrayList<ProductElement> productElementsList;
+	ArrayList<ProductElement> productElementList;
 	
 	private static ProductElementCatalogue productElementCatalogue = new ProductElementCatalogue();
 
@@ -12,12 +12,12 @@ public class ProductElementCatalogue {
 	}
 	
 	private ProductElementCatalogue() {
-		this.productElementsList = new ArrayList<>();
+		this.productElementList = new ArrayList<>();
 	}
 	
 	public ProductElement getByID(int productElementID){
-		for (int i=0;i<this.productElementsList.size();i++){
-			ProductElement currentProductElement = this.productElementsList.get(i);
+		for (int i=0;i<this.productElementList.size();i++){
+			ProductElement currentProductElement = this.productElementList.get(i);
 			if (currentProductElement.getId() == productElementID){
 				return currentProductElement;
 			}

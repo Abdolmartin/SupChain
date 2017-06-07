@@ -7,7 +7,7 @@ import exceptions.NonExistentEntityException;
 
 public class UserProfileCatalogue {
 	
-	ArrayList<UserProfile> usersList;
+	ArrayList<UserProfile> userList;
 	int lastID;
 	
 	private static UserProfileCatalogue userProfileCatalogue = new UserProfileCatalogue();
@@ -18,12 +18,12 @@ public class UserProfileCatalogue {
 	
 	private UserProfileCatalogue() {
 		this.lastID = 0;
-		this.usersList = new ArrayList<>();
+		this.userList = new ArrayList<>();
 	}
 	
 	public UserProfile getByID(int userID){
-		for (int i=0;i<this.usersList.size();i++){
-			UserProfile currentUser = this.usersList.get(i);
+		for (int i=0;i<this.userList.size();i++){
+			UserProfile currentUser = this.userList.get(i);
 			if (currentUser.getId() == userID){
 				return currentUser;
 			}
@@ -32,14 +32,14 @@ public class UserProfileCatalogue {
 	}
 	
 	public void addUser(UserProfile userProfile){
-		this.usersList.add(userProfile);
+		this.userList.add(userProfile);
 		adjustLastID();
 	}
 
 	private void adjustLastID() {
 		int maxID = 0;
-		for (int i=0;i<usersList.size();i++){
-			int currentID = usersList.get(i).getId();
+		for (int i=0;i<userList.size();i++){
+			int currentID = userList.get(i).getId();
 			if (currentID > maxID)
 				maxID = currentID;
 		}
@@ -69,8 +69,8 @@ public class UserProfileCatalogue {
 	
 	private boolean checkValidUser(String username, String password){
 		//Check for duplicate username
-		for (int i=0;i<usersList.size();i++){
-			if (username.equals(usersList.get(i).getUsername()))
+		for (int i=0;i<userList.size();i++){
+			if (username.equals(userList.get(i).getUsername()))
 				return false;
 		}
 		return checkValidUserInfo(password);
