@@ -19,8 +19,9 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 	private String firstName, lastName;
 	private ContactInformation contactInformation;
 	private ArrayList<Notification> notifications;
-	private boolean loggedIn;	
+	private boolean loggedIn;
 	
+	public UserProfile(){}
 	public UserProfile(int id, String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation) {
 		this.username = username;
