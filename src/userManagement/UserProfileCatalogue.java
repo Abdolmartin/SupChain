@@ -1,7 +1,11 @@
 package userManagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.json.simple.JSONObject;
+
+import common.Constants;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
 
@@ -21,14 +25,37 @@ public class UserProfileCatalogue {
 		this.userList = new ArrayList<>();
 	}
 	
-	public UserProfile getByID(int userID){
+	public UserProfile getByID(int userID) throws InvalidArgumentException{
 		for (int i=0;i<this.userList.size();i++){
 			UserProfile currentUser = this.userList.get(i);
 			if (currentUser.getId() == userID){
 				return currentUser;
 			}
 		}
-		return null;
+		throw new InvalidArgumentException(Constants.NO_SUCH_USER);
+	}
+	
+	public UserProfile findUser(String username) throws InvalidArgumentException{
+		for (int i=0;i<this.userList.size();i++){
+			UserProfile currentUser = this.userList.get(i);
+			if (username.equals(currentUser.getUsername())){
+				return currentUser;
+			}
+		}
+		throw new InvalidArgumentException(Constants.NO_SUCH_USER);
+	}
+	
+	public int getUserID(String username) throws InvalidArgumentException{
+		UserProfile user = this.findUser(username);
+		if (user != null)
+			return user.getId();
+		else
+			throw new InvalidArgumentException(Constants.NO_SUCH_USER);
+	}
+	
+	public JSONObject getUserInfo(int userID) throws InvalidArgumentException{
+		UserProfile user = this.getByID(userID);
+		return user.showInfo();
 	}
 	
 	public void addUser(UserProfile userProfile){
@@ -50,10 +77,25 @@ public class UserProfileCatalogue {
 		return null;
 	}
 	
+	public AuthenticationType getUserAuthenticationLevel(int userID) throws InvalidArgumentException{
+		UserProfile user = this.getByID(userID);
+		return user.getAuth();
+	}
+	
+	public void logInUser(String username, String password) throws InvalidArgumentException{
+		UserProfile user;
+		user = UserProfileCatalogue.getCatalogue().findUser(username);
+		user.logIn(password);
+	}
+	
+	public void logOutUser(int userID) throws InvalidArgumentException{
+		this.getByID(userID).logOut();
+	}
+	
 	public UserProfile createIntraOrganisationUser(String username, String password, String firstName, String lastName, 
 			String telephoneNumber, String emailAddress, String physicalAddress, AuthenticationType authRole) throws InvalidArgumentException{
 		if (!checkValidUser(username, password)){
-			throw new InvalidArgumentException("اطلاعات کاربری مجاز نمی‌باشد.");
+			throw new InvalidArgumentException(Constants.INVALID_INFO);
 		}
 		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
 		UserProfile newUser = null;
@@ -79,7 +121,7 @@ public class UserProfileCatalogue {
 	public UserProfile createCustomer(String username, String password, String firstName, String lastName, 
 			String telephoneNumber, String emailAddress, String physicalAddress) throws InvalidArgumentException{
 		if (!checkValidUser(username, password)){
-			throw new InvalidArgumentException("اطلاعات کاربری مجاز نمی‌باشد.");
+			throw new InvalidArgumentException(Constants.INVALID_USER);
 		}
 		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
 		Customer customer = new Customer(getNextID(), username, password, firstName, lastName, contactInformation);
@@ -102,12 +144,11 @@ public class UserProfileCatalogue {
 	}
 	
 	public boolean changeUserInfo(int userID, String password, String firstName, String lastName, 
-					String telephoneNumber, String emailAddress, String physicalAddress) throws NonExistentEntityException{
+					String telephoneNumber, String emailAddress, String physicalAddress) throws NonExistentEntityException, InvalidArgumentException{
 		UserProfile userProfile = this.getByID(userID);
 		if (userProfile == null){
-			throw new NonExistentEntityException("کاربر مورد نظر وجود ندارد.");
+			throw new NonExistentEntityException(Constants.NO_SUCH_USER);
 		}
-		
 		boolean valid = checkValidUserInfo(password);
 		if (valid){
 			userProfile.changeUserInfo(password, firstName, lastName, 

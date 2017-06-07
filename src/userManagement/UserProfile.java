@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
 import common.Viewable;
+import exceptions.InvalidArgumentException;
 
 public abstract class UserProfile implements Authenticatable, Viewable{
 	
@@ -45,8 +46,11 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 		this.notifications.add(n);
 	}
 	
-	public void logIn(){
-		this.loggedIn = true;
+	public void logIn(String givenPassword) throws InvalidArgumentException{
+		if (this.authenticate(givenPassword))
+			this.loggedIn = true;
+		else
+			throw new InvalidArgumentException("wrongPass");
 	}
 	
 	public void logOut(){
