@@ -1,2 +1,17 @@
+
+# OS
 .DS_Store
 
+
+# Binaries
+*.class
+
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
+
+# Maven 
+target/
