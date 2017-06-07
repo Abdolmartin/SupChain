@@ -3,27 +3,50 @@ package ui.userPanel;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import ui.InitialPortal;
+import ui.handler.UserManager;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.Dimension;
 
 public class LoginDialog extends JDialog {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField usernameField;
+	private JTextField passwordField;
+	
+	public static void main(String[] args) {
+		new LoginDialog();
+	}
+	
 	public LoginDialog() {
+		setPreferredSize(new Dimension(400, 400));
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JButton button = new JButton("\u0648\u0631\u0648\u062F \u0628\u0647 \u0633\u0627\u0645\u0627\u0646\u0647");
-		button.setBounds(170, 278, 112, 23);
-		getContentPane().add(button);
+		JButton submitButton = new JButton("\u0648\u0631\u0648\u062F \u0628\u0647 \u0633\u0627\u0645\u0627\u0646\u0647");
+		submitButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LoginDialog.this.submit();
+			}
+		});
+		submitButton.setBounds(170, 278, 112, 23);
+		getContentPane().add(submitButton);
 		
-		textField = new JTextField();
-		textField.setBounds(139, 146, 160, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		usernameField = new JTextField();
+		usernameField.setBounds(139, 146, 160, 20);
+		getContentPane().add(usernameField);
+		usernameField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(139, 177, 160, 20);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		passwordField = new JTextField();
+		passwordField.setBounds(139, 177, 160, 20);
+		getContentPane().add(passwordField);
+		passwordField.setColumns(10);
 		
 		JLabel label = new JLabel("\u0646\u0627\u0645 \u06A9\u0627\u0631\u0628\u0631\u06CC");
 		label.setBounds(309, 149, 46, 14);
@@ -33,12 +56,24 @@ public class LoginDialog extends JDialog {
 		label_1.setBounds(309, 180, 46, 14);
 		getContentPane().add(label_1);
 		
-		JButton button_1 = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A \u0628\u0647 \u0635\u0641\u062D\u0647\u200C\u06CC \u0627\u0635\u0644\u06CC");
-		button_1.setBounds(146, 11, 153, 23);
-		getContentPane().add(button_1);
+		JButton returnToInitialButton = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A \u0628\u0647 \u0635\u0641\u062D\u0647\u200C\u06CC \u0627\u0635\u0644\u06CC");
+		returnToInitialButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LoginDialog.this.setVisible(false);
+				JDialog initialPortal = new InitialPortal();
+				LoginDialog.this.dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
+			}
+		});
+		returnToInitialButton.setBounds(146, 11, 153, 23);
+		getContentPane().add(returnToInitialButton);
+		setBounds(500, 500, 470, 382);
+		setVisible(true);
 	}
 	
 	void submit(){
+		UserManager userManager = new UserManager();
+		String result = userManager.logIn(usernameField.getText(), passwordField.getText());
 		
 	}
 	
