@@ -74,7 +74,6 @@ public class LoginDialog extends JDialog {
 	void submit(){
 		UserManager userManager = new UserManager();
 		String result = userManager.logIn(usernameField.getText(), passwordField.getText());
-		
 	}
 	
 }
