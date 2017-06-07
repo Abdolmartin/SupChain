@@ -2,14 +2,35 @@ package userManagement;
 
 import java.util.ArrayList;
 
-public abstract class UserProfile implements Authenticatable{
+import org.json.simple.JSONObject;
+
+import common.Viewable;
+
+public abstract class UserProfile implements Authenticatable, Viewable{
 	
+	@Override
+	public JSONObject showInfo() {
+		return null;
+	}
+
 	private int id;
 	private String username, password;
 	private String firstName, lastName;
 	private ContactInformation contactInformation;
 	private ArrayList<Notification> notifications;
-	private boolean loggedIn;
+	private boolean loggedIn;	
+	
+	public UserProfile(int id, String username, String password, String firstName, String lastName,
+			ContactInformation contactInformation) {
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.contactInformation = contactInformation;
+		this.notifications = new ArrayList<>();
+		this.loggedIn = false;
+		this.id = id;
+	}
 
 	public int getId() {
 		return this.id;
@@ -36,6 +57,34 @@ public abstract class UserProfile implements Authenticatable{
 			return true;
 		}
 		return false;
+	}
+	
+	public String getUsername(){
+		return this.username;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public ContactInformation getContactInformation() {

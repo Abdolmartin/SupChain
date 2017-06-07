@@ -2,9 +2,12 @@ package userManagement;
 
 import java.util.ArrayList;
 
+import exceptions.InvalidArgumentException;
+
 public class UserProfileCatalogue {
 	
 	ArrayList<UserProfile> usersList;
+	int lastID;
 	
 	private static UserProfileCatalogue userProfileCatalogue = new UserProfileCatalogue();
 	
@@ -13,6 +16,7 @@ public class UserProfileCatalogue {
 	}
 	
 	private UserProfileCatalogue() {
+		this.lastID = 0;
 		this.usersList = new ArrayList<>();
 	}
 	
@@ -28,29 +32,71 @@ public class UserProfileCatalogue {
 	
 	public void addUser(UserProfile userProfile){
 		this.usersList.add(userProfile);
+		adjustLastID();
+	}
+
+	private void adjustLastID() {
+		int maxID = 0;
+		for (int i=0;i<usersList.size();i++){
+			int currentID = usersList.get(i).getId();
+			if (currentID > maxID)
+				maxID = currentID;
+		}
+		this.lastID = maxID + 1;
 	}
 	
 	public ArrayList<UserProfile> search(){
 		return null;
 	}
 	
-	public UserProfile createIntraOrganisationUser(){
+	public UserProfile createIntraOrganisationUser(String username, String password, String firstName, String lastName, 
+			String telephoneNumber, String emailAddress, String physicalAddress, AuthenticationType authRole) throws InvalidArgumentException{
+		if (!checkValidUser(username, password)){
+			throw new InvalidArgumentException("اطلاعات کاربری مجاز نمی‌باشد.");
+		}
+		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
+		UserProfile newUser = null;
+		if (authRole == AuthenticationType.EMPLOYEE)
+			newUser = new Employee(getNextID(), username, password, firstName, lastName, contactInformation);
+		else if (authRole == AuthenticationType.ADMIN)
+			newUser = new Admin(getNextID(), username, password, firstName, lastName, contactInformation);
+		else if (authRole == AuthenticationType.MANAGER)
+			newUser = new Manager(getNextID(), username, password, firstName, lastName, contactInformation, authRole);
+		
+		return newUser;
+	}
+	
+	private boolean checkValidUser(String username, String password){
+		//Check for duplicate username
+		for (int i=0;i<usersList.size();i++){
+			if (username.equals(usersList.get(i).getUsername()))
+				return false;
+		}
+		return checkValidUserInfo(password);
+	}
+	
+	public UserProfile createCustomer(String username, String password, String firstName, String lastName, 
+			String telephoneNumber, String emailAddress, String physicalAddress) throws InvalidArgumentException{
+		if (!checkValidUser(username, password)){
+			throw new InvalidArgumentException("اطلاعات کاربری مجاز نمی‌باشد.");
+		}
+		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
+		Customer customer = new Customer(getNextID(), username, password, firstName, lastName, contactInformation);
+		addUser(customer);
+		return customer;
+	}
+	
+	private int getNextID() {
+		return this.lastID+1;
+	}
+
+	public ArrayList<UserProfile> getManagersByRole(AuthenticationType role){
 		return null;
 	}
 	
-	private boolean checkValidUser(){
-		return true;
-	}
-	
-	public UserProfile createCustomer(){
-		return null;
-	}
-	
-	public ArrayList<UserProfile> getManagersByRole(){
-		return null;
-	}
-	
-	private boolean checkValidUserInfo(){
+	protected boolean checkValidUserInfo(String password){
+		if (password.length() < 8)
+			return false;
 		return true;
 	}
 	
