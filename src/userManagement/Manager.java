@@ -7,7 +7,8 @@ class Manager extends UserProfile{
 	public Manager(int id, String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation, AuthenticationType authRole) {
 		super(id, username, password, firstName, lastName, contactInformation);
-		if (authRole == AuthenticationType.MANAGER)
+		if (authRole == AuthenticationType.MANAGER || authRole == AuthenticationType.PRODUCTION_MANAGER || 
+				authRole == AuthenticationType.WAREHOUSE_MANAGER)
 			this.authRole = authRole; //TODO Placeholder
 		else
 			this.authRole = AuthenticationType.MANAGER;

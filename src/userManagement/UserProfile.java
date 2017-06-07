@@ -94,6 +94,22 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 	public void setContactInformation(ContactInformation contactInformation) {
 		this.contactInformation = contactInformation;
 	}
+
+	public void changeUserInfo(String password, String firstName, String lastName, String telephoneNumber,
+			String emailAddress, String physicalAddress) {
+		if (password!=null)
+			this.setPassword(password);
+		if (firstName!=null)
+			this.setFirstName(firstName);
+		if (lastName!=null)
+			this.setLastName(lastName);
+		if (telephoneNumber!=null && emailAddress!=null && physicalAddress!=null){
+			ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
+			this.setContactInformation(contactInformation);
+		}
+	}
+	
+	
 	
 	
 	

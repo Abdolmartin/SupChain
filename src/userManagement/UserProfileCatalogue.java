@@ -3,6 +3,7 @@ package userManagement;
 import java.util.ArrayList;
 
 import exceptions.InvalidArgumentException;
+import exceptions.NonExistentEntityException;
 
 public class UserProfileCatalogue {
 	
@@ -94,10 +95,26 @@ public class UserProfileCatalogue {
 		return null;
 	}
 	
-	protected boolean checkValidUserInfo(String password){
+	private boolean checkValidUserInfo(String password){
 		if (password.length() < 8)
 			return false;
 		return true;
+	}
+	
+	public boolean changeUserInfo(int userID, String password, String firstName, String lastName, 
+					String telephoneNumber, String emailAddress, String physicalAddress) throws NonExistentEntityException{
+		UserProfile userProfile = this.getByID(userID);
+		if (userProfile == null){
+			throw new NonExistentEntityException("کاربر مورد نظر وجود ندارد.");
+		}
+		
+		boolean valid = checkValidUserInfo(password);
+		if (valid){
+			userProfile.changeUserInfo(password, firstName, lastName, 
+					telephoneNumber, emailAddress, physicalAddress);
+			return true;
+		}
+		return false;
 	}
 	
 	
