@@ -9,7 +9,6 @@ import ui.AdminPortal;
 import ui.CustomerPortal;
 import ui.EmployeePanel;
 import ui.InitialPortal;
-import ui.LoggedInMainPortal;
 import ui.ManagerPortal;
 import ui.handler.UserManager;
 
