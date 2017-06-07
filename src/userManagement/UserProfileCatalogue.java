@@ -1,6 +1,9 @@
 package userManagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
 
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
@@ -29,6 +32,34 @@ public class UserProfileCatalogue {
 			}
 		}
 		return null;
+	}
+	
+	public UserProfile findUser(String username){
+		for (int i=0;i<this.userList.size();i++){
+			UserProfile currentUser = this.userList.get(i);
+			if (username.equals(currentUser.getUsername())){
+				return currentUser;
+			}
+		}
+		return null;
+	}
+	
+	public int getUserID(String username) throws InvalidArgumentException{
+		UserProfile user = this.findUser(username);
+		if (user != null)
+			return user.getId();
+		else
+			throw new InvalidArgumentException("noUser");
+	}
+	
+	public JSONObject getUserInfo(int userID){
+		UserProfile user = this.getByID(userID);
+		if (user == null){
+			HashMap<String, String> map = new HashMap<>();
+			map.put("error", "noUser");
+			return new JSONObject(map);
+		}
+		return user.showInfo();
 	}
 	
 	public void addUser(UserProfile userProfile){
