@@ -77,6 +77,11 @@ public class UserProfileCatalogue {
 		return null;
 	}
 	
+	public AuthenticationType getUserAuthenticationLevel(int userID) throws InvalidArgumentException{
+		UserProfile user = this.getByID(userID);
+		return user.getAuth();
+	}
+	
 	public void logInUser(String username, String password) throws InvalidArgumentException{
 		UserProfile user;
 		user = UserProfileCatalogue.getCatalogue().findUser(username);

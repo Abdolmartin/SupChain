@@ -4,7 +4,13 @@ import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import common.Constants;
+import ui.AdminPortal;
+import ui.CustomerPortal;
+import ui.EmployeePanel;
 import ui.InitialPortal;
+import ui.LoggedInMainPortal;
+import ui.ManagerPortal;
 import ui.handler.UserManager;
 
 import javax.swing.JLabel;
@@ -73,7 +79,33 @@ public class LoginDialog extends JDialog {
 	
 	void submit(){
 		UserManager userManager = new UserManager();
-		String result = userManager.logIn(usernameField.getText(), passwordField.getText());
+		String username = usernameField.getText();
+		String password = passwordField.getText();
+		String result = userManager.logIn(username, password);
+		switch(result){
+			case Constants.SUCCESS:
+				int userID = userManager.getUserID(username);
+				LoginDialog.this.setVisible(false);
+				String authLevel = userManager.getUserAuthenticationLevel(userID);
+				switch (authLevel) {
+				case Constants.ADMIN:
+					new AdminPortal(userID);
+				case Constants.MANAGER:
+					new ManagerPortal(userID);
+				case Constants.CUSTOMER:
+					new CustomerPortal(userID);
+				case Constants.EMPLOYEE:
+					new EmployeePanel(userID);
+				default:
+					break;
+				}
+				LoginDialog.this.dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
+				break;
+			default:
+				JOptionPane.showMessageDialog(this, "نام کاربری یا رمز عبور اشتباه است.");
+				break;
+		}
+		
 	}
 	
 }

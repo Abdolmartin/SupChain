@@ -37,9 +37,30 @@ public class UserManager {
 			return new JSONObject(map);
 		}
 	}
+	
+	public String getUserAuthenticationLevel(int userID){
+		try {
+			AuthenticationType authLevel = UserProfileCatalogue.getCatalogue().getUserAuthenticationLevel(userID);
+			switch(authLevel){
+				case MANAGER:
+					return Constants.MANAGER;
+				case EMPLOYEE:
+					return Constants.EMPLOYEE;
+				case ADMIN:
+					return Constants.ADMIN;
+				case CUSTOMER:
+					return Constants.CUSTOMER;
+				default:
+					return Constants.MANAGER;
+			}
+		} catch (InvalidArgumentException e) {
+		}
+		return Constants.NO_SUCH_USER;
+	}
+	
 	public String createUser(String role, String username, String password, String firstName, String lastName, 
 			String telephoneNumber, String emailAddress, String physicalAddress){
-		if (role.equals("customer")){
+		if (role.equals(Constants.CUSTOMER)){
 			try {
 				UserProfileCatalogue.getCatalogue().createCustomer(username, password, firstName, lastName, telephoneNumber, emailAddress, physicalAddress);
 			} catch (InvalidArgumentException e) {
@@ -50,7 +71,7 @@ public class UserManager {
 			AuthenticationType authRole = AuthenticationType.MANAGER;
 			switch(role)
 			{
-				case "manager":
+				case Constants.MANAGER:
 					authRole = AuthenticationType.MANAGER;
 					break;
 				case "production_manager":
@@ -59,10 +80,10 @@ public class UserManager {
 				case "warehouse_manager":
 					authRole = AuthenticationType.WAREHOUSE_MANAGER;
 					break;
-				case "employee":
+				case Constants.EMPLOYEE:
 					authRole = AuthenticationType.EMPLOYEE;
 					break;
-				case "admin":
+				case Constants.ADMIN:
 					authRole = AuthenticationType.ADMIN;
 					break;
 				default:
