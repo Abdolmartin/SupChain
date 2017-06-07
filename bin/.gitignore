@@ -1,6 +1,3 @@
-/productManagement/
-/reporting/
-/requirementManagement/
-/salesManagement/
-/supplyManagement/
+/common/
 /userManagement/
+/exceptions/
