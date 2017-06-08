@@ -45,6 +45,10 @@ public class UserProfileCatalogue {
 		throw new InvalidArgumentException(Constants.NO_SUCH_USER);
 	}
 	
+	public String getUsername(int userID) throws InvalidArgumentException{
+		return this.getByID(userID).getUsername();
+	}
+	
 	public int getUserID(String username) throws InvalidArgumentException{
 		UserProfile user = this.findUser(username);
 		if (user != null)
@@ -103,7 +107,7 @@ public class UserProfileCatalogue {
 			newUser = new Employee(getNextID(), username, password, firstName, lastName, contactInformation);
 		else if (authRole == AuthenticationType.ADMIN)
 			newUser = new Admin(getNextID(), username, password, firstName, lastName, contactInformation);
-		else if (authRole == AuthenticationType.MANAGER)
+		else
 			newUser = new Manager(getNextID(), username, password, firstName, lastName, contactInformation, authRole);
 		
 		return newUser;
@@ -115,13 +119,15 @@ public class UserProfileCatalogue {
 			if (username.equals(userList.get(i).getUsername()))
 				return false;
 		}
+		if (username.equals(Constants.SYSTEM_ACTOR))
+			return false;
 		return checkValidUserInfo(password);
 	}
 	
 	public UserProfile createCustomer(String username, String password, String firstName, String lastName, 
 			String telephoneNumber, String emailAddress, String physicalAddress) throws InvalidArgumentException{
 		if (!checkValidUser(username, password)){
-			throw new InvalidArgumentException(Constants.INVALID_USER);
+			throw new InvalidArgumentException(Constants.INVALID_INFO);
 		}
 		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
 		Customer customer = new Customer(getNextID(), username, password, firstName, lastName, contactInformation);
@@ -144,18 +150,14 @@ public class UserProfileCatalogue {
 	}
 	
 	public boolean changeUserInfo(int userID, String password, String firstName, String lastName, 
-					String telephoneNumber, String emailAddress, String physicalAddress) throws NonExistentEntityException, InvalidArgumentException{
+					String telephoneNumber, String emailAddress, String physicalAddress, String oldPass) throws NonExistentEntityException, InvalidArgumentException{
 		UserProfile userProfile = this.getByID(userID);
 		if (userProfile == null){
 			throw new NonExistentEntityException(Constants.NO_SUCH_USER);
 		}
-		boolean valid = checkValidUserInfo(password);
-		if (valid){
-			userProfile.changeUserInfo(password, firstName, lastName, 
-					telephoneNumber, emailAddress, physicalAddress);
-			return true;
-		}
-		return false;
+		userProfile.changeUserInfo(password, firstName, lastName, 
+					telephoneNumber, emailAddress, physicalAddress, oldPass);
+		return true;
 	}
 	
 	

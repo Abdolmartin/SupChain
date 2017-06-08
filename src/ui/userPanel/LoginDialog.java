@@ -9,6 +9,7 @@ import ui.AdminPortal;
 import ui.CustomerPortal;
 import ui.EmployeePanel;
 import ui.InitialPortal;
+import ui.LoggedInMainPortal;
 import ui.ManagerPortal;
 import ui.handler.UserManager;
 
@@ -23,10 +24,6 @@ import java.awt.Dimension;
 public class LoginDialog extends JDialog {
 	private JTextField usernameField;
 	private JTextField passwordField;
-	
-	public static void main(String[] args) {
-		new LoginDialog();
-	}
 	
 	public LoginDialog() {
 		setPreferredSize(new Dimension(400, 400));
@@ -66,7 +63,7 @@ public class LoginDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				LoginDialog.this.setVisible(false);
-				JDialog initialPortal = new InitialPortal();
+				new InitialPortal();
 				LoginDialog.this.dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
 			}
 		});
@@ -85,19 +82,7 @@ public class LoginDialog extends JDialog {
 			case Constants.SUCCESS:
 				int userID = userManager.getUserID(username);
 				LoginDialog.this.setVisible(false);
-				String authLevel = userManager.getUserAuthenticationLevel(userID);
-				switch (authLevel) {
-				case Constants.ADMIN:
-					new AdminPortal(userID);
-				case Constants.MANAGER:
-					new ManagerPortal(userID);
-				case Constants.CUSTOMER:
-					new CustomerPortal(userID);
-				case Constants.EMPLOYEE:
-					new EmployeePanel(userID);
-				default:
-					break;
-				}
+				LoggedInMainPortal.startRelevantMainPortal(userID);
 				LoginDialog.this.dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
 				break;
 			default:

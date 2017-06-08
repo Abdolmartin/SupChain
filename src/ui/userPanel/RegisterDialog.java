@@ -4,9 +4,14 @@ import javax.swing.JDialog;
 import javax.swing.JButton;
 
 import ui.InitialPortal;
+import ui.handler.UserManager;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import common.Constants;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
@@ -26,7 +31,7 @@ public class RegisterDialog extends JDialog {
 		submitButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				submit();
+				RegisterDialog.this.submit();
 			}
 		});
 		submitButton.setBounds(226, 319, 89, 23);
@@ -53,7 +58,7 @@ public class RegisterDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				RegisterDialog.this.setVisible(false);
-				JDialog initialPortal = new InitialPortal();
+				new InitialPortal();
 				RegisterDialog.this.dispatchEvent(new WindowEvent(RegisterDialog.this, WindowEvent.WINDOW_CLOSING));
 			}
 		});
@@ -132,6 +137,36 @@ public class RegisterDialog extends JDialog {
 	}
 	
 	void submit(){
+		String username = usernameField.getText();
+		String password = passField.getText();
+		String firstName = nameField.getText();
+		String lastName = lastNameField.getText();
+		String telephoneNumber = telephoneField.getText();
+		String emailAddress = emailField.getText();
+		String physicalAddress = addressField.getText();
 		
+		if (username.equals("") || password.equals("") || firstName.equals("") || lastName.equals("") || 
+				telephoneNumber.equals("") || emailAddress.equals("") || physicalAddress.equals("")){
+			JOptionPane.showMessageDialog(this, "Which part of \"all fields are required\" don't you understand?");
+			return;
+		}
+		else{
+			UserManager userManager = new UserManager();
+			String result = userManager.createUser(Constants.CUSTOMER, username, password, firstName,
+					lastName, telephoneNumber, emailAddress, physicalAddress, -1);
+			switch(result){
+				case Constants.SUCCESS:
+					JOptionPane.showMessageDialog(this, "ثبت نام موفقیت‌آمیز بود.");
+					RegisterDialog.this.setVisible(false);
+					JDialog loginDialog = new LoginDialog();
+					RegisterDialog.this.dispatchEvent(new WindowEvent(RegisterDialog.this, WindowEvent.WINDOW_CLOSING));
+					break;
+				case Constants.INVALID_INFO:
+					JOptionPane.showMessageDialog(this, "اطلاعات با قوانین سازگار نیست.");
+					break;
+				default:
+					JOptionPane.showMessageDialog(this, Constants.GHAEDATAN);
+			}
+		}
 	}
 }

@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 
 public class InitialPortal extends JDialog {
+	
 	public InitialPortal() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -20,7 +21,7 @@ public class InitialPortal extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				InitialPortal.this.setVisible(false);
-				JDialog loginDialog = new LoginDialog();
+				new LoginDialog();
 				InitialPortal.this.dispatchEvent(new WindowEvent(InitialPortal.this, WindowEvent.WINDOW_CLOSING));
 			}
 		});
@@ -32,7 +33,7 @@ public class InitialPortal extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				InitialPortal.this.setVisible(false);
-				JDialog registerDialog = new RegisterDialog();
+				new RegisterDialog();
 				InitialPortal.this.dispatchEvent(new WindowEvent(InitialPortal.this, WindowEvent.WINDOW_CLOSING));
 			}
 		});
