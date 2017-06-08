@@ -125,13 +125,16 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 			this.setFirstName(firstName);
 		if (!lastName.equals(""))
 			this.setLastName(lastName);
+		
 		if (telephoneNumber.equals(""))
 			telephoneNumber = contactInformation.getTelephoneNumber();
 		if (emailAddress.equals(""))
-		if (telephoneNumber!=null && emailAddress!=null && physicalAddress!=null){
-			ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
-			this.setContactInformation(contactInformation);
-		}
+			emailAddress = contactInformation.getEmailAddress();
+		if (physicalAddress.equals(""))
+			physicalAddress = contactInformation.getPhysicalAddress();
+		
+		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
+		this.setContactInformation(contactInformation);
 		
 		ActionLog actionLog = new ActionLog(this.getUsername(), "changeInfo", new Date());
 		ActionLogCatalogue.getCatalogue().addLog(actionLog);

@@ -26,5 +26,16 @@ public class ActionLog implements Viewable{
 		return new JSONObject(map);
 	}
 	
+	public String getActor() {
+		return actor;
+	}
+	public String getAction() {
+		return action;
+	}
+	public Date getDate() {
+		return date;
+	}
+	
+	
 	
 }
