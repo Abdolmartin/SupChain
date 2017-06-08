@@ -1,9 +1,12 @@
 package userManagement;
 
 public class ContactInformation {
-	String emailAddress;
-	String telephoneNumber;
-	String physicalAddress;
+	private int id;
+	private String emailAddress;
+	private String telephoneNumber;
+	private String physicalAddress;
+	
+	public ContactInformation(){}
 	
 	public ContactInformation(String emailAddress, String telephoneNumber, String physicalAddress) {
 		this.emailAddress = emailAddress;
