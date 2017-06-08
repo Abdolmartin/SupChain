@@ -1,5 +1,6 @@
 package ui.handler;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
@@ -7,6 +8,8 @@ import org.json.simple.JSONObject;
 import common.Constants;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
+import userManagement.ActionLog;
+import userManagement.ActionLogCatalogue;
 import userManagement.AuthenticationType;
 import userManagement.UserProfile;
 import userManagement.UserProfileCatalogue;
@@ -59,10 +62,18 @@ public class UserManager {
 	}
 	
 	public String createUser(String role, String username, String password, String firstName, String lastName, 
-			String telephoneNumber, String emailAddress, String physicalAddress){
+			String telephoneNumber, String emailAddress, String physicalAddress, int creatorID){
+		String creatorName = "";
+		try {
+			creatorName = UserProfileCatalogue.getCatalogue().getUsername(creatorID);
+		} catch (InvalidArgumentException e1) {
+			creatorName = Constants.NONE;
+		}  		
 		if (role.equals(Constants.CUSTOMER)){
 			try {
 				UserProfileCatalogue.getCatalogue().createCustomer(username, password, firstName, lastName, telephoneNumber, emailAddress, physicalAddress);
+				ActionLog actionLog = new ActionLog(creatorName, "register:"+username, new Date());
+				ActionLogCatalogue.getCatalogue().addLog(actionLog);
 			} catch (InvalidArgumentException e) {
 				return e.getMessage();
 			}
@@ -92,6 +103,8 @@ public class UserManager {
 			try {
 				UserProfileCatalogue.getCatalogue().createIntraOrganisationUser(username, password, firstName,
 						lastName, telephoneNumber, emailAddress, physicalAddress, authRole);
+				ActionLog actionLog = new ActionLog(creatorName, "create:"+username, new Date());
+				ActionLogCatalogue.getCatalogue().addLog(actionLog);
 			} catch (InvalidArgumentException e) {
 				return e.getMessage();
 			}			
