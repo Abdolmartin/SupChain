@@ -1,6 +1,8 @@
 package userManagement;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +58,27 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 		return this.notifications;
 	}
 	
+	public ArrayList<JSONObject> viewNotifications(){
+		ArrayList<Notification> sortedNotifs = new ArrayList<>(this.notifications);
+		Collections.sort(sortedNotifs, new Comparator<Notification>() {
+			@Override
+			public int compare(Notification o1, Notification o2) {
+				if (o1.getIsSeen() == true && o2.getIsSeen() == false)
+					return -1;
+				if (o2.getIsSeen() == true && o1.getIsSeen() == false)
+					return 1;
+				return 0;
+			}
+		});
+		ArrayList<JSONObject> result = new ArrayList<>();
+		for (int i=0;i<sortedNotifs.size();i++){
+			result.add(sortedNotifs.get(i).showInfo());
+		}
+		return result;
+	}
+	
 	public void addNotification(Notification n){
+		n.setReciever(this);
 		this.notifications.add(n);
 	}
 	

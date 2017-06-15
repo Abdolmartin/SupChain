@@ -2,6 +2,8 @@ package main;
 
 import java.util.Date;
 
+import common.Constants;
+
 // import java.util.*;
 
 // import org.hibernate.HibernateException; 
@@ -10,6 +12,7 @@ import java.util.Date;
 // import org.hibernate.SessionFactory;
 // import org.hibernate.cfg.Configuration;
 import exceptions.InvalidArgumentException;
+import ui.InitialPortal;
 import userManagement.AuthenticationType;
 // import ui.InitialPortal;
 import userManagement.ContactInformation;
@@ -24,8 +27,9 @@ public class Main {
 	public static void main(String[] args) {
 		// Session session = factory.s
 		try {
-			UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
-			// InitialPortal initialPortal = new InitialPortal();
+			UserProfile user1 = UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
+			user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
+			InitialPortal initialPortal = new InitialPortal();
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		}
