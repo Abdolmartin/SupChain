@@ -2,13 +2,13 @@ package userManagement;
 
 class Employee extends UserProfile{
 
-	public Employee(int id, String username, String password, String firstName, String lastName,
+	public Employee(String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation) {
-		super(id, username, password, firstName, lastName, contactInformation);
+		super(username, password, firstName, lastName, contactInformation);
 	}
 
 	@Override
-	public AuthenticationType getAuth() {
+	public AuthenticationType getAuthRole() {
 		return AuthenticationType.EMPLOYEE;
 	}
 

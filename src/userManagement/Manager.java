@@ -1,12 +1,13 @@
 package userManagement;
 
-class Manager extends UserProfile{
+
+public class Manager extends UserProfile{
 	
 	private AuthenticationType authRole;
 	
-	public Manager(int id, String username, String password, String firstName, String lastName,
+	public Manager(String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation, AuthenticationType authRole) {
-		super(id, username, password, firstName, lastName, contactInformation);
+		super(username, password, firstName, lastName, contactInformation);
 		if (authRole == AuthenticationType.MANAGER || authRole == AuthenticationType.PRODUCTION_MANAGER || 
 				authRole == AuthenticationType.WAREHOUSE_MANAGER)
 			this.authRole = authRole; //TODO Placeholder
@@ -15,8 +16,14 @@ class Manager extends UserProfile{
 	}
 
 	@Override
-	public AuthenticationType getAuth() {
+	public AuthenticationType getAuthRole() {
 		return this.authRole;
 	}
+	
+	
+	public void setAuthRole(AuthenticationType auth) {
+		this.authRole = auth;
+	}
 
+	
 }

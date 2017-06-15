@@ -1,7 +1,6 @@
 package userManagement;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
@@ -83,7 +82,7 @@ public class UserProfileCatalogue {
 	
 	public AuthenticationType getUserAuthenticationLevel(int userID) throws InvalidArgumentException{
 		UserProfile user = this.getByID(userID);
-		return user.getAuth();
+		return user.getAuthRole();
 	}
 	
 	public void logInUser(String username, String password) throws InvalidArgumentException{
@@ -104,11 +103,11 @@ public class UserProfileCatalogue {
 		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
 		UserProfile newUser = null;
 		if (authRole == AuthenticationType.EMPLOYEE)
-			newUser = new Employee(getNextID(), username, password, firstName, lastName, contactInformation);
+			newUser = new Employee(username, password, firstName, lastName, contactInformation);
 		else if (authRole == AuthenticationType.ADMIN)
-			newUser = new Admin(getNextID(), username, password, firstName, lastName, contactInformation);
+			newUser = new Admin(username, password, firstName, lastName, contactInformation);
 		else
-			newUser = new Manager(getNextID(), username, password, firstName, lastName, contactInformation, authRole);
+			newUser = new Manager(username, password, firstName, lastName, contactInformation, authRole);
 		
 		return newUser;
 	}
@@ -130,13 +129,9 @@ public class UserProfileCatalogue {
 			throw new InvalidArgumentException(Constants.INVALID_INFO);
 		}
 		ContactInformation contactInformation = new ContactInformation(emailAddress, telephoneNumber, physicalAddress);
-		Customer customer = new Customer(getNextID(), username, password, firstName, lastName, contactInformation);
+		Customer customer = new Customer(username, password, firstName, lastName, contactInformation);
 		addUser(customer);
 		return customer;
-	}
-	
-	private int getNextID() {
-		return this.lastID+1;
 	}
 
 	public ArrayList<UserProfile> getManagersByRole(AuthenticationType role){

@@ -2,13 +2,13 @@ package userManagement;
 
 class Customer extends UserProfile{
 
-	public Customer(int id, String username, String password, String firstName, String lastName,
+	public Customer(String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation) {
-		super(id, username, password, firstName, lastName, contactInformation);
+		super(username, password, firstName, lastName, contactInformation);
 	}
 
 	@Override
-	public AuthenticationType getAuth() {
+	public AuthenticationType getAuthRole() {
 		return AuthenticationType.CUSTOMER;
 	}
 

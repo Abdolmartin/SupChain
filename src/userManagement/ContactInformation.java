@@ -13,6 +13,14 @@ public class ContactInformation {
 		this.telephoneNumber = telephoneNumber;
 		this.physicalAddress = physicalAddress;
 	}
+	
+	public int getId(){
+		return this.id;
+	}
+	
+	public void setId(int id){
+		this.id = id;
+	}
 
 	public String getEmailAddress() {
 		return emailAddress;

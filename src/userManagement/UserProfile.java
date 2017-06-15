@@ -3,6 +3,7 @@ package userManagement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -28,27 +29,30 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 	private String username, password;
 	private String firstName, lastName;
 	private ContactInformation contactInformation;
-	private ArrayList<Notification> notifications;
+	private List<Notification> notifications;
 	private boolean loggedIn;
 	
 	public UserProfile(){}
-	public UserProfile(int id, String username, String password, String firstName, String lastName,
+	public UserProfile(String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.contactInformation = contactInformation;
-		this.notifications = new ArrayList<>();
+		this.notifications = new ArrayList<Notification>();
 		this.loggedIn = false;
-		this.id = id;
 	}
 
 	public int getId() {
 		return this.id;
 	}
 	
-	public ArrayList<Notification> getNotificationsList(){
+	public void setId(int id){
+		this.id = id;
+	}
+	
+	public List<Notification> getNotificationsList(){
 		return this.notifications;
 	}
 	
@@ -81,6 +85,10 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 	public String getUsername(){
 		return this.username;
 	}
+	
+	public void setUsername(String username){
+		this.username = username;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -105,6 +113,18 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getPassword(){
+		return this.password;
+	}
+	
+	public void setLoggedIn(boolean logg){
+		this.loggedIn = logg;
+	}
+	
+	public boolean getLoggedIn(){
+		return this.loggedIn;
+	}
 
 	public ContactInformation getContactInformation() {
 		return contactInformation;
@@ -112,6 +132,14 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 
 	public void setContactInformation(ContactInformation contactInformation) {
 		this.contactInformation = contactInformation;
+	}
+	
+	public void setNotifications(List<Notification> list){
+		this.notifications = list;
+	}
+	
+	public List<Notification> getNotifications(){
+		return this.notifications;
 	}
 
 	public void changeUserInfo(String password, String firstName, String lastName, String telephoneNumber,
@@ -135,6 +163,10 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 		
 		ActionLog actionLog = new ActionLog(this.getUsername(), "changeInfo", new Date());
 		ActionLogCatalogue.getCatalogue().addLog(actionLog);
+	}
+	@Override
+	public AuthenticationType getAuthRole() {
+		return null;
 	}
 	
 	

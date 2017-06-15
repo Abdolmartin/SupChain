@@ -7,5 +7,13 @@
         <id name="id" column="NOTIF_ID">
             <generator class="native"/>
         </id>
-    </class> 
+        
+        <property name="body" column="BODY" />
+        <property name="sender" column="SENDER" />
+        <property name="date" column="DATE" type="date" />
+        <property name="isSeen" column="IS_SEEN" type="boolean" />
+        
+        <many-to-one name="reciever" class="UserProfile"
+            column="USER_ID" not-null="true"/>
+    </class>
 </hibernate-mapping>
