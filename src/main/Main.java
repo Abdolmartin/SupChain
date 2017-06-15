@@ -4,11 +4,11 @@ import java.util.Date;
 
 // import java.util.*;
 
-import org.hibernate.HibernateException; 
-import org.hibernate.Session; 
-import org.hibernate.Transaction;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+// import org.hibernate.HibernateException; 
+// import org.hibernate.Session; 
+// import org.hibernate.Transaction;
+// import org.hibernate.SessionFactory;
+// import org.hibernate.cfg.Configuration;
 import exceptions.InvalidArgumentException;
 import userManagement.AuthenticationType;
 // import ui.InitialPortal;
@@ -19,7 +19,7 @@ import userManagement.Notification;
 import userManagement.UserProfileCatalogue;
 
 public class Main {
-	private static SessionFactory factory;
+	// private static SessionFactory factory;
 
 	public static void main(String[] args) {
 		// Session session = factory.s
@@ -33,16 +33,16 @@ public class Main {
 		// building factory
 		try
 		{
-			factory = new Configuration().configure().buildSessionFactory();
+			// factory = new Configuration().configure().buildSessionFactory();
 	    }catch (Throwable ex) {
 	        System.err.println("Failed to create sessionFactory object." + ex);
 	        throw new ExceptionInInitializerError(ex);
 	        }
-		ContactInformation conInf = addContactInformationToDb();
-		UserProfile usr = addManagerToDb(new ContactInformation("abbas@gmail.com", "091233", "azadi"));
-		addNotif(usr);
+		// ContactInformation conInf = addContactInformationToDb();
+		// UserProfile usr = addManagerToDb(new ContactInformation("abbas@gmail.com", "091233", "azadi"));
+		// addNotif(usr);
 	}
-	
+	/***
 	public static ContactInformation addContactInformationToDb(){
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -118,7 +118,7 @@ public class Main {
 		}
 	}
 
-	
+	***/
 	
 
 }
