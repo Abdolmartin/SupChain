@@ -1,5 +1,6 @@
 package ui.handler;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -8,6 +9,7 @@ import org.json.simple.JSONObject;
 import common.Constants;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
+import ui.CustomerPortal;
 import userManagement.ActionLog;
 import userManagement.ActionLogCatalogue;
 import userManagement.AuthenticationType;
@@ -39,6 +41,18 @@ public class UserManager {
 			map.put("error", Constants.NO_SUCH_USER);
 			return new JSONObject(map);
 		}
+	}
+	
+	public String changeUserInfo(int userID, String password, String firstName, String lastName, String telephoneNumber,
+			String emailAddress, String physicalAddress, String oldPass){
+		try {
+			UserProfileCatalogue.getCatalogue().changeUserInfo(userID, password, firstName, lastName, telephoneNumber, emailAddress, physicalAddress, oldPass);
+		} catch (NonExistentEntityException e) {
+			return Constants.NO_SUCH_USER;
+		} catch (InvalidArgumentException e1){
+			return Constants.INVALID_INFO;
+		}
+		return Constants.SUCCESS;
 	}
 	
 	public String getUserAuthenticationLevel(int userID){
@@ -118,5 +132,23 @@ public class UserManager {
 			return e.getMessage();
 		}
 		return Constants.SUCCESS;
+	}
+	
+	public ArrayList<JSONObject> getLogs(int userID){
+		String userName = "";
+		try {
+			userName = UserProfileCatalogue.getCatalogue().getUsername(userID);
+			return ActionLogCatalogue.getCatalogue().showSearchResults(userName);
+		} catch (InvalidArgumentException e) {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("error", Constants.NO_SUCH_USER);
+			ArrayList<JSONObject> result = new ArrayList<>();
+			result.add(new JSONObject(map));
+			return result;
+		}
+		
+	}
+	public ArrayList<JSONObject> getAllLogs() {
+		return ActionLogCatalogue.getCatalogue().showSearchResults("");
 	}
 }

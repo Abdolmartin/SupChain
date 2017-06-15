@@ -4,12 +4,15 @@ import ui.AdminPortal;
 import ui.LoggedInMainPortal;
 import ui.LoggedInWindow;
 import ui.handler.UserManager;
+import userManagement.UserProfileCatalogue;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.json.simple.JSONObject;
+
+import common.Constants;
 
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -146,6 +149,35 @@ public class ViewUserInfoDialog extends LoggedInWindow {
 	}
 
 	void submit(){
+		String username = usernameField.getText();
+		String newPass = newPassField.getText();
+		String firstName = nameField.getText();
+		String lastName = lastNameField.getText();
+		String telephoneNumber = telephoneField.getText();
+		String emailAddress = emailField.getText();
+		String physicalAddress = addressField.getText();
+		String oldPass = prevPassField.getText();
 		
+		UserManager userManager = new UserManager();
+		String result = userManager.changeUserInfo(this.userID, newPass, firstName, 
+				lastName, telephoneNumber, emailAddress, physicalAddress, oldPass);
+		
+		switch(result){
+			case Constants.SUCCESS:
+				JOptionPane.showMessageDialog(this, "اطلاعات با موفقیت تغییر کرد.");
+				ViewUserInfoDialog.this.setVisible(false);
+				new ViewUserInfoDialog(userID);
+				ViewUserInfoDialog.this.dispatchEvent(new WindowEvent(ViewUserInfoDialog.this, WindowEvent.WINDOW_CLOSING));
+				break;
+			case Constants.NO_SUCH_USER:
+				JOptionPane.showMessageDialog(this, "SORRY, YOU DON'T EXIST");
+				this.goToInitial();
+				break;
+			case Constants.INVALID_INFO:
+				JOptionPane.showMessageDialog(this, "خطا در تغییر اطلاعات.");
+				break;
+			default:
+				JOptionPane.showMessageDialog(this, Constants.GHAEDATAN);
+		}
 	}
 }
