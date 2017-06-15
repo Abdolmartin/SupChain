@@ -1,5 +1,6 @@
 package ui.handler;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -131,5 +132,23 @@ public class UserManager {
 			return e.getMessage();
 		}
 		return Constants.SUCCESS;
+	}
+	
+	public ArrayList<JSONObject> getLogs(int userID){
+		String userName = "";
+		try {
+			userName = UserProfileCatalogue.getCatalogue().getUsername(userID);
+			return ActionLogCatalogue.getCatalogue().showSearchResults(userName);
+		} catch (InvalidArgumentException e) {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("error", Constants.NO_SUCH_USER);
+			ArrayList<JSONObject> result = new ArrayList<>();
+			result.add(new JSONObject(map));
+			return result;
+		}
+		
+	}
+	public ArrayList<JSONObject> getAllLogs() {
+		return ActionLogCatalogue.getCatalogue().showSearchResults("");
 	}
 }

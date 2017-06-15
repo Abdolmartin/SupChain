@@ -4,6 +4,7 @@ import javax.swing.JDialog;
 
 import common.Constants;
 import ui.handler.UserManager;
+import ui.userPanel.ActionHistoryDialogType;
 import ui.userPanel.RegisterDialog;
 import ui.userPanel.ViewActionHistoryDialog;
 import ui.userPanel.ViewUserInfoDialog;
@@ -48,7 +49,7 @@ public abstract class LoggedInMainPortal extends LoggedInWindow {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				LoggedInMainPortal.this.setVisible(false);
-				new ViewActionHistoryDialog(userID);
+				new ViewActionHistoryDialog(userID, ActionHistoryDialogType.PERSONAL);
 				LoggedInMainPortal.this.dispatchEvent(new WindowEvent(LoggedInMainPortal.this, WindowEvent.WINDOW_CLOSING));
 			}
 		});

@@ -2,6 +2,8 @@ package userManagement;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
+
 public class ActionLogCatalogue {
 	
 	
@@ -34,5 +36,14 @@ public class ActionLogCatalogue {
 			}
 			return resultList;
 		}
+	}
+	
+	public ArrayList<JSONObject> showSearchResults(String actorName){
+		ArrayList<ActionLog> logs = this.search(actorName);
+		ArrayList<JSONObject> results = new ArrayList<>();
+		for (int i=0;i<logs.size();i++){
+			results.add(logs.get(i).showInfo());
+		}
+		return results;
 	}
 }
