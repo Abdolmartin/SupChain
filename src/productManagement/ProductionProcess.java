@@ -1,5 +1,5 @@
 package productManagement;
 
-class ProductionProcess {
+public class ProductionProcess {
 
 }

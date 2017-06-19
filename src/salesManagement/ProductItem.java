@@ -1,5 +1,5 @@
 package salesManagement;
 
-class ProductItem {
+class ProductItem extends ProductElementItem{
 
 }

@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.JScrollPane;
 
 public class ViewNotificationsDialog extends LoggedInWindow {
 	private JTable table;
@@ -35,9 +36,12 @@ public class ViewNotificationsDialog extends LoggedInWindow {
 		returnButton.setBounds(252, 0, 153, 23);
 		getContentPane().add(returnButton);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(62, 88, 357, 247);
+		getContentPane().add(scrollPane);
+		
 		table = new JTable();
-		table.setBounds(77, 59, 308, 250);
-		getContentPane().add(table);
+		scrollPane.setViewportView(table);
 		
 		load();
 		

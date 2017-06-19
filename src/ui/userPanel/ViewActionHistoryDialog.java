@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Set;
+import javax.swing.JScrollPane;
 
 public class ViewActionHistoryDialog extends LoggedInWindow {
 	private JTable table;
@@ -29,10 +30,6 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 	public ViewActionHistoryDialog(int userID, ActionHistoryDialogType dialogType) {
 		super(userID);
 		this.dialogType = dialogType;
-		
-		table = new JTable();
-		table.setBounds(62, 75, 352, 253);
-		getContentPane().add(table);
 		
 		JButton button = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A \u0628\u0647 \u0635\u0641\u062D\u0647 \u0627\u0635\u0644\u06CC");
 		button.addMouseListener(new MouseAdapter() {
@@ -45,6 +42,13 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 		});
 		button.setBounds(221, 0, 169, 23);
 		getContentPane().add(button);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(71, 81, 352, 309);
+		getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		
 		load();
 		
