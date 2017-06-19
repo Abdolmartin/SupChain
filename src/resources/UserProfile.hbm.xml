@@ -32,6 +32,37 @@
 				</type>
 			</property>
 		</joined-subclass>
+		
+		<joined-subclass name="userManagement.Customer" table="CUSTOMER">
+			<key column="CUSTOMER_ID"></key>
+			<property name="authRole" column="ROLE_DB">
+				<type name="org.hibernate.type.EnumType">
+					<param name="enumClass">userManagement.AuthenticationType</param>
+					<param name="useNamed">true</param>
+				</type>
+			</property>
+		</joined-subclass>
+		
+		<joined-subclass name="userManagement.Employee" table="EMPLOYEE">
+			<key column="EMPLOYEE_ID"></key>
+			<property name="authRole" column="ROLE_DB">
+				<type name="org.hibernate.type.EnumType">
+					<param name="enumClass">userManagement.AuthenticationType</param>
+					<param name="useNamed">true</param>
+				</type>
+			</property>
+		</joined-subclass>
+
+		<joined-subclass name="userManagement.Admin" table="ADMIN">
+			<key column="ADMIN_ID"></key>
+			<property name="authRole" column="ROLE_DB">
+				<type name="org.hibernate.type.EnumType">
+					<param name="enumClass">userManagement.AuthenticationType</param>
+					<param name="useNamed">true</param>
+				</type>
+			</property>
+		</joined-subclass>
+
 	</class>
 	
 	<class name="Notification" table="NOTIFICATION">

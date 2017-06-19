@@ -14,7 +14,14 @@
         <property name="show_sql">true</property>
 
        <mapping resource="resources/ContactInformation.hbm.xml" />
+       
        <mapping resource="resources/UserProfile.hbm.xml" />
        <mapping resource="resources/Manager.hbm.xml" />
+       <mapping resource="resources/Customer.hbm.xml" />
+       <mapping resource="resources/Admin.hbm.xml" />
+       <mapping resource="resources/Employee.hbm.xml" />
+       
+       <mapping resource="resources/ActionLog.hbm.xml" />
+       
     </session-factory>
 </hibernate-configuration>

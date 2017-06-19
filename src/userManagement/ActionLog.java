@@ -11,6 +11,7 @@ public class ActionLog implements Viewable{
 	String actor;
 	String action;
 	Date date;
+	public ActionLog(){}
 	public ActionLog(String actor, String action, Date date) {
 		super();
 		this.actor = actor;

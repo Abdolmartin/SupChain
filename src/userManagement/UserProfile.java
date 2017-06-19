@@ -193,10 +193,6 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 	@Override
 	public AuthenticationType getAuthRole() {
 		return null;
-	}
-	
-	
-	
-	
+	}	
 	
 }
