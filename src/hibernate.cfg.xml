@@ -15,7 +15,6 @@
 
        <mapping resource="resources/ContactInformation.hbm.xml" />
        <mapping resource="resources/UserProfile.hbm.xml" />
-       <mapping resource="resources/Notification.hbm.xml" />
        <mapping resource="resources/Manager.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

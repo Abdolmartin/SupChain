@@ -2,7 +2,7 @@ package salesManagement;
 
 import java.util.Date;
 
-class Order {
+public class Order {
 	
 	private Date date;
 	private int id;

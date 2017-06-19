@@ -17,10 +17,10 @@
 			cascade="save-update">
 		</one-to-one>
 
-		<list name="notifications">
-			<key column="NOTIF_ID" not-null="true" />
+		<list name="notifications" cascade="all">
+			<key column="RECIEVER_ID" />
 			<list-index column="idx" />
-			<one-to-many class="userManagement.Notification" />
+			<one-to-many class="Notification" />
 		</list>
 
 		<joined-subclass name="userManagement.Manager" table="MANAGER">
@@ -32,6 +32,17 @@
 				</type>
 			</property>
 		</joined-subclass>
-
 	</class>
+	
+	<class name="Notification" table="NOTIFICATION">
+        <id name="id" column="NOTIF_ID">
+            <generator class="native"/>
+        </id>
+        
+        <property name="body" column="BODY" />
+        <property name="sender" column="SENDER" />
+        <property name="date" column="DATE" type="date" />
+        <property name="isSeen" column="IS_SEEN" type="boolean" />        
+    </class>
+	
 </hibernate-mapping>

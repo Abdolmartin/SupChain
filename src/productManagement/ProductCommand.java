@@ -1,5 +1,5 @@
 package productManagement;
 
-class ProductCommand {
+public class ProductCommand {
 
 }
