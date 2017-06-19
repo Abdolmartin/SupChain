@@ -22,7 +22,7 @@ import userManagement.Notification;
 import userManagement.UserProfileCatalogue;
 
 public class Main {
-	private static SessionFactory factory;
+	// private static SessionFactory factory;
 
 	public static void main(String[] args) {
 		
@@ -37,18 +37,19 @@ public class Main {
 		// building factory
 		try
 		{
-			factory = new Configuration().configure().buildSessionFactory();
+			// factory = new Configuration().configure().buildSessionFactory();
 	    }catch (Throwable ex) {
 	        System.err.println("Failed to create sessionFactory object." + ex);
 	        throw new ExceptionInInitializerError(ex);
 	        }
-		ContactInformation conInf = addContactInformationToDb();
-		UserProfile usr = addManagerToDb(conInf);
-		System.out.println("usr ID = "+ usr.getId());
 		
-		addNotif(usr);
+		// ContactInformation conInf = addContactInformationToDb();
+		// UserProfile usr = addManagerToDb(conInf);
+		// System.out.println("usr ID = "+ usr.getId());
+		// addNotif(usr);
 		
 	}
+	/***
 	
 	public static ContactInformation addContactInformationToDb(){
 		Session session = factory.openSession();
@@ -131,7 +132,7 @@ public class Main {
 			session.close();
 		}
 	}
-
+	***/
 	
 
 }
