@@ -3,7 +3,7 @@ package common;
 public class Constants {
 	public static final String NO_SUCH_USER = "noUser";
 	public static final String INVALID_INFO = "invalidInfo";
-	public static final String INVALID_USER = "invalidUsername";
+	public static final String INVALID_NAME = "invalidName";
 	public static final String WRONG_PASS = "wrongPass";
 	public static final String SUCCESS = "success";
 	public static final String MANAGER = "manager";
@@ -15,4 +15,6 @@ public class Constants {
 	public static final String SYSTEM_ACTOR = "__SUPCHAIN__";
 	public static final String NONE = "__NONE__";
 	public static final String GHAEDATAN = "قاعدتا نباید اینجوری می‌شد";
+	public static final String PRODUCT = "product";
+	public static final String COMPONENT = "component";
 }

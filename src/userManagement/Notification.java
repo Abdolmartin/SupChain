@@ -1,8 +1,13 @@
 package userManagement;
 
 import java.util.Date;
+import java.util.HashMap;
 
-public class Notification {
+import org.json.simple.JSONObject;
+
+import common.Viewable;
+
+public class Notification implements Viewable{
 	private int id;
 	private boolean isSeen = false;
 	private String body;
@@ -12,12 +17,11 @@ public class Notification {
 	
 	
 	public Notification(){}
-	public Notification(boolean seen, String body, Date date, String sender, UserProfile reciever){
+	public Notification(boolean seen, String body, Date date, String sender){
 		this.isSeen = seen;
 		this.body = body;
 		this.date = date;
 		this.sender = sender;
-		this.reciever = reciever;
 	}
 	
 	public int getId(){
@@ -66,6 +70,17 @@ public class Notification {
 	
 	public UserProfile getReciever(){
 		return this.reciever;
+	}
+	
+	@Override
+	public JSONObject showInfo() {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("sender", this.sender);
+		map.put("date", this.date.toString());
+		map.put("body", this.body);
+		map.put("seen", String.valueOf(this.isSeen));
+		this.setIsSeen(true);
+		return new JSONObject(map);
 	}
 
 }

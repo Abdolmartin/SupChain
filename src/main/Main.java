@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import common.Constants;
 import exceptions.InvalidArgumentException;
+import ui.InitialPortal;
 import userManagement.AuthenticationType;
 import ui.InitialPortal;
 import userManagement.ContactInformation;
@@ -24,8 +27,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		try {
-			UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
-			// InitialPortal initialPortal = new InitialPortal();
+			UserProfile user1 = UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
+			user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
+			InitialPortal initialPortal = new InitialPortal();
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +107,7 @@ public class Main {
 		Transaction tx = null;
 		try{
 			tx = session.beginTransaction();
-			Notification notif = new Notification(false, "salam notif", new Date(), "khodam", manager);
+			Notification notif = new Notification(false, "salam notif", new Date(), "khodam");
 			List<Notification> notifs = new ArrayList<Notification>();
 			notifs.add(notif);
 			manager.setNotifications(notifs);

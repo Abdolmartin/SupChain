@@ -151,4 +151,17 @@ public class UserManager {
 	public ArrayList<JSONObject> getAllLogs() {
 		return ActionLogCatalogue.getCatalogue().showSearchResults("");
 	}
+	public ArrayList<JSONObject> getNotifications(int userID) {
+		UserProfile userProfile = null;
+		try {
+			userProfile = UserProfileCatalogue.getCatalogue().getByID(userID);
+		} catch (InvalidArgumentException e) {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("error", Constants.NO_SUCH_USER);
+			ArrayList<JSONObject> result = new ArrayList<>();
+			result.add(new JSONObject(map));
+			return result;
+		}
+		return userProfile.viewNotifications();
+	}
 }
