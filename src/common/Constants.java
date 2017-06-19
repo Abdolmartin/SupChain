@@ -17,4 +17,5 @@ public class Constants {
 	public static final String GHAEDATAN = "قاعدتا نباید اینجوری می‌شد";
 	public static final String PRODUCT = "product";
 	public static final String COMPONENT = "component";
+	public static final String ANY = "ANY";
 }

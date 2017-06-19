@@ -5,7 +5,7 @@ import java.util.Date;
 
 import userManagement.UserProfile;
 
-abstract class Order {
+public abstract class Order {
 	
 	private Date orderDate;
 	private UserProfile orderingUser;
@@ -13,10 +13,6 @@ abstract class Order {
 	private double value;
 	private ArrayList<OrderStatus> statusHistory;
 	private int id;
-
-	public int getID() {
-		return this.id;
-	}
 
 	public Date getOrderDate() {
 		return orderDate;

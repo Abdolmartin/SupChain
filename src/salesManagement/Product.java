@@ -2,6 +2,8 @@ package salesManagement;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
+
 public class Product extends ProductElement{
 	
 	boolean finality;
@@ -9,12 +11,14 @@ public class Product extends ProductElement{
 	public Product(String name, int invLowerBound, int invUpperBound, boolean finality) {
 		super(name, invLowerBound, invUpperBound);
 		this.finality = finality;
+	}	
+
+	public boolean isFinal() {
+		return finality;
 	}
 
-	@Override
-	public JSONObject showInfo() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setFinality(boolean finality) {
+		this.finality = finality;
 	}
 
 	@Override
@@ -34,6 +38,11 @@ public class Product extends ProductElement{
 	public void changeInventory() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getType() {
+		return Constants.PRODUCT;
 	}
 
 }

@@ -1,12 +1,16 @@
 package salesManagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.json.simple.JSONObject;
+
+import common.Summarizable;
 import common.Viewable;
 import productManagement.ProductionProcess;
 import exceptions.InvalidArgumentException;
 
-public abstract class ProductElement implements Viewable{
+public abstract class ProductElement implements Viewable, Summarizable{
 	
 	private int id;
 	private String name;
@@ -14,7 +18,20 @@ public abstract class ProductElement implements Viewable{
 	private int invUpperBound = Integer.MAX_VALUE;
 	private ArrayList<ProductElementItem> productElementItemList;
 	
+	@Override
+	public JSONObject showInfo(){
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", this.name);
+		map.put("type", this.getType());
+		map.put("latest price", String.valueOf(this.getLatestPrice()));
+		map.put("id", String.valueOf(this.getId()));
+		return new JSONObject(map);
+	}
 	
+	@Override
+	public JSONObject showSummary(){
+		return this.showInfo();
+	}
 	
 	public ProductElement(String name, int invLowerBound, int invUpperBound) {
 		this.name = name;
@@ -59,6 +76,8 @@ public abstract class ProductElement implements Viewable{
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public abstract String getType();
 	
 	public void addItem(ProductElementItem pElementItem) throws InvalidArgumentException{
 		if (checkItemValidity(pElementItem)){
@@ -110,7 +129,11 @@ public abstract class ProductElement implements Viewable{
 	
 	public double getLatestPrice(){
 		int listSize = this.productElementItemList.size();
-		return this.productElementItemList.get(listSize-1).getPrice();
+		try{
+			return this.productElementItemList.get(listSize-1).getPrice();
+		}catch (IndexOutOfBoundsException e){
+			return -1;
+		}
 	}
 	
 	public abstract void changeInventory();

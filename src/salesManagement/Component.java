@@ -2,17 +2,13 @@ package salesManagement;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
+
 public class Component extends ProductElement{
 
 	public Component(String name, int invLowerBound, int invUpperBound) {
 		super(name, invLowerBound, invUpperBound);
 		
-	}
-
-	@Override
-	public JSONObject showInfo() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -33,5 +29,10 @@ public class Component extends ProductElement{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	public String getType() {
+		return Constants.COMPONENT;
+	}
+	
 }

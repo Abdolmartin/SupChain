@@ -18,7 +18,7 @@ public class OrderCatalogue {
 	public Order getByID(int orderID){
 		for (int i=0;i<orderList.size();i++){
 			Order currentOrder = orderList.get(i);
-			if (currentOrder.getID() == orderID)
+			if (currentOrder.getId() == orderID)
 				return currentOrder;
 		}
 		return null;
