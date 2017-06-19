@@ -25,9 +25,9 @@ public class ProductionProcessRepository implements BasicDAO<ProductionProcess>{
 	}
 
 	@Override
-	public void update(ProductionProcess obj) {
+	public boolean update(ProductionProcess obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

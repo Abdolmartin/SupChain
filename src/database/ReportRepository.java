@@ -25,9 +25,9 @@ public class ReportRepository implements BasicDAO<Report>{
 	}
 
 	@Override
-	public void update(Report obj) {
+	public boolean update(Report obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

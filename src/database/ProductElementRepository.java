@@ -25,9 +25,9 @@ public class ProductElementRepository implements BasicDAO<ProductElement>{
 	}
 
 	@Override
-	public void update(ProductElement obj) {
+	public boolean update(ProductElement obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

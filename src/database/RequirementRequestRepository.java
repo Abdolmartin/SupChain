@@ -25,9 +25,9 @@ public class RequirementRequestRepository implements BasicDAO<RequirementRequest
 	}
 
 	@Override
-	public void update(RequirementRequest obj) {
+	public boolean update(RequirementRequest obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

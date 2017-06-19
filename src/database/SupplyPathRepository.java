@@ -25,9 +25,9 @@ public class SupplyPathRepository implements BasicDAO<SupplyPath>{
 	}
 
 	@Override
-	public void update(SupplyPath obj) {
+	public boolean update(SupplyPath obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

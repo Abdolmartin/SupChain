@@ -25,9 +25,9 @@ public class ProductCommandRepository implements BasicDAO<ProductCommand>{
 	}
 
 	@Override
-	public void update(ProductCommand obj) {
+	public boolean update(ProductCommand obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 	
 

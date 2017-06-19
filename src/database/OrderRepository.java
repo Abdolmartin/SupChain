@@ -25,9 +25,9 @@ public class OrderRepository implements BasicDAO<Order>{
 	}
 
 	@Override
-	public void update(Order obj) {
+	public boolean update(Order obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }
