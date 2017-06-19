@@ -24,6 +24,7 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 		map.put("telephone", contactInformation.getTelephoneNumber());
 		map.put("email", contactInformation.getEmailAddress());
 		map.put("address", contactInformation.getPhysicalAddress());
+		map.put("id", String.valueOf(this.getId()));
 		return new JSONObject(map);
 	}
 

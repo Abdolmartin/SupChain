@@ -59,9 +59,34 @@ public class ProductElementCatalogue {
 		this.productElementList.add(productElement);
 	}
 	
-	public ArrayList<ProductElement> search(){
-		// TODO
-		return null;
+	public ArrayList<ProductElement> finalProductSearch(String name, double priceLowBound, double priceHighBound){
+		return this.generalSearch(Constants.PRODUCT, name, priceLowBound, priceHighBound, true, true);
 	}
+	
+	public ArrayList<ProductElement> generalSearch(String type, String name, double priceLowBound, double priceHighBound, boolean inStock, boolean finality){
+		ArrayList<ProductElement> results = new ArrayList<>();
+		for (int i=0;i<this.productElementList.size();i++){
+			ProductElement productElement = this.productElementList.get(i);
+			if (!type.equals(Constants.ANY) && !type.equals(productElement.getType())){
+				continue;
+			}
+			if (!name.equals("") && !name.equals(productElement.getName())){
+				continue;
+			}
+			if (productElement.getLatestPrice() < priceLowBound || productElement.getLatestPrice() > priceHighBound){
+				continue;
+			}
+			if (inStock && productElement.getAvailableQuantity() == 0){
+				continue;
+			}
+			if (finality && (productElement.getType().equals(Constants.COMPONENT) || ((Product)productElement).isFinal())){
+				continue;
+			}
+			
+			results.add(productElement);
+		}
+		return results;
+	}
+	
 	
 }

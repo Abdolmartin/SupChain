@@ -6,18 +6,12 @@ import java.util.Date;
 import userManagement.UserProfile;
 
 public abstract class Order {
-
-	
 	private Date orderDate;
 	private UserProfile orderingUser;
 	private ArrayList<ProductElementItem> orderedItems;
 	private double value;
 	private ArrayList<OrderStatus> statusHistory;
 	private int id;
-
-	public int getID() {
-		return this.id;
-	}
 
 	public Date getOrderDate() {
 		return orderDate;
