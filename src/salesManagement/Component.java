@@ -6,8 +6,8 @@ import common.Constants;
 
 public class Component extends ProductElement{
 
-	public Component(String name, int invLowerBound, int invUpperBound) {
-		super(name, invLowerBound, invUpperBound);
+	public Component(String name, int invLowerBound, int invUpperBound, String description) {
+		super(name, invLowerBound, invUpperBound, description);
 		
 	}
 

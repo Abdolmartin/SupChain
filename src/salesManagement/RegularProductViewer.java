@@ -14,6 +14,7 @@ public class RegularProductViewer extends ProductElementViewer {
 		result.put("final?", String.valueOf(product.isFinal()));
 		result.put("lower bound", product.getInvLowerBound());
 		result.put("upper bound", product.getInvUpperBound());
+		result.put("type", product.getType());
 		result.put("available quantity", product.getAvailableQuantity());
 		//TODO rest of product-specific info
 		return result;

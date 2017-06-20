@@ -13,6 +13,7 @@ public class RegularComponentViewer extends ProductElementViewer {
 		Component component = (Component) productElement;
 		result.put("lower bound", component.getInvLowerBound());
 		result.put("upper bound", component.getInvUpperBound());
+		result.put("type", component.getType());
 		result.put("available quantity", component.getAvailableQuantity());
 		//TODO rest of component-specific info
 		return result;

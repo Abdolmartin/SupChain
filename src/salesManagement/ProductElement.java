@@ -14,6 +14,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	private int id;
 	private String name;
+	private String description;
 	private int invLowerBound = 0;
 	private int invUpperBound = Integer.MAX_VALUE;
 	private ArrayList<ProductElementItem> productElementItemList;
@@ -22,19 +23,26 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	public JSONObject showInfo(){
 		HashMap<String, String> map = new HashMap<>();
 		map.put("name", this.name);
+		map.put("latest price", String.valueOf(this.getLatestPrice()));
+		map.put("id", String.valueOf(this.getId()));
+		map.put("desc", this.description);
+		return new JSONObject(map);
+		
+	}
+	
+	@Override
+	public JSONObject showSummary(){
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", this.name);
 		map.put("type", this.getType());
 		map.put("latest price", String.valueOf(this.getLatestPrice()));
 		map.put("id", String.valueOf(this.getId()));
 		return new JSONObject(map);
 	}
 	
-	@Override
-	public JSONObject showSummary(){
-		return this.showInfo();
-	}
-	
-	public ProductElement(String name, int invLowerBound, int invUpperBound) {
+	public ProductElement(String name, int invLowerBound, int invUpperBound, String description) {
 		this.name = name;
+		this.description = description;
 		this.productElementItemList = new ArrayList<>();
 		try {
 			this.defineInventoryBounds(invLowerBound, invUpperBound);

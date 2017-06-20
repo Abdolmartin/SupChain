@@ -8,8 +8,8 @@ public class Product extends ProductElement{
 	
 	boolean finality;
 
-	public Product(String name, int invLowerBound, int invUpperBound, boolean finality) {
-		super(name, invLowerBound, invUpperBound);
+	public Product(String name, int invLowerBound, int invUpperBound, String description, boolean finality) {
+		super(name, invLowerBound, invUpperBound, description);
 		this.finality = finality;
 	}	
 
