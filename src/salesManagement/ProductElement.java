@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
 import common.Summarizable;
 import common.Viewable;
 import productManagement.ProductionProcess;
@@ -17,7 +18,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	private String description;
 	private int invLowerBound = 0;
 	private int invUpperBound = Integer.MAX_VALUE;
-	private ArrayList<ProductElementItem> productElementItemList;
+	protected ArrayList<ProductElementItem> productElementItemList;
 	
 	@Override
 	public JSONObject showInfo(){
@@ -87,16 +88,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	public abstract String getType();
 	
-	public void addItem(ProductElementItem pElementItem) throws InvalidArgumentException{
-		if (checkItemValidity(pElementItem)){
-			this.productElementItemList.add(pElementItem);
-			//TODO status? maybe it's handled elsewhere
-		}
-		else{
-			throw new InvalidArgumentException();
-		}
-		
-	}
+	public abstract void addItem(ItemStatus initialStatus, double initialPrice) throws InvalidArgumentException;
 	
 	public abstract boolean checkItemValidity(ProductElementItem pElementItem);
 	
@@ -127,7 +119,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	public void defineInventoryBounds(int low, int high) throws InvalidArgumentException{
 		if (high <= low){ //equal is bad too, because it would send notifications at every damn change.
-			throw new InvalidArgumentException("high <=  low");
+			throw new InvalidArgumentException(Constants.INVALID_INFO);
 		}
 		if (low != -1)
 			this.invLowerBound = low;

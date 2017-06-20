@@ -3,6 +3,7 @@ package salesManagement;
 import org.json.simple.JSONObject;
 
 import common.Constants;
+import exceptions.InvalidArgumentException;
 
 public class Product extends ProductElement{
 	
@@ -43,6 +44,13 @@ public class Product extends ProductElement{
 	@Override
 	public String getType() {
 		return Constants.PRODUCT;
+	}
+	
+	@Override
+	public void addItem(ItemStatus initialStatus, double initialPrice) throws InvalidArgumentException {
+		ProductElementItem productElementItem = new ProductItem(this, initialPrice);
+		productElementItem.updateStatus(initialStatus);
+		this.productElementItemList.add(productElementItem);
 	}
 
 }

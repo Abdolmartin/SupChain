@@ -1,5 +1,10 @@
 package salesManagement;
 
-class ItemStatus {
+class ItemStatus implements ItemAvailabilityStateable{
+
+	@Override
+	public boolean isAvailable() {
+		return false;
+	}
 
 }

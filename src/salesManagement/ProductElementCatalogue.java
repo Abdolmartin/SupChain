@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 
 import common.Constants;
 import exceptions.InvalidArgumentException;
+import exceptions.NonExistentEntityException;
 public class ProductElementCatalogue {
 	
 	ArrayList<ProductElement> productElementList;
@@ -61,11 +62,7 @@ public class ProductElementCatalogue {
 		this.productElementList.add(productElement);
 	}
 	
-	public ArrayList<ProductElement> finalProductSearch(String name, double priceLowBound, double priceHighBound){
-		return this.generalSearch(new ProductElementSearchParams(Constants.PRODUCT, name, priceLowBound, priceHighBound, true, true));
-	}
-	
-	public ArrayList<ProductElement> generalSearch(ProductElementSearchParams searchParams){
+	public ArrayList<ProductElement> search(ProductElementSearchParams searchParams){
 		ArrayList<ProductElement> results = new ArrayList<>();
 		for (int i=0;i<this.productElementList.size();i++){
 			ProductElement productElement = this.productElementList.get(i);
@@ -89,10 +86,10 @@ public class ProductElementCatalogue {
 		return results;
 	}
 	
-	public JSONObject viewProductElement(ProductElementViewer prElementViewer, int productElementID) throws InvalidArgumentException{
+	public JSONObject viewProductElement(ProductElementViewer prElementViewer, int productElementID) throws InvalidArgumentException, NonExistentEntityException{
 		ProductElement productElement = this.getByID(productElementID);
 		if (productElement == null)
-			throw new InvalidArgumentException("Non-existent ProductElement.");
+			throw new NonExistentEntityException(Constants.NO_SUCH_ENTITY);
 		try{
 			prElementViewer.setProductElement(productElement);
 		}catch(AssertionError e){
@@ -102,7 +99,7 @@ public class ProductElementCatalogue {
 	}
 	
 	public ArrayList<JSONObject> showSearchSummary(ProductElementSearchParams searchParams){
-		ArrayList<ProductElement> searchResults = this.generalSearch(searchParams);
+		ArrayList<ProductElement> searchResults = this.search(searchParams);
 		ArrayList<JSONObject> result = new ArrayList<>();
 		for (int i=0;i<searchResults.size();i++){
 			result.add(searchResults.get(i).showSummary());
@@ -110,4 +107,10 @@ public class ProductElementCatalogue {
 		return result;
 	}
 	
+	public void setInventoryBounds(int productElementID, int lowerBound, int upperBound) throws InvalidArgumentException, NonExistentEntityException{
+		ProductElement productElement = this.getByID(productElementID);
+		if (productElement == null)
+			throw new NonExistentEntityException(Constants.NO_SUCH_ENTITY);
+		productElement.defineInventoryBounds(lowerBound, upperBound);
+	}
 }

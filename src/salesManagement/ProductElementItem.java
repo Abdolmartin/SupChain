@@ -2,12 +2,17 @@ package salesManagement;
 
 import java.util.ArrayList;
 
-class ProductElementItem implements AvailabilityStateable {
+class ProductElementItem implements ItemAvailabilityStateable {
 
 	private ProductElement productElementType;
-	ArrayList<ItemStatus> statusHistory;
+	ArrayList<ItemStatus> statusHistory = new ArrayList<>();
 	double price;
-	
+
+	public ProductElementItem(ProductElement productElementType, double price) {
+		this.productElementType = productElementType;
+		this.price = price;
+	}
+
 	@Override
 	public boolean isAvailable() {
 		// TODO Auto-generated method stub

@@ -169,7 +169,7 @@ public class ViewUserInfoDialog extends LoggedInWindow {
 				new ViewUserInfoDialog(userID);
 				ViewUserInfoDialog.this.dispatchEvent(new WindowEvent(ViewUserInfoDialog.this, WindowEvent.WINDOW_CLOSING));
 				break;
-			case Constants.NO_SUCH_USER:
+			case Constants.NO_SUCH_ENTITY:
 				JOptionPane.showMessageDialog(this, "SORRY, YOU DON'T EXIST");
 				this.goToInitial();
 				break;
