@@ -3,11 +3,12 @@ package salesManagement;
 import org.json.simple.JSONObject;
 
 import common.Constants;
+import exceptions.InvalidArgumentException;
 
 public class Component extends ProductElement{
 
-	public Component(String name, int invLowerBound, int invUpperBound) {
-		super(name, invLowerBound, invUpperBound);
+	public Component(String name, int invLowerBound, int invUpperBound, String description) {
+		super(name, invLowerBound, invUpperBound, description);
 		
 	}
 
@@ -33,6 +34,13 @@ public class Component extends ProductElement{
 	@Override
 	public String getType() {
 		return Constants.COMPONENT;
+	}
+
+	@Override
+	public void addItem(ItemStatus initialStatus, double initialPrice) throws InvalidArgumentException {
+		ProductElementItem productElementItem = new ComponentItem(this, initialPrice);
+		productElementItem.updateStatus(initialStatus);
+		this.productElementItemList.add(productElementItem);
 	}
 	
 }

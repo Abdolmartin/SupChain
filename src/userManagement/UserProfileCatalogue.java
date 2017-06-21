@@ -31,7 +31,7 @@ public class UserProfileCatalogue {
 				return currentUser;
 			}
 		}
-		throw new InvalidArgumentException(Constants.NO_SUCH_USER);
+		throw new InvalidArgumentException(Constants.NO_SUCH_ENTITY);
 	}
 	
 	public UserProfile findUser(String username) throws InvalidArgumentException{
@@ -41,7 +41,7 @@ public class UserProfileCatalogue {
 				return currentUser;
 			}
 		}
-		throw new InvalidArgumentException(Constants.NO_SUCH_USER);
+		throw new InvalidArgumentException(Constants.NO_SUCH_ENTITY);
 	}
 	
 	public String getUsername(int userID) throws InvalidArgumentException{
@@ -53,7 +53,7 @@ public class UserProfileCatalogue {
 		if (user != null)
 			return user.getId();
 		else
-			throw new InvalidArgumentException(Constants.NO_SUCH_USER);
+			throw new InvalidArgumentException(Constants.NO_SUCH_ENTITY);
 	}
 	
 	public JSONObject getUserInfo(int userID) throws InvalidArgumentException{
@@ -148,7 +148,7 @@ public class UserProfileCatalogue {
 					String telephoneNumber, String emailAddress, String physicalAddress, String oldPass) throws NonExistentEntityException, InvalidArgumentException{
 		UserProfile userProfile = this.getByID(userID);
 		if (userProfile == null){
-			throw new NonExistentEntityException(Constants.NO_SUCH_USER);
+			throw new NonExistentEntityException(Constants.NO_SUCH_ENTITY);
 		}
 		userProfile.changeUserInfo(password, firstName, lastName, 
 					telephoneNumber, emailAddress, physicalAddress, oldPass);

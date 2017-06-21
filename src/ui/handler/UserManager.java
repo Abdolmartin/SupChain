@@ -38,7 +38,7 @@ public class UserManager {
 			return UserProfileCatalogue.getCatalogue().getUserInfo(userID);
 		} catch (Exception e) {
 			HashMap<String, String> map = new HashMap<>();
-			map.put("error", Constants.NO_SUCH_USER);
+			map.put("error", Constants.NO_SUCH_ENTITY);
 			return new JSONObject(map);
 		}
 	}
@@ -48,7 +48,7 @@ public class UserManager {
 		try {
 			UserProfileCatalogue.getCatalogue().changeUserInfo(userID, password, firstName, lastName, telephoneNumber, emailAddress, physicalAddress, oldPass);
 		} catch (NonExistentEntityException e) {
-			return Constants.NO_SUCH_USER;
+			return Constants.NO_SUCH_ENTITY;
 		} catch (InvalidArgumentException e1){
 			return Constants.INVALID_INFO;
 		}
@@ -72,7 +72,7 @@ public class UserManager {
 			}
 		} catch (InvalidArgumentException e) {
 		}
-		return Constants.NO_SUCH_USER;
+		return Constants.NO_SUCH_ENTITY;
 	}
 	
 	public String createUser(String role, String username, String password, String firstName, String lastName, 
@@ -141,7 +141,7 @@ public class UserManager {
 			return ActionLogCatalogue.getCatalogue().showSearchResults(userName);
 		} catch (InvalidArgumentException e) {
 			HashMap<String, String> map = new HashMap<>();
-			map.put("error", Constants.NO_SUCH_USER);
+			map.put("error", Constants.NO_SUCH_ENTITY);
 			ArrayList<JSONObject> result = new ArrayList<>();
 			result.add(new JSONObject(map));
 			return result;
@@ -157,7 +157,7 @@ public class UserManager {
 			userProfile = UserProfileCatalogue.getCatalogue().getByID(userID);
 		} catch (InvalidArgumentException e) {
 			HashMap<String, String> map = new HashMap<>();
-			map.put("error", Constants.NO_SUCH_USER);
+			map.put("error", Constants.NO_SUCH_ENTITY);
 			ArrayList<JSONObject> result = new ArrayList<>();
 			result.add(new JSONObject(map));
 			return result;

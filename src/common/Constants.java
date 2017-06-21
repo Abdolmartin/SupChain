@@ -1,7 +1,7 @@
 package common;
 
 public class Constants {
-	public static final String NO_SUCH_USER = "noUser";
+	public static final String NO_SUCH_ENTITY = "noEntity";
 	public static final String INVALID_INFO = "invalidInfo";
 	public static final String INVALID_NAME = "invalidName";
 	public static final String WRONG_PASS = "wrongPass";

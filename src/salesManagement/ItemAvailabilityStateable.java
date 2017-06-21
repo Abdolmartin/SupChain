@@ -1,5 +1,5 @@
 package salesManagement;
 
-public interface AvailabilityStateable {
+public interface ItemAvailabilityStateable {
 	public boolean isAvailable();
 }

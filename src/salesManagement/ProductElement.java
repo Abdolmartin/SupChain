@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
 import common.Summarizable;
 import common.Viewable;
 import productManagement.ProductionProcess;
@@ -14,12 +15,24 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	private int id;
 	private String name;
+	private String description;
 	private int invLowerBound = 0;
 	private int invUpperBound = Integer.MAX_VALUE;
-	private ArrayList<ProductElementItem> productElementItemList;
+	protected ArrayList<ProductElementItem> productElementItemList;
 	
 	@Override
 	public JSONObject showInfo(){
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", this.name);
+		map.put("latest price", String.valueOf(this.getLatestPrice()));
+		map.put("id", String.valueOf(this.getId()));
+		map.put("desc", this.description);
+		return new JSONObject(map);
+		
+	}
+	
+	@Override
+	public JSONObject showSummary(){
 		HashMap<String, String> map = new HashMap<>();
 		map.put("name", this.name);
 		map.put("type", this.getType());
@@ -28,13 +41,9 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		return new JSONObject(map);
 	}
 	
-	@Override
-	public JSONObject showSummary(){
-		return this.showInfo();
-	}
-	
-	public ProductElement(String name, int invLowerBound, int invUpperBound) {
+	public ProductElement(String name, int invLowerBound, int invUpperBound, String description) {
 		this.name = name;
+		this.description = description;
 		this.productElementItemList = new ArrayList<>();
 		try {
 			this.defineInventoryBounds(invLowerBound, invUpperBound);
@@ -79,16 +88,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	public abstract String getType();
 	
-	public void addItem(ProductElementItem pElementItem) throws InvalidArgumentException{
-		if (checkItemValidity(pElementItem)){
-			this.productElementItemList.add(pElementItem);
-			//TODO status? maybe it's handled elsewhere
-		}
-		else{
-			throw new InvalidArgumentException();
-		}
-		
-	}
+	public abstract void addItem(ItemStatus initialStatus, double initialPrice) throws InvalidArgumentException;
 	
 	public abstract boolean checkItemValidity(ProductElementItem pElementItem);
 	
@@ -119,7 +119,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	public void defineInventoryBounds(int low, int high) throws InvalidArgumentException{
 		if (high <= low){ //equal is bad too, because it would send notifications at every damn change.
-			throw new InvalidArgumentException("high <=  low");
+			throw new InvalidArgumentException(Constants.INVALID_INFO);
 		}
 		if (low != -1)
 			this.invLowerBound = low;

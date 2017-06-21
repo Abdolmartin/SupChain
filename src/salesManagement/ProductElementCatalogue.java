@@ -2,8 +2,11 @@ package salesManagement;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
+
 import common.Constants;
 import exceptions.InvalidArgumentException;
+import exceptions.NonExistentEntityException;
 public class ProductElementCatalogue {
 	
 	ArrayList<ProductElement> productElementList;
@@ -38,15 +41,15 @@ public class ProductElementCatalogue {
 		return null;
 	}
 	
-	public void createProductElement(String type, String name, int lowerBound, int higherBound, boolean finality) throws InvalidArgumentException{
+	public void createProductElement(String type, String name, int lowerBound, int higherBound, String description, boolean finality) throws InvalidArgumentException{
 		if (this.getByName(name) != null)
 			throw new InvalidArgumentException(Constants.INVALID_NAME);
 		ProductElement pe = null;
 		if (type.equals(Constants.PRODUCT)){
-			pe = new Product(name, lowerBound, higherBound, finality);
+			pe = new Product(name, lowerBound, higherBound, description, finality);
 		}
 		else if (type.equals(Constants.COMPONENT)){
-			pe = new Component(name, lowerBound, higherBound);
+			pe = new Component(name, lowerBound, higherBound, description);
 		}
 		else{
 			throw new IllegalArgumentException(Constants.GHAEDATAN);
@@ -59,34 +62,55 @@ public class ProductElementCatalogue {
 		this.productElementList.add(productElement);
 	}
 	
-	public ArrayList<ProductElement> finalProductSearch(String name, double priceLowBound, double priceHighBound){
-		return this.generalSearch(Constants.PRODUCT, name, priceLowBound, priceHighBound, true, true);
-	}
-	
-	public ArrayList<ProductElement> generalSearch(String type, String name, double priceLowBound, double priceHighBound, boolean inStock, boolean finality){
+	public ArrayList<ProductElement> search(ProductElementSearchParams searchParams){
 		ArrayList<ProductElement> results = new ArrayList<>();
 		for (int i=0;i<this.productElementList.size();i++){
 			ProductElement productElement = this.productElementList.get(i);
-			if (!type.equals(Constants.ANY) && !type.equals(productElement.getType())){
+			if (!searchParams.type.equals(Constants.ANY) && !searchParams.type.equals(productElement.getType())){
 				continue;
 			}
-			if (!name.equals("") && !name.equals(productElement.getName())){
+			if (!searchParams.name.equals("") && !searchParams.name.equals(productElement.getName())){
 				continue;
 			}
-			if (productElement.getLatestPrice() < priceLowBound || productElement.getLatestPrice() > priceHighBound){
+			if (productElement.getLatestPrice() < searchParams.priceLowBound || productElement.getLatestPrice() > searchParams.priceHighBound){
 				continue;
 			}
-			if (inStock && productElement.getAvailableQuantity() == 0){
+			if (searchParams.inStock && productElement.getAvailableQuantity() == 0){
 				continue;
 			}
-			if (finality && (productElement.getType().equals(Constants.COMPONENT) || ((Product)productElement).isFinal())){
+			if (searchParams.finality && (productElement.getType().equals(Constants.COMPONENT) || ((Product)productElement).isFinal())){
 				continue;
 			}
-			
 			results.add(productElement);
 		}
 		return results;
 	}
 	
+	public JSONObject viewProductElement(ProductElementViewer prElementViewer, int productElementID) throws InvalidArgumentException, NonExistentEntityException{
+		ProductElement productElement = this.getByID(productElementID);
+		if (productElement == null)
+			throw new NonExistentEntityException(Constants.NO_SUCH_ENTITY);
+		try{
+			prElementViewer.setProductElement(productElement);
+		}catch(AssertionError e){
+			throw new InvalidArgumentException("Invalid viewer");
+		}
+		return prElementViewer.showInfo();
+	}
 	
+	public ArrayList<JSONObject> showSearchSummary(ProductElementSearchParams searchParams){
+		ArrayList<ProductElement> searchResults = this.search(searchParams);
+		ArrayList<JSONObject> result = new ArrayList<>();
+		for (int i=0;i<searchResults.size();i++){
+			result.add(searchResults.get(i).showSummary());
+		}
+		return result;
+	}
+	
+	public void setInventoryBounds(int productElementID, int lowerBound, int upperBound) throws InvalidArgumentException, NonExistentEntityException{
+		ProductElement productElement = this.getByID(productElementID);
+		if (productElement == null)
+			throw new NonExistentEntityException(Constants.NO_SUCH_ENTITY);
+		productElement.defineInventoryBounds(lowerBound, upperBound);
+	}
 }
