@@ -66,6 +66,8 @@ public abstract class Order {
 		this.statusHistory.add(newStatus);
 	}
 	
-	public abstract void addItem(ProductElementItem pElementItem);
+	public void addItem(ProductElementItem pElementItem){
+		this.orderedItems.add(pElementItem);
+	};
 
 }
