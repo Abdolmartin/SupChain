@@ -89,7 +89,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	public abstract String getType();
 	
 	//Factory method
-	public abstract void addItem(ItemStatus initialStatus, double initialPrice) throws InvalidArgumentException;
+	public abstract void addItem(ItemStatus initialStatus) throws InvalidArgumentException;
 	
 	public abstract boolean checkItemValidity(ProductElementItem pElementItem);
 	

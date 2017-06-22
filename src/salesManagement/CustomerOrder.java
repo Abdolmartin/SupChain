@@ -1,5 +1,5 @@
 package salesManagement;
 
-class CustomerOrder {
+class CustomerOrder extends Order{
 
 }

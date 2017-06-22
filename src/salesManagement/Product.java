@@ -47,8 +47,8 @@ public class Product extends ProductElement{
 	}
 	
 	@Override
-	public void addItem(ItemStatus initialStatus, double initialPrice) throws InvalidArgumentException {
-		ProductElementItem productElementItem = new ProductItem(this, initialPrice);
+	public void addItem(ItemStatus initialStatus) throws InvalidArgumentException {
+		ProductElementItem productElementItem = new ProductItem(this);
 		productElementItem.updateStatus(initialStatus);
 		this.productElementItemList.add(productElementItem);
 	}

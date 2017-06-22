@@ -8,9 +8,8 @@ class ProductElementItem implements ItemAvailabilityStateable {
 	ArrayList<ItemStatus> statusHistory = new ArrayList<>();
 	double price;
 
-	public ProductElementItem(ProductElement productElementType, double price) {
+	public ProductElementItem(ProductElement productElementType) {
 		this.productElementType = productElementType;
-		this.price = price;
 	}
 
 	@Override

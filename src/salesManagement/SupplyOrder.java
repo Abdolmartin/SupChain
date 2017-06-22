@@ -1,5 +1,6 @@
 package salesManagement;
 
-class SupplyOrder {
+class SupplyOrder extends Order{
+
 
 }
