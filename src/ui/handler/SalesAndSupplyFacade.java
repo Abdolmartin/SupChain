@@ -12,7 +12,7 @@ import salesManagement.ProductElementCatalogue;
 import salesManagement.ProductElementSearchParams;
 import salesManagement.RestrictedProductViewer;
 
-public class SalesAndSupplyManager {
+public class SalesAndSupplyFacade {
 	public ArrayList<JSONObject> finalProductSearch(String name, double priceLowBound, double priceHighBound){
 		ProductElementSearchParams searchParams = new ProductElementSearchParams(Constants.PRODUCT, name, priceLowBound, priceHighBound, true, true);
 		return ProductElementCatalogue.getCatalogue().showSearchSummary(searchParams);

@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-import ui.handler.UserManager;
+import ui.handler.UserFacade;
 import ui.userPanel.LoginDialog;
 
 public class LogOutButton extends JButton {
@@ -21,7 +21,7 @@ public class LogOutButton extends JButton {
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new UserManager().logOut(userID);
+				new UserFacade().logOut(userID);
 				parentWindow.goToInitial();
 			}
 		});

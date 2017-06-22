@@ -1,9 +1,9 @@
 package ui.userPanel;
 
 import ui.AdminPortal;
-import ui.LoggedInMainPortal;
 import ui.LoggedInWindow;
-import ui.handler.UserManager;
+import ui.MainPortalRedirectService;
+import ui.handler.UserFacade;
 import userManagement.UserProfileCatalogue;
 
 import javax.swing.JLabel;
@@ -110,7 +110,7 @@ public class ViewUserInfoDialog extends LoggedInWindow {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ViewUserInfoDialog.this.setVisible(false);
-				LoggedInMainPortal.startRelevantMainPortal(userID);
+				new MainPortalRedirectService().startRelevantMainPortal(userID);
 				ViewUserInfoDialog.this.dispatchEvent(new WindowEvent(ViewUserInfoDialog.this, WindowEvent.WINDOW_CLOSING));
 			}
 		});
@@ -135,7 +135,7 @@ public class ViewUserInfoDialog extends LoggedInWindow {
 	}
 	
 	void load() {
-		UserManager userManager = new UserManager();
+		UserFacade userManager = new UserFacade();
 		JSONObject infoObj = userManager.getInfo(this.userID);
 		if (infoObj.containsKey("error")){
 			this.goToInitial();
@@ -158,7 +158,7 @@ public class ViewUserInfoDialog extends LoggedInWindow {
 		String physicalAddress = addressField.getText();
 		String oldPass = prevPassField.getText();
 		
-		UserManager userManager = new UserManager();
+		UserFacade userManager = new UserFacade();
 		String result = userManager.changeUserInfo(this.userID, newPass, firstName, 
 				lastName, telephoneNumber, emailAddress, physicalAddress, oldPass);
 		

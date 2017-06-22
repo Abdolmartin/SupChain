@@ -1,8 +1,8 @@
 package ui.userPanel;
 
-import ui.LoggedInMainPortal;
 import ui.LoggedInWindow;
-import ui.handler.UserManager;
+import ui.MainPortalRedirectService;
+import ui.handler.UserFacade;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -36,7 +36,7 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				ViewActionHistoryDialog.this.setVisible(false);
-				LoggedInMainPortal.startRelevantMainPortal(userID);
+				new MainPortalRedirectService().startRelevantMainPortal(userID);
 				ViewActionHistoryDialog.this.dispatchEvent(new WindowEvent(ViewActionHistoryDialog.this, WindowEvent.WINDOW_CLOSING));
 			}
 		});
@@ -57,7 +57,7 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 	}
 	
 	void load(){
-		UserManager userManager = new UserManager();
+		UserFacade userManager = new UserFacade();
 		ArrayList<JSONObject> logsObj;
 		
 		if (this.dialogType == ActionHistoryDialogType.PERSONAL)
@@ -76,6 +76,8 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 		} else{
 			JsonToJTableService jsonToJTableService = new JsonToJTableService();
 			this.table.setModel(jsonToJTableService.createJTableFromJSON(logsObj));
+			table.setColumnSelectionAllowed(false);
+		    table.setRowSelectionAllowed(true);
 		}
 	}
 }

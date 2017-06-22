@@ -2,8 +2,6 @@ package ui;
 
 import javax.swing.JDialog;
 
-import common.Constants;
-import ui.handler.UserManager;
 import ui.userPanel.ActionHistoryDialogType;
 import ui.userPanel.RegisterDialog;
 import ui.userPanel.ViewActionHistoryDialog;
@@ -16,28 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 
 public abstract class LoggedInMainPortal extends LoggedInWindow {
-	
-	public static void startRelevantMainPortal(int userID){
-		UserManager userManager = new UserManager();
-		String authLevel = userManager.getUserAuthenticationLevel(userID);
-		switch (authLevel) {
-			case Constants.ADMIN:
-				new AdminPortal(userID);
-				break;
-			case Constants.MANAGER:
-				new ManagerPortal(userID);
-				break;
-			case Constants.CUSTOMER:
-				new CustomerPortal(userID);
-				break;
-			case Constants.EMPLOYEE:
-				new EmployeePanel(userID);
-				break;
-			default:
-				new ManagerPortal(userID);
-				break;
-		}
-	}
 	
 	public LoggedInMainPortal(int userID) {
 		super(userID);

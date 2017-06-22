@@ -16,7 +16,7 @@ import userManagement.AuthenticationType;
 import userManagement.UserProfile;
 import userManagement.UserProfileCatalogue;
 
-public class UserManager {
+public class UserFacade {
 	
 	public String logIn(String username, String password){
 		try {

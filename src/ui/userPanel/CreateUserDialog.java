@@ -2,9 +2,9 @@ package ui.userPanel;
 
 import ui.AdminPortal;
 import ui.InitialPortal;
-import ui.LoggedInMainPortal;
 import ui.LoggedInWindow;
-import ui.handler.UserManager;
+import ui.MainPortalRedirectService;
+import ui.handler.UserFacade;
 
 import javax.swing.JTextField;
 
@@ -148,14 +148,14 @@ public class CreateUserDialog extends LoggedInWindow {
 			return;
 		}
 		else{
-			UserManager userManager = new UserManager();
+			UserFacade userManager = new UserFacade();
 			String result = userManager.createUser(role, username, password, firstName,
 					lastName, telephoneNumber, emailAddress, physicalAddress, -1);
 			switch(result){
 				case Constants.SUCCESS:
 					JOptionPane.showMessageDialog(this, "ایجاد موفقیت آمیز بود.");
 					CreateUserDialog.this.setVisible(false);
-					LoggedInMainPortal.startRelevantMainPortal(userID);
+					new MainPortalRedirectService().startRelevantMainPortal(userID);
 					CreateUserDialog.this.dispatchEvent(new WindowEvent(CreateUserDialog.this, WindowEvent.WINDOW_CLOSING));
 					break;
 				case Constants.INVALID_INFO:

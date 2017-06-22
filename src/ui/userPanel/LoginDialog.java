@@ -9,9 +9,9 @@ import ui.AdminPortal;
 import ui.CustomerPortal;
 import ui.EmployeePanel;
 import ui.InitialPortal;
-import ui.LoggedInMainPortal;
+import ui.MainPortalRedirectService;
 import ui.ManagerPortal;
-import ui.handler.UserManager;
+import ui.handler.UserFacade;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -74,7 +74,7 @@ public class LoginDialog extends JDialog {
 	}
 	
 	void submit(){
-		UserManager userManager = new UserManager();
+		UserFacade userManager = new UserFacade();
 		String username = usernameField.getText();
 		String password = passwordField.getText();
 		String result = userManager.logIn(username, password);
@@ -82,7 +82,7 @@ public class LoginDialog extends JDialog {
 			case Constants.SUCCESS:
 				int userID = userManager.getUserID(username);
 				LoginDialog.this.setVisible(false);
-				LoggedInMainPortal.startRelevantMainPortal(userID);
+				new MainPortalRedirectService().startRelevantMainPortal(userID);
 				LoginDialog.this.dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
 				break;
 			default:

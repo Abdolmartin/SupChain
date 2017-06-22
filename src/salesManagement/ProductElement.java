@@ -24,8 +24,8 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	public JSONObject showInfo(){
 		HashMap<String, String> map = new HashMap<>();
 		map.put("name", this.name);
-		map.put("latest price", String.valueOf(this.getLatestPrice()));
-		map.put("id", String.valueOf(this.getId()));
+		map.put("price", String.valueOf(this.getLatestPrice()));
+		map.put(Constants.ID, String.valueOf(this.getId()));
 		map.put("desc", this.description);
 		return new JSONObject(map);
 		
@@ -36,7 +36,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		HashMap<String, String> map = new HashMap<>();
 		map.put("name", this.name);
 		map.put("type", this.getType());
-		map.put("latest price", String.valueOf(this.getLatestPrice()));
+		map.put("price", String.valueOf(this.getLatestPrice()));
 		map.put("id", String.valueOf(this.getId()));
 		return new JSONObject(map);
 	}
@@ -88,6 +88,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	public abstract String getType();
 	
+	//Factory method
 	public abstract void addItem(ItemStatus initialStatus, double initialPrice) throws InvalidArgumentException;
 	
 	public abstract boolean checkItemValidity(ProductElementItem pElementItem);

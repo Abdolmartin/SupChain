@@ -1,8 +1,9 @@
 package ui.userPanel;
 
-import ui.LoggedInMainPortal;
 import ui.LoggedInWindow;
-import ui.handler.UserManager;
+import ui.MainPortalRedirectService;
+import ui.ReturnToMainButton;
+import ui.handler.UserFacade;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -24,15 +25,7 @@ public class ViewNotificationsDialog extends LoggedInWindow {
 	public ViewNotificationsDialog(int userID) {
 		super(userID);
 		
-		JButton returnButton = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A \u0628\u0647 \u0635\u0641\u062D\u0647\u200C\u06CC \u0627\u0635\u0644\u06CC");
-		returnButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ViewNotificationsDialog.this.setVisible(false);
-				LoggedInMainPortal.startRelevantMainPortal(userID);
-				ViewNotificationsDialog.this.dispatchEvent(new WindowEvent(ViewNotificationsDialog.this, WindowEvent.WINDOW_CLOSING));
-			}
-		});
+		JButton returnButton = new ReturnToMainButton(userID, this, "بازگشت به صفحه‌ی اصلی");
 		returnButton.setBounds(252, 0, 153, 23);
 		getContentPane().add(returnButton);
 		
@@ -50,7 +43,7 @@ public class ViewNotificationsDialog extends LoggedInWindow {
 	}
 	
 	void load(){
-		UserManager userManager = new UserManager();
+		UserFacade userManager = new UserFacade();
 		ArrayList<JSONObject> notifsObj = userManager.getNotifications(userID);
 		
 		JSONObject firstJSON = null;
@@ -64,6 +57,9 @@ public class ViewNotificationsDialog extends LoggedInWindow {
 		} else{
 			JsonToJTableService jsonToJTableService = new JsonToJTableService();
 			this.table.setModel(jsonToJTableService.createJTableFromJSON(notifsObj));
+			jsonToJTableService.hideIDColumn(table);
+			table.setColumnSelectionAllowed(false);
+		    table.setRowSelectionAllowed(true);
 		}
 	}
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
 import common.Viewable;
 
 public class Notification implements Viewable{
@@ -79,6 +80,7 @@ public class Notification implements Viewable{
 		map.put("date", this.date.toString());
 		map.put("body", this.body);
 		map.put("seen", String.valueOf(this.isSeen));
+		map.put(Constants.ID, String.valueOf(this.id));
 		this.setIsSeen(true);
 		return new JSONObject(map);
 	}

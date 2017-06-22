@@ -28,6 +28,18 @@ public class JsonToJTableService {
 				data[i][j] = (String)jsonList.get(i).get(cols[j]);
 			}
 		}
-		return new DefaultTableModel(data, cols);
+		return new DefaultTableModel(data, cols){
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
+	}
+	
+	public void hideIDColumn(JTable table){
+		try{
+			table.removeColumn(table.getColumn(Constants.ID));
+		}catch(IllegalArgumentException e){
+			return;
+		}
 	}
 }

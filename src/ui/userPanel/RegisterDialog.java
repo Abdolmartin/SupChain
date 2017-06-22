@@ -4,7 +4,7 @@ import javax.swing.JDialog;
 import javax.swing.JButton;
 
 import ui.InitialPortal;
-import ui.handler.UserManager;
+import ui.handler.UserFacade;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -151,7 +151,7 @@ public class RegisterDialog extends JDialog {
 			return;
 		}
 		else{
-			UserManager userManager = new UserManager();
+			UserFacade userManager = new UserFacade();
 			String result = userManager.createUser(Constants.CUSTOMER, username, password, firstName,
 					lastName, telephoneNumber, emailAddress, physicalAddress, -1);
 			switch(result){

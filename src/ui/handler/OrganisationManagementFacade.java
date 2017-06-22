@@ -13,7 +13,7 @@ import salesManagement.ProductElementSearchParams;
 import salesManagement.RegularComponentViewer;
 import salesManagement.RegularProductViewer;
 
-public class ManagementHandler {
+public class OrganisationManagementFacade {
 	public ArrayList<JSONObject> productElementSearch(String type, String name, double priceLowBound, double priceHighBound, boolean inStock, boolean finality){
 		ProductElementSearchParams searchParams = new ProductElementSearchParams(type, name, priceLowBound, priceHighBound, inStock, finality);
 		return ProductElementCatalogue.getCatalogue().showSearchSummary(searchParams);
