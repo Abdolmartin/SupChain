@@ -41,7 +41,7 @@ public class ProductElementCatalogue {
 		return null;
 	}
 	
-	public void createProductElement(String type, String name, int lowerBound, int higherBound, String description, boolean finality) throws InvalidArgumentException{
+	public ProductElement createProductElement(String type, String name, int lowerBound, int higherBound, String description, boolean finality) throws InvalidArgumentException{
 		if (this.getByName(name) != null)
 			throw new InvalidArgumentException(Constants.INVALID_NAME);
 		ProductElement pe = null;
@@ -55,7 +55,7 @@ public class ProductElementCatalogue {
 			throw new IllegalArgumentException(Constants.GHAEDATAN);
 		}
 		this.addProductElement(pe);
-		
+		return pe;
 	}
 	
 	public void addProductElement(ProductElement productElement){
@@ -67,20 +67,28 @@ public class ProductElementCatalogue {
 		for (int i=0;i<this.productElementList.size();i++){
 			ProductElement productElement = this.productElementList.get(i);
 			if (!searchParams.type.equals(Constants.ANY) && !searchParams.type.equals(productElement.getType())){
+				System.out.println("shit1");
 				continue;
 			}
 			if (!searchParams.name.equals("") && !searchParams.name.equals(productElement.getName())){
+				System.out.println("shit2");
 				continue;
 			}
-			if (productElement.getLatestPrice() < searchParams.priceLowBound || productElement.getLatestPrice() > searchParams.priceHighBound){
+			if (productElement.getAvailableQuantity() > 0 &&
+					(productElement.getLatestPrice() < searchParams.priceLowBound || 
+							productElement.getLatestPrice() > searchParams.priceHighBound)){
+				System.out.println("shit3");
 				continue;
 			}
 			if (searchParams.inStock && productElement.getAvailableQuantity() == 0){
+				System.out.println("shit4");
 				continue;
 			}
 			if (searchParams.finality && (productElement.getType().equals(Constants.COMPONENT) || ((Product)productElement).isFinal())){
+				System.out.println("shit5");
 				continue;
 			}
+			System.out.println("YAY");
 			results.add(productElement);
 		}
 		return results;

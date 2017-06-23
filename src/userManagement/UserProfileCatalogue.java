@@ -41,6 +41,7 @@ public class UserProfileCatalogue {
 				return currentUser;
 			}
 		}
+		System.out.println("NOTFOUND");
 		throw new InvalidArgumentException(Constants.NO_SUCH_ENTITY);
 	}
 	
@@ -108,7 +109,7 @@ public class UserProfileCatalogue {
 			newUser = new Admin(username, password, firstName, lastName, contactInformation);
 		else
 			newUser = new Manager(username, password, firstName, lastName, contactInformation, authRole);
-		
+		addUser(newUser);
 		return newUser;
 	}
 	

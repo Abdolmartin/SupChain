@@ -12,6 +12,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import common.Constants;
 import exceptions.InvalidArgumentException;
+import salesManagement.ItemStatus;
+import salesManagement.Product;
+import salesManagement.ProductElement;
+import salesManagement.ProductElementCatalogue;
 import ui.InitialPortal;
 import userManagement.AuthenticationType;
 import ui.InitialPortal;
@@ -27,8 +31,11 @@ public class Main {
 	public static void main(String[] args) {
 		
 		try {
-			UserProfile user1 = UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
-			user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
+			//UserProfile user1 = UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
+			UserProfile manager1 = UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("m", "12345678", "m", "n", "1", "2", "3", AuthenticationType.MANAGER);
+			//user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
+			ProductElement pe1 = ProductElementCatalogue.getCatalogue().createProductElement(Constants.PRODUCT, "p1", -1, -1, "a product", true);
+			pe1.addItem(new ItemStatus(10.0));
 			InitialPortal initialPortal = new InitialPortal();
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();

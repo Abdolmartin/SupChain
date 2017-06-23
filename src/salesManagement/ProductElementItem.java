@@ -6,7 +6,6 @@ class ProductElementItem implements ItemAvailabilityStateable {
 
 	private ProductElement productElementType;
 	ArrayList<ItemStatus> statusHistory = new ArrayList<>();
-	double price;
 
 	public ProductElementItem(ProductElement productElementType) {
 		this.productElementType = productElementType;
@@ -14,8 +13,7 @@ class ProductElementItem implements ItemAvailabilityStateable {
 
 	@Override
 	public boolean isAvailable() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public ProductElement getProductElementType() {
@@ -35,11 +33,7 @@ class ProductElementItem implements ItemAvailabilityStateable {
 	}
 
 	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
+		return this.getCurrentStatus().getPrice();
 	}
 	
 	public void updateStatus(ItemStatus newStatus){

@@ -12,10 +12,10 @@ public class RegularProductViewer extends ProductElementViewer {
 		JSONObject result = productElement.showInfo();
 		Product product = (Product) productElement;
 		result.put("final?", String.valueOf(product.isFinal()));
-		result.put("lower", product.getInvLowerBound());
-		result.put("upper", product.getInvUpperBound());
+		result.put("lower", String.valueOf(product.getInvLowerBound()));
+		result.put("upper", String.valueOf(product.getInvUpperBound()));
 		result.put("type", product.getType());
-		result.put("inventory", product.getAvailableQuantity());
+		result.put("inventory", String.valueOf(product.getAvailableQuantity()));
 		result.put("id", String.valueOf(product.getId()));
 		//TODO rest of product-specific info
 		return result;

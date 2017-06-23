@@ -25,13 +25,6 @@ public abstract class GeneralPESearchResultDialog extends LoggedInWindow {
 		button.setBounds(221, 0, 179, 23);
 		getContentPane().add(button);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(49, 64, 387, 326);
-		getContentPane().add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		
 		JButton viewButton = new JButton("\u0645\u0634\u0627\u0647\u062F\u0647");
 		viewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -41,6 +34,16 @@ public abstract class GeneralPESearchResultDialog extends LoggedInWindow {
 		});
 		viewButton.setBounds(202, 401, 89, 23);
 		getContentPane().add(viewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(83, 87, 332, 255);
+		getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		table.setFillsViewportHeight(true);
+		scrollPane.setViewportView(table);
+		
+		load();
 		
 		this.setBounds(500, 500, 500, 500);
 		this.setVisible(true);

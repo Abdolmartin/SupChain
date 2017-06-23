@@ -8,6 +8,7 @@ import ui.handler.UserFacade;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import org.json.simple.JSONObject;
 
@@ -51,6 +52,8 @@ public class ViewNotificationsDialog extends LoggedInWindow {
 			firstJSON = notifsObj.get(0);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "موردی یافت نشد.");
+			table.setModel(new DefaultTableModel());
+			return;
 		}
 		if (firstJSON.containsKey("error")){
 			this.goToInitial();

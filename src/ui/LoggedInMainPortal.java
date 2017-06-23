@@ -2,7 +2,11 @@ package ui;
 
 import javax.swing.JDialog;
 
+import ui.managementPanel.CreateProductElementDialog;
+import ui.managementPanel.ProductElementSearchDialog;
+import ui.salesPanel.FinalProductSearchDialog;
 import ui.userPanel.ActionHistoryDialogType;
+import ui.userPanel.CreateUserDialog;
 import ui.userPanel.RegisterDialog;
 import ui.userPanel.ViewActionHistoryDialog;
 import ui.userPanel.ViewNotificationsDialog;
@@ -12,8 +16,11 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 public abstract class LoggedInMainPortal extends LoggedInWindow {
+	protected JComboBox pageComboBox;
 	
 	public LoggedInMainPortal(int userID) {
 		super(userID);
@@ -56,6 +63,41 @@ public abstract class LoggedInMainPortal extends LoggedInWindow {
 		});
 		viewNotificationsButton.setBounds(159, 0, 113, 23);
 		getContentPane().add(viewNotificationsButton);
+		
+		pageComboBox = new JComboBox();
+		pageComboBox.setBounds(129, 161, 295, 23);
+		getContentPane().add(pageComboBox);
+		
+		JLabel label = new JLabel("\u0635\u0641\u062D\u0647\u200C\u06CC \u0645\u0648\u0631\u062F \u0646\u0638\u0631 \u0631\u0627 \u0627\u0646\u062A\u062E\u0627\u0628 \u06A9\u0646\u06CC\u062F");
+		label.setBounds(196, 136, 201, 14);
+		getContentPane().add(label);
+		
+		JButton goButton = new JButton("\u0628\u0631\u0648");
+		goButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				goToSelectedPage();
+			}
+		});
+		goButton.setBounds(232, 195, 89, 23);
+		getContentPane().add(goButton);
 		setVisible(true);
+	}
+
+	protected void goToSelectedPage(){
+		String selection = (String)pageComboBox.getSelectedItem();
+		this.setVisible(false);
+		if (selection.equals(PageTypes.CreateProductElement.getCaption())){
+			new CreateProductElementDialog(userID);
+		} else if (selection.equals(PageTypes.FinalProductSearch.getCaption())){
+			new FinalProductSearchDialog(userID);
+		} else if (selection.equals(PageTypes.ProductElementSearch.getCaption())){
+			new ProductElementSearchDialog(userID);
+		} else if (selection.equals(PageTypes.CreateUser.getCaption())){
+			new CreateUserDialog(userID);
+		} else { //DEFAULT, USED IN CASE OF ERRORS
+			new MainPortalRedirectService().startRelevantMainPortal(userID);
+		}
+		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 }

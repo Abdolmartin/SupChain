@@ -85,6 +85,8 @@ public class LoginDialog extends JDialog {
 				new MainPortalRedirectService().startRelevantMainPortal(userID);
 				LoginDialog.this.dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
 				break;
+			case Constants.WRONG_PASS:
+				JOptionPane.showMessageDialog(this, "پسورد اشتباه است.");
 			default:
 				JOptionPane.showMessageDialog(this, "نام کاربری یا رمز عبور اشتباه است.");
 				break;

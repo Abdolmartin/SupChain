@@ -1,4 +1,5 @@
 package ui;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 import ui.userPanel.ActionHistoryDialogType;
@@ -26,7 +27,9 @@ public class ManagerPortal extends LoggedInMainPortal {
 		getContentPane().add(button);
 		
 		
-		
+		this.pageComboBox.setModel(new DefaultComboBoxModel<>(new String[]{
+				PageTypes.ProductElementSearch.getCaption(),
+				PageTypes.CreateProductElement.getCaption()}));
 		
 		
 		this.setBounds(500, 500, 500, 500);

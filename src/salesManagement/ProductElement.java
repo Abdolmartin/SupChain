@@ -119,7 +119,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	}
 	
 	public void defineInventoryBounds(int low, int high) throws InvalidArgumentException{
-		if (high <= low){ //equal is bad too, because it would send notifications at every damn change.
+		if (high <= low && !(low == -1 && high == -1)){ //equal is bad too, because it would send notifications at every damn change.
 			throw new InvalidArgumentException(Constants.INVALID_INFO);
 		}
 		if (low != -1)

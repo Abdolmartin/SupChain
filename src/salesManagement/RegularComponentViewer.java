@@ -11,10 +11,10 @@ public class RegularComponentViewer extends ProductElementViewer {
 			return null;
 		JSONObject result = productElement.showInfo();
 		Component component = (Component) productElement;
-		result.put("lower", component.getInvLowerBound());
-		result.put("upper", component.getInvUpperBound());
+		result.put("lower", String.valueOf(component.getInvLowerBound()));
+		result.put("upper", String.valueOf(component.getInvUpperBound()));
 		result.put("type", component.getType());
-		result.put("inventory", component.getAvailableQuantity());
+		result.put("inventory", String.valueOf(component.getAvailableQuantity()));
 		result.put("id", String.valueOf(component.getId()));
 		//TODO rest of component-specific info
 		return result;

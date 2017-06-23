@@ -89,7 +89,7 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 			ActionLog actionLog = new ActionLog(this.getUsername(), "logIn", new Date());
 			ActionLogCatalogue.getCatalogue().addLog(actionLog);
 		} else
-			throw new InvalidArgumentException("wrongPass");
+			throw new InvalidArgumentException(Constants.WRONG_PASS);
 	}
 	
 	public void logOut(){

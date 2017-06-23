@@ -1,13 +1,18 @@
 package salesManagement;
 
-class ItemStatus implements ItemAvailabilityStateable{
+public class ItemStatus implements ItemAvailabilityStateable{
 	
 	private double price;
 	
+	
+	public ItemStatus(double price) {
+		super();
+		this.price = price;
+	}
 
 	@Override
 	public boolean isAvailable() {
-		return false;
+		return true;
 	}
 	
 	public double getPrice(){

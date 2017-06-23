@@ -48,6 +48,7 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 		getContentPane().add(scrollPane);
 		
 		table = new JTable();
+		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
 		
 		load();

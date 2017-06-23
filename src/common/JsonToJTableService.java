@@ -17,6 +17,8 @@ public class JsonToJTableService {
 	}
 	
 	public DefaultTableModel createJTableFromJSON(ArrayList<JSONObject> jsonList){
+		if (jsonList.isEmpty())
+			return new DefaultTableModel();
 		assert jsonList.size() > 0;
 		
 		JSONObject firstJSON = jsonList.get(0);
@@ -41,5 +43,14 @@ public class JsonToJTableService {
 		}catch(IllegalArgumentException e){
 			return;
 		}
+	}
+	
+	public int getIDColumnIndex(JTable table){
+		TableModel model = table.getModel();
+		for (int i=0;i<model.getColumnCount();i++){
+			if (model.getColumnName(i).equals(Constants.ID))
+				return i;
+		}
+		return -1;
 	}
 }
