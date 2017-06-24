@@ -4,7 +4,8 @@ public enum PageTypes {
 	FinalProductSearch("جستجوی محصولات"),
 	ProductElementSearch("جستجوی محصولات و مولفه‌ها"),
 	CreateProductElement("ایجاد محصول/مولفه‌ی جدید"),
-	CreateUser("ایجاد کاربر جدید");
+	CreateUser("ایجاد کاربر جدید"),
+	CreateProductionProcess("ایجاد فرآیند تولید جدید");
 	
 	String caption;
 

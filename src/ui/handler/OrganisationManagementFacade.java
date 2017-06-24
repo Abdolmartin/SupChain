@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import common.Constants;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
+import productionInfo.ProductionProcessCatalogue;
 import salesManagement.ProductElementCatalogue;
 import salesManagement.ProductElementSearchParams;
 import salesManagement.RegularComponentViewer;
@@ -52,6 +53,15 @@ public class OrganisationManagementFacade {
 		} catch (InvalidArgumentException e) {
 			return Constants.INVALID_NAME;
 		}
+	}
+	
+	public String createProductionProcess(int[] inputIDs, int[] outputIDs, String name, String[] sections){
+		try{
+			ProductionProcessCatalogue.getCatalogue().createProductionProcess(inputIDs, outputIDs, name, sections);
+		}catch(Exception e){
+			return Constants.GHAEDATAN;
+		}
+		return Constants.SUCCESS;
 	}
 	
 	public String setInventoryBounds(int productElementID, int lowerBound, int upperBound){
