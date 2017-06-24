@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
 import common.Constants;
+import database.UserProfileRepository;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
 
@@ -64,6 +65,7 @@ public class UserProfileCatalogue {
 	
 	public void addUser(UserProfile userProfile){
 		this.userList.add(userProfile);
+		new UserProfileRepository().save(userProfile);
 		adjustLastID();
 	}
 

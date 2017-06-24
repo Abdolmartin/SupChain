@@ -66,7 +66,8 @@ public class UserProfileRepository implements BasicDAO<UserProfile>{
 			}
 			e.printStackTrace();
 		}finally {
-			session.close();
+			if (session!=null)
+				session.close();
 		}
 		return userID;
 	}
