@@ -30,7 +30,8 @@ public class ManagerPortal extends LoggedInMainPortal {
 		this.pageComboBox.setModel(new DefaultComboBoxModel<>(new String[]{
 				PageTypes.ProductElementSearch.getCaption(),
 				PageTypes.CreateProductElement.getCaption(),
-				PageTypes.CreateProductionProcess.getCaption()}));
+				PageTypes.CreateProductionProcess.getCaption(),
+				PageTypes.CreateSupplyPath.getCaption()}));
 		
 		
 		this.setBounds(500, 500, 500, 500);

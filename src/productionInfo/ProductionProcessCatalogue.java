@@ -45,7 +45,7 @@ public class ProductionProcessCatalogue {
 		for (int i=0;i<inputIDs.length;i++){
 			inputs.add(ProductElementCatalogue.getCatalogue().getByID(inputIDs[i]));
 		}
-		for (int i=0;i<inputIDs.length;i++){
+		for (int i=0;i<outputIDs.length;i++){
 			outputs.add(ProductElementCatalogue.getCatalogue().getByID(outputIDs[i]));
 		}
 		

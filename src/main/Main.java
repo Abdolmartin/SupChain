@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import common.Constants;
+import database.UserProfileRepository;
 import exceptions.InvalidArgumentException;
 import salesManagement.ItemStatus;
 import salesManagement.Product;
