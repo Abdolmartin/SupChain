@@ -1,12 +1,14 @@
 package salesManagement;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.json.simple.JSONObject;
 
 import common.Constants;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
+import userManagement.Customer;
 public class ProductElementCatalogue {
 	
 	ArrayList<ProductElement> productElementList;
@@ -120,5 +122,14 @@ public class ProductElementCatalogue {
 		if (productElement == null)
 			throw new NonExistentEntityException(Constants.NO_SUCH_ENTITY);
 		productElement.defineInventoryBounds(lowerBound, upperBound);
+	}
+	
+	public void createReview(int productID, Customer customer, String body, int score, Date date) throws InvalidArgumentException{
+		ProductElement pe = this.getByID(productID);
+		//Checking that the given ID is the ID of a Product
+		if (!pe.getType().equals(Constants.PRODUCT))
+			throw new InvalidArgumentException(Constants.NO_SUCH_ENTITY);
+		//TODO Check existence of CustomerOrder
+		((Product)pe).createReview(customer, body, score, date);
 	}
 }

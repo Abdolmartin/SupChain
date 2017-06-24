@@ -1,13 +1,18 @@
 package salesManagement;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import org.json.simple.JSONObject;
 
 import common.Constants;
 import exceptions.InvalidArgumentException;
+import userManagement.Customer;
 
 public class Product extends ProductElement{
 	
 	boolean finality;
+	ArrayList<ProductReview> reviews;
 
 	public Product(String name, int invLowerBound, int invUpperBound, String description, boolean finality) {
 		super(name, invLowerBound, invUpperBound, description);
@@ -51,6 +56,23 @@ public class Product extends ProductElement{
 		ProductElementItem productElementItem = new ProductItem(this);
 		productElementItem.updateStatus(initialStatus);
 		this.productElementItemList.add(productElementItem);
+	}
+	
+	public void addReview(ProductReview review){
+		this.reviews.add(review);
+	}
+	
+	public void createReview(Customer customer, String body, int score, Date date){
+		ProductReview review = new ProductReview(customer, this, body, score, date);
+		this.addReview(review);
+	}
+
+	public ArrayList<ProductReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(ArrayList<ProductReview> reviews) {
+		this.reviews = reviews;
 	}
 
 }

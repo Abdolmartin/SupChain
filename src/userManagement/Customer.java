@@ -1,6 +1,6 @@
 package userManagement;
 
-class Customer extends UserProfile{
+public class Customer extends UserProfile{
 
 	public Customer(String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation) {
