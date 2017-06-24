@@ -37,7 +37,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		map.put("name", this.name);
 		map.put("type", this.getType());
 		map.put("price", String.valueOf(this.getLatestPrice()));
-		map.put("id", String.valueOf(this.getId()));
+		map.put(Constants.ID, String.valueOf(this.getId()));
 		return new JSONObject(map);
 	}
 	

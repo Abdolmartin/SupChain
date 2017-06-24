@@ -1,9 +1,14 @@
 package productionInfo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.json.simple.JSONObject;
 
 import common.Constants;
 import exceptions.InvalidArgumentException;
+import salesManagement.ProductElement;
+import salesManagement.ProductElementCatalogue;
 import userManagement.UserProfile;
 
 public class ProductionProcessCatalogue {
@@ -34,5 +39,38 @@ public class ProductionProcessCatalogue {
 		throw new InvalidArgumentException(Constants.NO_SUCH_ENTITY);
 	}
 	
+	public void createProductionProcess(int[] inputIDs, int[] outputIDs, String name, String[] sections){
+		ArrayList<ProductElement> inputs = new ArrayList<>(), outputs = new ArrayList<>();
+		
+		for (int i=0;i<inputIDs.length;i++){
+			inputs.add(ProductElementCatalogue.getCatalogue().getByID(inputIDs[i]));
+		}
+		for (int i=0;i<inputIDs.length;i++){
+			outputs.add(ProductElementCatalogue.getCatalogue().getByID(outputIDs[i]));
+		}
+		
+		ProductionProcess productionProcess = new ProductionProcess(inputs, outputs, name, 
+				new ArrayList<String>(Arrays.asList(sections)));
+		
+		this.addProductionProcess(productionProcess);
+	}
 	
+	public ArrayList<ProductionProcess> search(){
+		return this.productionProcessList;
+	}
+	
+	public ArrayList<JSONObject> showSearchSummary(){
+		ArrayList<ProductionProcess> searchResult = this.search();
+		ArrayList<JSONObject> results = new ArrayList<>();
+		
+		for (int i=0;i<searchResult.size();i++){
+			results.add(searchResult.get(i).showSummary());
+		}
+		return results;
+	}
+	
+	public JSONObject getProductionProcessInfo(int id) throws InvalidArgumentException{
+		ProductionProcess proc = this.getByID(id);
+		return proc.showInfo();
+	}
 }

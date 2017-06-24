@@ -3,6 +3,7 @@ package ui;
 import javax.swing.JDialog;
 
 import ui.managementPanel.CreateProductElementDialog;
+import ui.managementPanel.CreateProductionProcessDialog;
 import ui.managementPanel.ProductElementSearchDialog;
 import ui.salesPanel.FinalProductSearchDialog;
 import ui.userPanel.ActionHistoryDialogType;
@@ -95,7 +96,9 @@ public abstract class LoggedInMainPortal extends LoggedInWindow {
 			new ProductElementSearchDialog(userID);
 		} else if (selection.equals(PageTypes.CreateUser.getCaption())){
 			new CreateUserDialog(userID);
-		} else { //DEFAULT, USED IN CASE OF ERRORS
+		} else if (selection.equals(PageTypes.CreateProductionProcess.getCaption())){
+			new CreateProductionProcessDialog(userID);
+		}  else { //DEFAULT, USED IN CASE OF ERRORS
 			new MainPortalRedirectService().startRelevantMainPortal(userID);
 		}
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
