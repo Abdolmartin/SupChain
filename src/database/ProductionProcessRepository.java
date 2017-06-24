@@ -2,7 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
-import productManagement.ProductionProcess;
+import productionInfo.ProductionProcess;
 
 public class ProductionProcessRepository implements BasicDAO<ProductionProcess>{
 
