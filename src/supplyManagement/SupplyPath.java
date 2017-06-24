@@ -57,7 +57,7 @@ public class SupplyPath implements Viewable, Summarizable{
 	@Override
 	public JSONObject showSummary() {
 		
-		return null;
+		return null; 
 	}
 
 	@Override
