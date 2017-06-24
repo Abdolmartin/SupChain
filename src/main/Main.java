@@ -35,7 +35,7 @@ public class Main {
 			UserProfile manager1 = UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("m", "12345678", "m", "n", "1", "2", "3", AuthenticationType.MANAGER);
 			//user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
 			ProductElement pe1 = ProductElementCatalogue.getCatalogue().createProductElement(Constants.PRODUCT, "p1", -1, -1, "a product", true);
-			pe1.addItem(new ItemStatus(10.0));
+			// pe1.addItem(new ItemStatus(10.0));
 			InitialPortal initialPortal = new InitialPortal();
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();

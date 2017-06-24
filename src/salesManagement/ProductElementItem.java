@@ -2,10 +2,10 @@ package salesManagement;
 
 import java.util.ArrayList;
 
-class ProductElementItem implements ItemAvailabilityStateable {
+abstract class ProductElementItem implements ItemAvailabilityStateable {
 
 	private ProductElement productElementType;
-	ArrayList<ItemStatus> statusHistory = new ArrayList<>();
+	private ArrayList<ItemStatus> statusHistory = new ArrayList<>();
 
 	public ProductElementItem(ProductElement productElementType) {
 		this.productElementType = productElementType;
@@ -37,8 +37,7 @@ class ProductElementItem implements ItemAvailabilityStateable {
 	}
 	
 	public void updateStatus(ItemStatus newStatus){
-		//TODO Any necessary checks
-		this.statusHistory.add(newStatus);
+		newStatus.updateStatus(this);
 	}
 	
 	public ItemStatus getCurrentStatus(){
