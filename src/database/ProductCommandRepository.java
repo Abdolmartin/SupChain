@@ -2,7 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
-import productManagement.ProductCommand;
+import productionInfo.ProductCommand;
 
 public class ProductCommandRepository implements BasicDAO<ProductCommand>{
 

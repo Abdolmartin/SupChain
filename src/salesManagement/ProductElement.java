@@ -8,8 +8,8 @@ import org.json.simple.JSONObject;
 import common.Constants;
 import common.Summarizable;
 import common.Viewable;
-import productManagement.ProductionProcess;
 import exceptions.InvalidArgumentException;
+import productionInfo.ProductionProcess;
 
 public abstract class ProductElement implements Viewable, Summarizable{
 	

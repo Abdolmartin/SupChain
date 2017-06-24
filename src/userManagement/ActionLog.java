@@ -11,6 +11,8 @@ public class ActionLog implements Viewable{
 	String actor;
 	String action;
 	Date date;
+	int id;
+	
 	public ActionLog(){}
 	public ActionLog(String actor, String action, Date date) {
 		super();
@@ -35,6 +37,21 @@ public class ActionLog implements Viewable{
 	}
 	public Date getDate() {
 		return date;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

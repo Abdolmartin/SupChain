@@ -1,4 +1,4 @@
-package productManagement;
+package productionInfo;
 
 public class ProductCommand {
 
