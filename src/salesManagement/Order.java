@@ -68,6 +68,24 @@ public abstract class Order {
 	
 	public void addItem(ProductElementItem pElementItem){
 		this.orderedItems.add(pElementItem);
-	};
+	}
+	
+	public void paid(){
+		OrderStatus orderStat = this.statusHistory.get(statusHistory.size()-1);
+		OrderStatus newOrderStat = new OrderStatus(orderStat);
+		newOrderStat.setPaid(true);
+		this.statusHistory.add(newOrderStat);
+	}
+	
+	public void delivered(){
+		OrderStatus orderStat = this.statusHistory.get(statusHistory.size()-1);
+		OrderStatus newOrderStat = new OrderStatus(orderStat);
+		newOrderStat.setDelivered(true);
+		this.statusHistory.add(newOrderStat);
+	}
+	
+	public OrderStatus getCurrentStatus(){
+		return this.statusHistory.get(statusHistory.size()-1);
+	}
 
 }

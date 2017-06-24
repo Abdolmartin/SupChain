@@ -2,12 +2,28 @@ package salesManagement;
 
 import java.util.Date;
 
-abstract class OrderStatus {
+class OrderStatus {
 	private int id;
 	private boolean paid = false;
 	private boolean delivered = false;
 	private Date startDate;
 	private Order order;
+	
+	public OrderStatus(){}
+	
+	public OrderStatus(boolean pain, boolean delivered, Date startDate, Order order){
+		this.paid = pain;
+		this.delivered = delivered;
+		this.startDate = startDate;
+		this.order = order;
+	}
+	
+	public OrderStatus(OrderStatus orderStatus){
+		this.paid = orderStatus.paid;
+		this.delivered = orderStatus.delivered;
+		this.startDate = orderStatus.startDate;
+		this.order = orderStatus.order;
+	}
 		
 	public Date getStartDate(){
 		return this.startDate;
