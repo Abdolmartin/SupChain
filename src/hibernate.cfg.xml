@@ -23,5 +23,8 @@
        
        <mapping resource="resources/ActionLog.hbm.xml" />
        
+       <mapping resource="resources/Order.hbm.xml" />
+       <mapping resource="resources/ProductElementItem.hbm.xml" />
+       
     </session-factory>
 </hibernate-configuration>

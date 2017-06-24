@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="salesManagement">
+	<class name="Order" table="ORDER">
+		<id name="id" column="ORDER_ID">
+			<generator class="native" />
+		</id>
+		
+		<property name="orderDate" column="ORDER_DATE" type="date" />
+		<property name="value" column="ORDER_VALUE" type="double" />
+
+		<one-to-one name="orderingUser" class="userManagement.ProfileUser"
+			cascade="save-update">
+		</one-to-one>
+
+		<list name="orderedItems" cascade="all">
+			<key column="ITEM_ID" />
+			<list-index column="idx" />
+			<one-to-many class="ProductElementItem" />
+		</list>
+
+		<list name="statusHistory" cascade="all">
+			<key column="ORDER_ID" />
+			<list-index column="idx" />
+			<one-to-many class="OrderStatus" />
+		</list>
+
+		<joined-subclass name="salesManagement.CustomerOrder" table="CUSTOMER_ORDER">
+			<key column="CUSTOMER_ORDER_ID"></key>
+		</joined-subclass>
+		
+		<joined-subclass name="salesManagement.SupplyOrder" table="SUPPLY_ORDER">
+			<key column="SUPPLY_ORDER_ID"></key>
+		</joined-subclass>
+
+	</class>
+
+	<class name="OrderStatus" table="ORDER_STATUS">
+        <id name="id" column="STATUS_ID">
+            <generator class="native"/>
+        </id>
+        
+        <property name="startDate" column="START_DATE" type="date" />
+        <property name="delivered" column="DELIVERED" type="boolean" />
+        <property name="paid" column="PAID" type="boolean" />        
+    </class>
+	
+</hibernate-mapping>
