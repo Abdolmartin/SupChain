@@ -17,15 +17,13 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 	
 	@Override
 	public JSONObject showInfo() {
+		JSONObject result = contactInformation.showInfo();
 		HashMap<String, String> map = new HashMap<>();
-		map.put("username", username);
-		map.put("firstName", firstName);
-		map.put("lastName", lastName);
-		map.put("telephone", contactInformation.getTelephoneNumber());
-		map.put("email", contactInformation.getEmailAddress());
-		map.put("address", contactInformation.getPhysicalAddress());
-		map.put("id", String.valueOf(this.getId()));
-		return new JSONObject(map);
+		result.put("username", username);
+		result.put("firstName", firstName);
+		result.put("lastName", lastName);
+		result.put("id", String.valueOf(this.getId()));
+		return result;
 	}
 
 	private int id;

@@ -1,6 +1,13 @@
 package userManagement;
 
-public class ContactInformation {
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
+
+import common.Constants;
+import common.Viewable;
+
+public class ContactInformation implements Viewable{
 	private int id;
 	private String emailAddress;
 	private String telephoneNumber;
@@ -44,6 +51,15 @@ public class ContactInformation {
 
 	public void setPhysicalAddress(String physicalAddress) {
 		this.physicalAddress = physicalAddress;
+	}
+
+	@Override
+	public JSONObject showInfo() {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", this.emailAddress);
+		map.put("telephone", this.telephoneNumber);
+		map.put("address", this.physicalAddress);
+		return new JSONObject(map);
 	}
 	
 }

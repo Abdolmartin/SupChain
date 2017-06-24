@@ -13,6 +13,7 @@ import salesManagement.ProductElementCatalogue;
 import salesManagement.ProductElementSearchParams;
 import salesManagement.RegularComponentViewer;
 import salesManagement.RegularProductViewer;
+import supplyManagement.SupplyPathCatalogue;
 
 public class OrganisationManagementFacade {
 	public ArrayList<JSONObject> productElementSearch(String type, String name, double priceLowBound, double priceHighBound, boolean inStock, boolean finality){
@@ -58,6 +59,17 @@ public class OrganisationManagementFacade {
 	public String createProductionProcess(int[] inputIDs, int[] outputIDs, String name, String[] sections){
 		try{
 			ProductionProcessCatalogue.getCatalogue().createProductionProcess(inputIDs, outputIDs, name, sections);
+		}catch(Exception e){
+			return Constants.GHAEDATAN;
+		}
+		return Constants.SUCCESS;
+	}
+	
+	public String createSupplyPath(String supplierName, String name,
+			int[] componentIDs, String emailAddress, String telephoneNumber, String physicalAddress){
+		try{
+			SupplyPathCatalogue.getCatalogue().createSupplyPath(supplierName,
+					name, componentIDs, emailAddress, telephoneNumber, physicalAddress);
 		}catch(Exception e){
 			return Constants.GHAEDATAN;
 		}
