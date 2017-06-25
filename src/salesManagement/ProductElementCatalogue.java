@@ -149,4 +149,10 @@ public class ProductElementCatalogue {
 		ProductElement pe = this.getByID(productElementID);
 		return pe.viewItems();
 	}
+	
+	public void changeItemStati(int productElementID, int[] itemIDs, ItemStatus newStatus){
+		ProductElement pe = this.getByID(productElementID);
+		pe.changeItemStati(itemIDs, newStatus);
+		this.repo.update(pe);
+	}
 }

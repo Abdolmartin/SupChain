@@ -55,8 +55,7 @@ public abstract class GeneralPESearchResultDialog extends LoggedInWindow {
 		DefaultTableModel model = j2tService.createJTableFromJSON(results);
 		this.table.setModel(model);
 		j2tService.hideTableColumn(table, Constants.ID);
-		table.setColumnSelectionAllowed(false);
-	    table.setRowSelectionAllowed(true);
+		j2tService.disableColSelection(table);
 	}
 	
 	protected abstract void submitView();

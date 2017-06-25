@@ -89,6 +89,8 @@ public class CreateProductionProcessDialog extends LoggedInWindow {
 		outputsTable.setModel(j2tService.createJTableFromJSON(allProductElements));
 		j2tService.hideTableColumn(inputsTable, Constants.ID);
 		j2tService.hideTableColumn(outputsTable, Constants.ID);
+		j2tService.disableColSelection(inputsTable);
+		j2tService.disableColSelection(outputsTable);
 	}
 	
 	void submit(){

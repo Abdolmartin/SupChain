@@ -1,1 +1,13 @@
+/common/
+/database/
+/exceptions/
+/hibernate.cfg.xml
+/main/
+/productManagement/
+/reporting/
+/requirementManagement/
+/resources/
+/salesManagement/
+/supplyManagement/
 /ui/
+/userManagement/

@@ -1,5 +1,13 @@
 package ui.managementPanel;
 
+import java.util.ArrayList;
+
+import org.json.simple.JSONObject;
+
+import common.Constants;
+import common.JsonToJTableService;
+import ui.handler.OrganisationManagementFacade;
+
 public class LoadAddRemoveDialogVisitor extends AddRemoveDialogVisitor {
 
 	@Override
@@ -13,13 +21,29 @@ public class LoadAddRemoveDialogVisitor extends AddRemoveDialogVisitor {
 	}
 
 	@Override
-	public void visiOtherRemoveProductDialog(OtherRemoveProductDialog otherRemoveProductDialog) {
-		
+	public void visitOtherRemoveProductDialog(OtherRemoveProductDialog otherRemoveProductDialog) {
+		otherRemoveProductDialog.setTitle("کاهش موجودی محصول - سایر");
+		OrganisationManagementFacade organisationManagementFacade = new OrganisationManagementFacade();
+		ArrayList<JSONObject> jsonList = organisationManagementFacade.
+				getProductElementItems(otherRemoveProductDialog.productElementID);
+		JsonToJTableService j2t = new JsonToJTableService();
+		otherRemoveProductDialog.getItemsTable().setModel(j2t.createJTableFromJSON(jsonList));
+		j2t.hideTableColumn(otherRemoveProductDialog.getItemsTable(), Constants.ID);
+		j2t.hideTableColumn(otherRemoveProductDialog.getItemsTable(), "typeID");
+		j2t.disableColSelection(otherRemoveProductDialog.getItemsTable());
 	}
 
 	@Override
-	public void visiOtherRemoveComponentDialog(OtherRemoveComponentDialog otherRemoveComponentDialog) {
-		
+	public void visitOtherRemoveComponentDialog(OtherRemoveComponentDialog otherRemoveComponentDialog) {
+		otherRemoveComponentDialog.setTitle("کاهش موجودی مولفه - سایر");
+		OrganisationManagementFacade organisationManagementFacade = new OrganisationManagementFacade();
+		ArrayList<JSONObject> jsonList = organisationManagementFacade.
+				getProductElementItems(otherRemoveComponentDialog.productElementID);
+		JsonToJTableService j2t = new JsonToJTableService();
+		otherRemoveComponentDialog.getItemsTable().setModel(j2t.createJTableFromJSON(jsonList));
+		j2t.hideTableColumn(otherRemoveComponentDialog.getItemsTable(), Constants.ID);
+		j2t.hideTableColumn(otherRemoveComponentDialog.getItemsTable(), "typeID");
+		j2t.disableColSelection(otherRemoveComponentDialog.getItemsTable());
 	}
 
 }

@@ -39,6 +39,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		map.put("type", this.getType());
 		map.put("price", String.valueOf(this.getLatestPrice()));
 		map.put(Constants.ID, String.valueOf(this.getId()));
+		map.put("inventory", String.valueOf(this.getAvailableQuantity()));
 		return new JSONObject(map);
 	}
 	
@@ -85,6 +86,25 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		}
 		
 		return result;
+	}
+	
+	public void changeItemStati(int[] itemIDs, ItemStatus newStatus){
+		for (int i=0;i<itemIDs.length;i++){
+			System.out.println(itemIDs[i]);
+			ProductElementItem item = this.getItemByID(itemIDs[i]);
+			if (item!=null)
+				item.updateStatus(newStatus.clone());
+		}
+	}
+	
+	public ProductElementItem getItemByID(int itemID){
+		for (int i=0;i<this.productElementItemList.size();i++){
+			ProductElementItem currentProductElementItem = this.productElementItemList.get(i);
+			if (currentProductElementItem.getId() == itemID){
+				return currentProductElementItem;
+			}
+		}
+		return null;
 	}
 
 	public void setProductElementItemList(List<ProductElementItem> productElementItemList) {

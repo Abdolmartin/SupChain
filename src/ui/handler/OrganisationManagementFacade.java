@@ -10,6 +10,8 @@ import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
 import productionInfo.ProductionProcessCatalogue;
 import salesManagement.AvailableItemStatus;
+import salesManagement.ItemStatus;
+import salesManagement.ProductElement;
 import salesManagement.ProductElementCatalogue;
 import salesManagement.ProductElementSearchParams;
 import salesManagement.RegularComponentViewer;
@@ -46,6 +48,11 @@ public class OrganisationManagementFacade {
 			}
 		}
 		return null;
+	}
+	
+	public String getProductElementType(int productElementID){
+		ProductElement pe = ProductElementCatalogue.getCatalogue().getByID(productElementID);
+		return pe.getType();
 	}
 	
 	public String createProductElement(String type, String name, int lowerBound, int higherBound, String description, boolean finality){
@@ -95,5 +102,19 @@ public class OrganisationManagementFacade {
 			return Constants.GHAEDATAN;
 		}
 		return Constants.SUCCESS;
+	}
+	
+	//Long live the Roman Empire.
+	public String changeItemStati(int productElementID, int[] itemIDs, ItemStatus newStatus){
+		try {
+			ProductElementCatalogue.getCatalogue().changeItemStati(productElementID, itemIDs, newStatus);
+		} catch (Exception e) {
+			return Constants.GHAEDATAN;
+		}
+		return Constants.SUCCESS;
+	}
+	
+	public ArrayList<JSONObject> getProductElementItems(int productElementID){
+		return ProductElementCatalogue.getCatalogue().viewProductElementItems(productElementID);
 	}
 }

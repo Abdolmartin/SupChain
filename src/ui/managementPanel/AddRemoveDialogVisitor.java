@@ -6,8 +6,8 @@ public abstract class AddRemoveDialogVisitor {
 
 	public abstract void visitOtherAddComponentDialog(OtherAddComponentDialog otherAddComponentDialog);
 
-	public abstract void visiOtherRemoveProductDialog(OtherRemoveProductDialog otherRemoveProductDialog);
+	public abstract void visitOtherRemoveProductDialog(OtherRemoveProductDialog otherRemoveProductDialog);
 
-	public abstract void visiOtherRemoveComponentDialog(OtherRemoveComponentDialog otherRemoveComponentDialog);
+	public abstract void visitOtherRemoveComponentDialog(OtherRemoveComponentDialog otherRemoveComponentDialog);
 	
 }

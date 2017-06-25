@@ -43,8 +43,6 @@ public abstract class AbstractAddOrRemoveDialog extends LoggedInWindow {
 		submitButton.setBounds(197, 438, 89, 23);
 		getContentPane().add(submitButton);
 		
-		accept(new LoadAddRemoveDialogVisitor());
-		
 		setVisible(true);
 		setBounds(500, 500, 700, 500);
 	}
