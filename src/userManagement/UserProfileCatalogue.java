@@ -12,6 +12,7 @@ import exceptions.NonExistentEntityException;
 public class UserProfileCatalogue {
 	
 	ArrayList<UserProfile> userList;
+	private UserProfileRepository repo = new UserProfileRepository();
 	int lastID;
 	
 	private static UserProfileCatalogue userProfileCatalogue = new UserProfileCatalogue();
@@ -65,7 +66,7 @@ public class UserProfileCatalogue {
 	
 	public void addUser(UserProfile userProfile){
 		this.userList.add(userProfile);
-		new UserProfileRepository().save(userProfile);
+		this.repo.save(userProfile);
 		adjustLastID();
 	}
 

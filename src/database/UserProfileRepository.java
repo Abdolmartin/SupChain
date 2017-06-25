@@ -47,7 +47,6 @@ public class UserProfileRepository implements BasicDAO<UserProfile>{
             }
         }
         return user;
-	
 	}
 
 	@Override

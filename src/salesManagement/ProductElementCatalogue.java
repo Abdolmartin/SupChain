@@ -6,13 +6,14 @@ import java.util.Date;
 import org.json.simple.JSONObject;
 
 import common.Constants;
+import database.ProductElementRepository;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
 import userManagement.Customer;
 public class ProductElementCatalogue {
 	
 	ArrayList<ProductElement> productElementList;
-	
+	private ProductElementRepository repo = new ProductElementRepository();
 	private static ProductElementCatalogue productElementCatalogue = new ProductElementCatalogue();
 
 	public static ProductElementCatalogue getCatalogue(){
@@ -62,6 +63,7 @@ public class ProductElementCatalogue {
 	
 	public void addProductElement(ProductElement productElement){
 		this.productElementList.add(productElement);
+		this.repo.save(productElement);
 	}
 	
 	public ArrayList<ProductElement> search(ProductElementSearchParams searchParams){
