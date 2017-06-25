@@ -67,17 +67,6 @@ public class UserProfileCatalogue {
 	public void addUser(UserProfile userProfile){
 		this.userList.add(userProfile);
 		this.repo.save(userProfile);
-		adjustLastID();
-	}
-
-	private void adjustLastID() {
-		int maxID = 0;
-		for (int i=0;i<userList.size();i++){
-			int currentID = userList.get(i).getId();
-			if (currentID > maxID)
-				maxID = currentID;
-		}
-		this.lastID = maxID + 1;
 	}
 	
 	public ArrayList<UserProfile> search(){
@@ -156,8 +145,12 @@ public class UserProfileCatalogue {
 		}
 		userProfile.changeUserInfo(password, firstName, lastName, 
 					telephoneNumber, emailAddress, physicalAddress, oldPass);
-		return true;
+		return repo.update(userProfile);
 	}
 	
-	
+	public boolean addNotification(int userID, Notification notification) throws InvalidArgumentException{
+		UserProfile userProfile = this.getByID(userID);
+		userProfile.addNotification(notification);
+		return this.repo.update(userProfile);
+	}
 }

@@ -124,6 +124,7 @@ public class ProductElementCatalogue {
 		if (productElement == null)
 			throw new NonExistentEntityException(Constants.NO_SUCH_ENTITY);
 		productElement.defineInventoryBounds(lowerBound, upperBound);
+		this.repo.update(productElement);
 	}
 	
 	public void createReview(int productID, Customer customer, String body, int score, Date date) throws InvalidArgumentException{
@@ -133,5 +134,6 @@ public class ProductElementCatalogue {
 			throw new InvalidArgumentException(Constants.NO_SUCH_ENTITY);
 		//TODO Check existence of CustomerOrder
 		((Product)pe).createReview(customer, body, score, date);
+		this.repo.update(pe);
 	}
 }

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
+import database.ActionLogRepository;
+
 public class ActionLogCatalogue {
 	
 	
 	private ArrayList<ActionLog> actionLogList;
-	
+	private ActionLogRepository repo = new ActionLogRepository();
 	private static ActionLogCatalogue actionLogCatalogue = new ActionLogCatalogue();
 	public static ActionLogCatalogue getCatalogue(){
 		return ActionLogCatalogue.actionLogCatalogue;
@@ -20,6 +22,7 @@ public class ActionLogCatalogue {
 	
 	public void addLog(ActionLog actionLog){
 		this.actionLogList.add(actionLog);
+		actionLog.setId(repo.save(actionLog));
 	}
 	
 	public ArrayList<ActionLog> search(String actorName){
