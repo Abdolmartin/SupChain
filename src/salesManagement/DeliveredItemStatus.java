@@ -1,11 +1,22 @@
 package salesManagement;
 
 public class DeliveredItemStatus extends ItemStatus {
+	private int id;
+	
+	public DeliveredItemStatus(){}
 
 	public DeliveredItemStatus(double price) {
 		super(price);
 	}
+	
+	public int getId(){
+		return this.id;
+	}
 
+	public void setId(int id){
+		this.id = id;
+	}
+	
 	@Override
 	public boolean isAvailable() {
 		return false;

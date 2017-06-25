@@ -1,7 +1,10 @@
 package salesManagement;
 
 public abstract class ItemStatus implements ItemAvailabilityStateable {
+	private int id;
 	private double price;
+	
+	public ItemStatus(){}
 	
 	public ItemStatus(double price) {
 		super();
@@ -20,6 +23,14 @@ public abstract class ItemStatus implements ItemAvailabilityStateable {
 	
 	public void setPrice(double price){
 		this.price = price;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

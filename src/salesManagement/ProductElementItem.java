@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 abstract class ProductElementItem implements ItemAvailabilityStateable {
 
+	private int id;
 	private ProductElement productElementType;
 	private ArrayList<ItemStatus> statusHistory = new ArrayList<>();
+	
+	public ProductElementItem(){}
 
 	public ProductElementItem(ProductElement productElementType) {
 		this.productElementType = productElementType;
@@ -42,6 +45,14 @@ abstract class ProductElementItem implements ItemAvailabilityStateable {
 	
 	public ItemStatus getCurrentStatus(){
 		return this.statusHistory.get(this.statusHistory.size()-1);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

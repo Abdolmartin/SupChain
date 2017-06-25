@@ -2,7 +2,7 @@ package salesManagement;
 
 class SupplyOrder extends Order{
 	private int id;
-	// supplypath, 
+	// TODO add supplypath 
 	
 	
 	public SupplyOrder(){}

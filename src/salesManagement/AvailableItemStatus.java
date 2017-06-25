@@ -1,9 +1,20 @@
 package salesManagement;
 
 public class AvailableItemStatus extends ItemStatus {
+	private int id;
 
+	public AvailableItemStatus(){}
+	
 	public AvailableItemStatus(double price) {
 		super(price);
+	}
+	
+	public void setId(int id){
+		this.id = id;
+	}
+	
+	public int getId(){
+		return this.id;
 	}
 
 	@Override
