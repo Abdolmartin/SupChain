@@ -12,4 +12,9 @@ class Admin extends UserProfile{
 		return AuthenticationType.ADMIN;
 	}
 
+	
+	public void setAuthRole(AuthenticationType atype){
+		// do nothing
+	}
+
 }

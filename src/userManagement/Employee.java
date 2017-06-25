@@ -11,5 +11,9 @@ class Employee extends UserProfile{
 	public AuthenticationType getAuthRole() {
 		return AuthenticationType.EMPLOYEE;
 	}
+	
+	public void setAuthRole(AuthenticationType atype){
+		// do nothing
+	}
 
 }

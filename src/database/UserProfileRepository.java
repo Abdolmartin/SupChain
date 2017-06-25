@@ -66,7 +66,7 @@ public class UserProfileRepository implements BasicDAO<UserProfile>{
 			}
 			e.printStackTrace();
 		}finally {
-			if (session!=null){
+			if (session!=null && session.isOpen()){
 				session.close();
 			}
 		}
@@ -90,7 +90,9 @@ public class UserProfileRepository implements BasicDAO<UserProfile>{
 			e.printStackTrace();
 			result = false;
 		}finally {
-			session.close();
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
 		}
 		return result;
 	}

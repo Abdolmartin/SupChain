@@ -2,6 +2,7 @@ package salesManagement;
 
 class SupplyOrder extends Order{
 	private int id;
+	// supplypath, 
 	
 	
 	public SupplyOrder(){}

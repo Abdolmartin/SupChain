@@ -12,4 +12,9 @@ public class Customer extends UserProfile{
 		return AuthenticationType.CUSTOMER;
 	}
 
+	
+	public void setAuthRole(AuthenticationType atype){
+		// do nothing
+	}
+
 }

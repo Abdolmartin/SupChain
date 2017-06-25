@@ -67,7 +67,9 @@ public class ActionLogRepository implements BasicDAO<ActionLog>{
 			}
 			e.printStackTrace();
 		}finally {
-			session.close();
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
 		}
 		return actionLogID;
 	}
@@ -89,7 +91,9 @@ public class ActionLogRepository implements BasicDAO<ActionLog>{
 			e.printStackTrace();
 			result = false;
 		}finally {
-			session.close();
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
 		}
 		return result;
 	}

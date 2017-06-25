@@ -34,6 +34,7 @@ public class Main {
 		try {
 			//UserProfile user1 = UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
 			UserProfile manager1 = UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("m", "12345678", "m", "n", "1", "2", "3", AuthenticationType.MANAGER);
+			UserProfile employee1 = UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("ml", "12345679998", "m", "n", "1", "2", "3", AuthenticationType.EMPLOYEE);
 			//user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
 			ProductElement pe1 = ProductElementCatalogue.getCatalogue().createProductElement(Constants.PRODUCT, "p1", -1, -1, "a product", true);
 			// pe1.addItem(new ItemStatus(10.0));
