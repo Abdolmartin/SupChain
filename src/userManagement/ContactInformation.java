@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
-import common.Constants;
 import common.Viewable;
 
 public class ContactInformation implements Viewable{

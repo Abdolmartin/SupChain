@@ -1,7 +1,5 @@
 package salesManagement;
 
-import org.json.simple.JSONObject;
-
 import common.Constants;
 import exceptions.InvalidArgumentException;
 

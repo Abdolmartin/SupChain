@@ -34,10 +34,11 @@ public class OrderCatalogue {
 		this.repo.save(order);
 	}
 	
-	public void createCustomerOrder(Date orderDate, UserProfile orderingUser, ArrayList<ProductElementItem> orderedItems,
+	public CustomerOrder createCustomerOrder(Date orderDate, UserProfile orderingUser, ArrayList<ProductElementItem> orderedItems,
 			double value, OrderStatus initialStatus, String paymentCode){
 		CustomerOrder order = new CustomerOrder(orderDate, orderingUser, orderedItems, value, initialStatus, paymentCode);
 		this.addOrder(order);
+		return order;
 	}
 	
 }

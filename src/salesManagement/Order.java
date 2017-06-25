@@ -2,6 +2,7 @@ package salesManagement;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import userManagement.UserProfile;
 
@@ -10,7 +11,7 @@ public abstract class Order {
 	private UserProfile orderingUser;
 	private ArrayList<ProductElementItem> orderedItems;
 	private double value;
-	private ArrayList<OrderStatus> statusHistory;
+	private List<OrderStatus> statusHistory;
 	private int id;
 	
 	public Order(){}
@@ -58,11 +59,11 @@ public abstract class Order {
 		this.value = value;
 	}
 
-	public ArrayList<OrderStatus> getStatusHistory() {
+	public List<OrderStatus> getStatusHistory() {
 		return statusHistory;
 	}
 
-	public void setStatusHistory(ArrayList<OrderStatus> statusHistory) {
+	public void setStatusHistory(List<OrderStatus> statusHistory) {
 		this.statusHistory = statusHistory;
 	}
 

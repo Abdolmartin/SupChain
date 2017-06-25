@@ -30,6 +30,7 @@
 		<joined-subclass name="salesManagement.CustomerOrder"
 			table="CUSTOMER_ORDER">
 			<key column="CUSTOMER_ORDER_ID"></key>
+			<property name="paymentCode" column="PAYMENT_CODE" />
 		</joined-subclass>
 
 		<joined-subclass name="salesManagement.SupplyOrder"
@@ -40,7 +41,7 @@
 	</class>
 
 	<class name="OrderStatus" table="ORDER_STATUS">
-		<id name="id" column="STATUS_ID">
+		<id name="id" column="ORDER_STATUS_ID">
 			<generator class="native" />
 		</id>
 
