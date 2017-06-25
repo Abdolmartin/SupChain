@@ -35,6 +35,7 @@ public class OtherAddComponentDialog extends AbstractAddOrRemoveDialog {
 		JLabel label_1 = new JLabel("\u0642\u06CC\u0645\u062A");
 		label_1.setBounds(249, 318, 46, 14);
 		getContentPane().add(label_1);
+		accept(new LoadAddRemoveDialogVisitor());
 	}
 
 	@Override

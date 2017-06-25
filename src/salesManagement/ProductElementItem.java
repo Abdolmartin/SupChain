@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import common.Constants;
 import common.Viewable;
 
-abstract class ProductElementItem implements ItemAvailabilityStateable, Viewable {
+public abstract class ProductElementItem implements ItemAvailabilityStateable, Viewable {
 
 	private int id;
 	private ProductElement productElementType;
@@ -33,7 +33,7 @@ abstract class ProductElementItem implements ItemAvailabilityStateable, Viewable
 
 	@Override
 	public boolean isAvailable() {
-		return true;
+		return this.getCurrentStatus().isAvailable();
 	}
 
 	public ProductElement getProductElementType() {

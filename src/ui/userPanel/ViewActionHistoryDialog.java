@@ -77,8 +77,7 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 		} else{
 			JsonToJTableService jsonToJTableService = new JsonToJTableService();
 			this.table.setModel(jsonToJTableService.createJTableFromJSON(logsObj));
-			table.setColumnSelectionAllowed(false);
-		    table.setRowSelectionAllowed(true);
+			jsonToJTableService.disableColSelection(table);
 		}
 	}
 }

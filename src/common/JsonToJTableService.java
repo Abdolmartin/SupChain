@@ -53,4 +53,9 @@ public class JsonToJTableService {
 		}
 		return -1;
 	}
+
+	public void disableColSelection(JTable table) {
+		table.setColumnSelectionAllowed(false);
+	    table.setRowSelectionAllowed(true);
+	}
 }
