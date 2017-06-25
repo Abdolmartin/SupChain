@@ -41,4 +41,7 @@ public class OrderCatalogue {
 		return order;
 	}
 	
+	public void intialise(){
+		this.orderList = this.repo.getAll();
+	}
 }

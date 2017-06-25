@@ -153,4 +153,8 @@ public class UserProfileCatalogue {
 		userProfile.addNotification(notification);
 		return this.repo.update(userProfile);
 	}
+	
+	public void initialise(){
+		this.userList = this.repo.getAll();
+	}
 }

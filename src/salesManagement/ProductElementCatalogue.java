@@ -155,4 +155,8 @@ public class ProductElementCatalogue {
 		pe.changeItemStati(itemIDs, newStatus);
 		this.repo.update(pe);
 	}
+	
+	public void initialise(){
+		this.productElementList = this.repo.getAll();
+	}
 }
