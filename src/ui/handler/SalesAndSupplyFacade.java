@@ -1,7 +1,7 @@
 package ui.handler;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -13,7 +13,7 @@ import salesManagement.ProductElementSearchParams;
 import salesManagement.RestrictedProductViewer;
 
 public class SalesAndSupplyFacade {
-	public ArrayList<JSONObject> finalProductSearch(String name, double priceLowBound, double priceHighBound){
+	public List<JSONObject> finalProductSearch(String name, double priceLowBound, double priceHighBound){
 		ProductElementSearchParams searchParams = new ProductElementSearchParams(Constants.PRODUCT, name, priceLowBound, priceHighBound, true, true);
 		return ProductElementCatalogue.getCatalogue().showSearchSummary(searchParams);
 	}

@@ -1,24 +1,19 @@
 package ui.managementPanel;
 
-import ui.GeneralSearchDialog;
-import ui.handler.OrganisationManagementFacade;
-import ui.salesPanel.FinalProductSearchResultDialog;
+import java.awt.event.WindowEvent;
+import java.util.List;
 
-import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import org.json.simple.JSONObject;
 
 import common.Constants;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JComboBox;
-
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
+import ui.GeneralSearchDialog;
+import ui.handler.OrganisationManagementFacade;
 
 public class ProductElementSearchDialog extends GeneralSearchDialog {
 	JComboBox<String> typeComboBox;
@@ -77,7 +72,7 @@ public class ProductElementSearchDialog extends GeneralSearchDialog {
 		String type = (String)this.typeComboBox.getSelectedItem();
 		boolean inStock = inStockCheckbox.isSelected(), finality = finalityCheckbox.isSelected();
 		OrganisationManagementFacade orgManagementFacade = new OrganisationManagementFacade();
-		ArrayList<JSONObject> results = orgManagementFacade.productElementSearch(type, name, low, high, inStock, finality);
+		List<JSONObject> results = orgManagementFacade.productElementSearch(type, name, low, high, inStock, finality);
 		this.setVisible(false);
 		new ProductElementSearchResultDialog(userID, results);
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));

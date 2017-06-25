@@ -1,7 +1,7 @@
 package common;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JTable;
@@ -16,7 +16,7 @@ public class JsonToJTableService {
 		
 	}
 	
-	public DefaultTableModel createJTableFromJSON(ArrayList<JSONObject> jsonList){
+	public DefaultTableModel createJTableFromJSON(List<JSONObject> jsonList){
 		if (jsonList.isEmpty())
 			return new DefaultTableModel();
 		assert jsonList.size() > 0;

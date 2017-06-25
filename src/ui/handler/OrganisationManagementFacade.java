@@ -2,6 +2,7 @@ package ui.handler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -19,7 +20,7 @@ import salesManagement.RegularProductViewer;
 import supplyManagement.SupplyPathCatalogue;
 
 public class OrganisationManagementFacade {
-	public ArrayList<JSONObject> productElementSearch(String type, String name, double priceLowBound, double priceHighBound, boolean inStock, boolean finality){
+	public List<JSONObject> productElementSearch(String type, String name, double priceLowBound, double priceHighBound, boolean inStock, boolean finality){
 		ProductElementSearchParams searchParams = new ProductElementSearchParams(type, name, priceLowBound, priceHighBound, inStock, finality);
 		return ProductElementCatalogue.getCatalogue().showSearchSummary(searchParams);
 	}
@@ -114,7 +115,7 @@ public class OrganisationManagementFacade {
 		return Constants.SUCCESS;
 	}
 	
-	public ArrayList<JSONObject> getProductElementItems(int productElementID){
+	public List<JSONObject> getProductElementItems(int productElementID){
 		return ProductElementCatalogue.getCatalogue().viewProductElementItems(productElementID);
 	}
 }

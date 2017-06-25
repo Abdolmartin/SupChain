@@ -1,7 +1,7 @@
 package ui.salesPanel;
 
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -13,7 +13,7 @@ import ui.GeneralPESearchResultDialog;
 
 public class FinalProductSearchResultDialog extends GeneralPESearchResultDialog {
 
-	public FinalProductSearchResultDialog(int userID, ArrayList<JSONObject> results) {
+	public FinalProductSearchResultDialog(int userID, List<JSONObject> results) {
 		super(userID, results);
 	}
 

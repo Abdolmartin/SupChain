@@ -2,12 +2,13 @@ package salesManagement;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import database.OrderRepository;
 import userManagement.UserProfile;
 
 public class OrderCatalogue {
-	private ArrayList<Order> orderList;
+	private List<Order> orderList;
 	
 	private static OrderCatalogue orderCatalogue = new OrderCatalogue();
 	private OrderRepository repo = new OrderRepository();
@@ -34,7 +35,7 @@ public class OrderCatalogue {
 		this.repo.save(order);
 	}
 	
-	public CustomerOrder createCustomerOrder(Date orderDate, UserProfile orderingUser, ArrayList<ProductElementItem> orderedItems,
+	public CustomerOrder createCustomerOrder(Date orderDate, UserProfile orderingUser, List<ProductElementItem> orderedItems,
 			double value, OrderStatus initialStatus, String paymentCode){
 		CustomerOrder order = new CustomerOrder(orderDate, orderingUser, orderedItems, value, initialStatus, paymentCode);
 		this.addOrder(order);

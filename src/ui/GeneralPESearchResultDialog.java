@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -15,12 +16,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public abstract class GeneralPESearchResultDialog extends LoggedInWindow {
-	protected ArrayList<JSONObject> results;
+	protected List<JSONObject> results;
 	protected JTable table;
 	
-	public GeneralPESearchResultDialog(int userID, ArrayList<JSONObject> results) {
+	public GeneralPESearchResultDialog(int userID, List<JSONObject> results2) {
 		super(userID);
-		this.results = results;
+		this.results = results2;
 		
 		JButton button = new ReturnToMainButton(this.userID, this, "بازگشت به صفحه‌ی اصلی");
 		button.setBounds(221, 0, 179, 23);

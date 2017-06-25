@@ -78,9 +78,9 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		return productElementItemList;
 	}
 	
-	public ArrayList<JSONObject> viewItems(){
-		ArrayList<JSONObject> result = new ArrayList<>();
-		ArrayList<ProductElementItem> items = (ArrayList<ProductElementItem>)this.getProductElementItemList();
+	public List<JSONObject> viewItems(){
+		List<JSONObject> result = new ArrayList<>();
+		List<ProductElementItem> items = this.getProductElementItemList();
 		for (int i=0;i<items.size();i++){
 			result.add(items.get(i).showInfo());
 		}
@@ -188,12 +188,12 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	public abstract void changeInventory();
 	
-	public ArrayList<ProductionProcess> getProducingProcesses(){
+	public List<ProductionProcess> getProducingProcesses(){
 		// TODO 
 		return null;
 	}
 	
-	public ArrayList<ProductionProcess> getConsumingProcesses(){
+	public List<ProductionProcess> getConsumingProcesses(){
 		// TODO 
 		return null;
 	}

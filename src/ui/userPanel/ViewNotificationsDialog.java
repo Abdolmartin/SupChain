@@ -1,12 +1,10 @@
 package ui.userPanel;
 
-import ui.LoggedInWindow;
-import ui.MainPortalRedirectService;
-import ui.ReturnToMainButton;
-import ui.handler.UserFacade;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,12 +12,9 @@ import org.json.simple.JSONObject;
 
 import common.Constants;
 import common.JsonToJTableService;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import javax.swing.JScrollPane;
+import ui.LoggedInWindow;
+import ui.ReturnToMainButton;
+import ui.handler.UserFacade;
 
 public class ViewNotificationsDialog extends LoggedInWindow {
 	private JTable table;
@@ -46,7 +41,7 @@ public class ViewNotificationsDialog extends LoggedInWindow {
 	
 	void load(){
 		UserFacade userManager = new UserFacade();
-		ArrayList<JSONObject> notifsObj = userManager.getNotifications(userID);
+		List<JSONObject> notifsObj = userManager.getNotifications(userID);
 		
 		JSONObject firstJSON = null;
 		try {

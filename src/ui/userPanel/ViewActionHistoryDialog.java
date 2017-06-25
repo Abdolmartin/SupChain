@@ -1,26 +1,21 @@
 package ui.userPanel;
 
-import ui.LoggedInWindow;
-import ui.MainPortalRedirectService;
-import ui.handler.UserFacade;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.util.List;
 
-import javax.swing.JList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractListModel;
-import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import org.json.simple.JSONObject;
 
 import common.JsonToJTableService;
-
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Set;
-import javax.swing.JScrollPane;
+import ui.LoggedInWindow;
+import ui.MainPortalRedirectService;
+import ui.handler.UserFacade;
 
 public class ViewActionHistoryDialog extends LoggedInWindow {
 	private JTable table;
@@ -59,7 +54,7 @@ public class ViewActionHistoryDialog extends LoggedInWindow {
 	
 	void load(){
 		UserFacade userManager = new UserFacade();
-		ArrayList<JSONObject> logsObj;
+		List<JSONObject> logsObj;
 		
 		if (this.dialogType == ActionHistoryDialogType.PERSONAL)
 			logsObj = userManager.getLogs(userID);

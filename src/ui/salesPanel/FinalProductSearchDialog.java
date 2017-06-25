@@ -1,16 +1,14 @@
 package ui.salesPanel;
 
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import org.json.simple.JSONObject;
 
 import ui.GeneralSearchDialog;
-import ui.MainPortalRedirectService;
 import ui.handler.SalesAndSupplyFacade;
-import ui.userPanel.ViewUserInfoDialog;
 
 public class FinalProductSearchDialog extends GeneralSearchDialog {
 
@@ -47,7 +45,7 @@ public class FinalProductSearchDialog extends GeneralSearchDialog {
 			}
 		}
 		SalesAndSupplyFacade salesAndSupplyFacade = new SalesAndSupplyFacade();
-		ArrayList<JSONObject> results = salesAndSupplyFacade.finalProductSearch(name, low, high);
+		List<JSONObject> results = salesAndSupplyFacade.finalProductSearch(name, low, high);
 		this.setVisible(false);
 		new FinalProductSearchResultDialog(userID, results);
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));

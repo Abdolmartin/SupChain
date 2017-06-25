@@ -2,6 +2,7 @@ package ui.managementPanel;
 
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -13,7 +14,7 @@ import ui.GeneralPESearchResultDialog;
 
 public class ProductElementSearchResultDialog extends GeneralPESearchResultDialog {
 
-	public ProductElementSearchResultDialog(int userID, ArrayList<JSONObject> results) {
+	public ProductElementSearchResultDialog(int userID, List<JSONObject> results) {
 		super(userID, results);
 	}
 

@@ -1,6 +1,7 @@
 package userManagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -9,7 +10,7 @@ import database.ActionLogRepository;
 public class ActionLogCatalogue {
 	
 	
-	private ArrayList<ActionLog> actionLogList;
+	private List<ActionLog> actionLogList;
 	private ActionLogRepository repo = new ActionLogRepository();
 	private static ActionLogCatalogue actionLogCatalogue = new ActionLogCatalogue();
 	public static ActionLogCatalogue getCatalogue(){
@@ -25,7 +26,7 @@ public class ActionLogCatalogue {
 		actionLog.setId(repo.save(actionLog));
 	}
 	
-	public ArrayList<ActionLog> search(String actorName){
+	public List<ActionLog> search(String actorName){
 		if (actorName.equals("")){
 			return this.actionLogList;
 		}
@@ -41,9 +42,9 @@ public class ActionLogCatalogue {
 		}
 	}
 	
-	public ArrayList<JSONObject> showSearchResults(String actorName){
-		ArrayList<ActionLog> logs = this.search(actorName);
-		ArrayList<JSONObject> results = new ArrayList<>();
+	public List<JSONObject> showSearchResults(String actorName){
+		List<ActionLog> logs = this.search(actorName);
+		List<JSONObject> results = new ArrayList<>();
 		for (int i=0;i<logs.size();i++){
 			results.add(logs.get(i).showInfo());
 		}

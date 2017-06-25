@@ -1,10 +1,13 @@
 package ui.managementPanel;
 
-import ui.LoggedInWindow;
-import ui.MainPortalRedirectService;
-import ui.ReturnToMainButton;
-import ui.handler.OrganisationManagementFacade;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -13,14 +16,10 @@ import org.json.simple.JSONObject;
 
 import common.Constants;
 import common.JsonToJTableService;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+import ui.LoggedInWindow;
+import ui.MainPortalRedirectService;
+import ui.ReturnToMainButton;
+import ui.handler.OrganisationManagementFacade;
 
 public class CreateSupplyPathDialog extends LoggedInWindow {
 	private JTable componentsTable;
@@ -145,7 +144,7 @@ public class CreateSupplyPathDialog extends LoggedInWindow {
 	
 	void load(){
 		OrganisationManagementFacade organisationManagementFacade = new OrganisationManagementFacade();
-		ArrayList<JSONObject> allComponents = organisationManagementFacade.productElementSearch(Constants.COMPONENT, "", 0, Double.MAX_VALUE, false, false);
+		List<JSONObject> allComponents = organisationManagementFacade.productElementSearch(Constants.COMPONENT, "", 0, Double.MAX_VALUE, false, false);
 		JsonToJTableService j2tService = new JsonToJTableService();
 		componentsTable.setModel(j2tService.createJTableFromJSON(allComponents));
 		j2tService.hideTableColumn(componentsTable, Constants.ID);
