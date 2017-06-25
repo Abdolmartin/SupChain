@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import common.Constants;
 import database.UserProfileRepository;
-import exceptions.InvalidArgumentException;
 import salesManagement.AvailableItemStatus;
 import salesManagement.OrderCatalogue;
 import salesManagement.ProductElement;
@@ -21,7 +20,10 @@ public class Main {
 	public static void main(String[] args) {
 		
 		try {
-			/*
+			UserProfileCatalogue.getCatalogue().initialise();
+			ProductElementCatalogue.getCatalogue().initialise();
+			OrderCatalogue.getCatalogue().intialise();
+			
 			UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
 			UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("m", "12345678", "m", "n", "1", "2", "3", AuthenticationType.MANAGER);
 			UserProfile employee1 = UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("ml", "12345679998", "m", "n", "1", "2", "3", AuthenticationType.EMPLOYEE);
@@ -32,11 +34,6 @@ public class Main {
 			System.out.println("&&&&&&&&&&&&& get id is = " + pe.getId());
 			ProductElementCatalogue.getCatalogue().createItems(pe.getId(), 4, new AvailableItemStatus(10));
 			OrderCatalogue.getCatalogue().createCustomerOrder(null, employee1, null, 0, null, "my very initial code");
-			*/
-			
-			UserProfileCatalogue.getCatalogue().initialise();
-			ProductElementCatalogue.getCatalogue().initialise();
-			OrderCatalogue.getCatalogue().intialise();
 			
 			new InitialPortal();
 			
