@@ -2,9 +2,6 @@ package database;
 
 import java.util.ArrayList;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,16 +10,14 @@ import userManagement.ActionLog;
 
 public class ActionLogRepository implements BasicDAO<ActionLog>{
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public ArrayList<ActionLog> getAll() {
-		// ArrayList<ActionLog> result = (ArrayList<ActionLog>) session.createCriteria(ActionLog.class);
 		Session session = null;
         ArrayList<ActionLog> result = null;
         try {
             session = HibernateUtil.getSession();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<ActionLog> query = builder.createQuery(ActionLog.class);
-            result = (ArrayList<ActionLog>)session.createQuery(query).getResultList();
+            result = (ArrayList<ActionLog>) session.createCriteria(ActionLog.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

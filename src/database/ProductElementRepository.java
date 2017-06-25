@@ -2,9 +2,6 @@ package database;
 
 import java.util.ArrayList;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,15 +10,14 @@ import salesManagement.ProductElement;
 
 public class ProductElementRepository implements BasicDAO<ProductElement>{
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public ArrayList<ProductElement> getAll() {
 		Session session = null;
         ArrayList<ProductElement> result = null;
         try {
             session = HibernateUtil.getSession();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<ProductElement> query = builder.createQuery(ProductElement.class);
-            result = (ArrayList<ProductElement>)session.createQuery(query).getResultList();
+            result = (ArrayList<ProductElement>) session.createCriteria(ProductElement.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

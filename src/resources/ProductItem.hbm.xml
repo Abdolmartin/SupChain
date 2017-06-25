@@ -18,13 +18,13 @@
         <property name="score" column="SCORE" />
         <property name="date" column="DATE" />
         
-		<one-to-one name="customer" class="userManagement.Customer"
+		<many-to-one name="customer" column="CUSTOMER_ID" unique="true" class="userManagement.Customer"
 			cascade="save-update">
-		</one-to-one>
+		</many-to-one>
         
-		<one-to-one name="product" class="salesManagement.Product"
+		<many-to-one name="product" column="PRODUCT_ID" unique="true" class="salesManagement.Product"
 			cascade="save-update">
-		</one-to-one>
+		</many-to-one>
     </class>
 
 </hibernate-mapping>

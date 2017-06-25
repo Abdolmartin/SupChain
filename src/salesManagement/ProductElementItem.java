@@ -2,6 +2,7 @@ package salesManagement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
@@ -13,7 +14,7 @@ public abstract class ProductElementItem implements ItemAvailabilityStateable, V
 
 	private int id;
 	private ProductElement productElementType;
-	private ArrayList<ItemStatus> statusHistory = new ArrayList<>();
+	private List<ItemStatus> statusHistory = new ArrayList<>();
 	
 	@Override
 	public JSONObject showInfo(){
@@ -44,11 +45,11 @@ public abstract class ProductElementItem implements ItemAvailabilityStateable, V
 		this.productElementType = productElementType;
 	}
 
-	public ArrayList<ItemStatus> getStatusHistory() {
+	public List<ItemStatus> getStatusHistory() {
 		return statusHistory;
 	}
 
-	public void setStatusHistory(ArrayList<ItemStatus> statusHistory) {
+	public void setStatusHistory(List<ItemStatus> statusHistory) {
 		this.statusHistory = statusHistory;
 	}
 
