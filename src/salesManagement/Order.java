@@ -9,7 +9,7 @@ import userManagement.UserProfile;
 public abstract class Order {
 	private Date orderDate;
 	private UserProfile orderingUser;
-	private ArrayList<ProductElementItem> orderedItems;
+	private List<ProductElementItem> orderedItems;
 	private double value;
 	private List<OrderStatus> statusHistory;
 	private int id;
@@ -17,7 +17,7 @@ public abstract class Order {
 	public Order(){}
 	
 	public Order(Date orderDate, UserProfile orderingUser,
-			ArrayList<ProductElementItem> orderedItems, double value, OrderStatus initialStatus) {
+			List<ProductElementItem> orderedItems, double value, OrderStatus initialStatus) {
 		super();
 		this.orderDate = orderDate;
 		this.orderingUser = orderingUser;
@@ -43,11 +43,11 @@ public abstract class Order {
 		this.orderingUser = orderingUser;
 	}
 
-	public ArrayList<ProductElementItem> getOrderedItems() {
+	public List<ProductElementItem> getOrderedItems() {
 		return orderedItems;
 	}
 
-	public void setOrderedItems(ArrayList<ProductElementItem> orderedItems) {
+	public void setOrderedItems(List<ProductElementItem> orderedItems) {
 		this.orderedItems = orderedItems;
 	}
 

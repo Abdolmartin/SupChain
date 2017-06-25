@@ -57,8 +57,8 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 		return this.notifications;
 	}
 	
-	public ArrayList<JSONObject> viewNotifications(){
-		ArrayList<Notification> sortedNotifs = new ArrayList<>(this.notifications);
+	public List<JSONObject> viewNotifications(){
+		List<Notification> sortedNotifs = new ArrayList<>(this.notifications);
 		Collections.sort(sortedNotifs, new Comparator<Notification>() {
 			@Override
 			public int compare(Notification o1, Notification o2) {
@@ -69,7 +69,7 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 				return 0;
 			}
 		});
-		ArrayList<JSONObject> result = new ArrayList<>();
+		List<JSONObject> result = new ArrayList<>();
 		for (int i=0;i<sortedNotifs.size();i++){
 			result.add(sortedNotifs.get(i).showInfo());
 		}

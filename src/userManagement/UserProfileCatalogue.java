@@ -1,6 +1,7 @@
 package userManagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -11,7 +12,7 @@ import exceptions.NonExistentEntityException;
 
 public class UserProfileCatalogue {
 	
-	ArrayList<UserProfile> userList;
+	List<UserProfile> userList;
 	private UserProfileRepository repo = new UserProfileRepository();
 	int lastID;
 	
@@ -69,8 +70,8 @@ public class UserProfileCatalogue {
 		this.repo.save(userProfile);
 	}
 	
-	public ArrayList<UserProfile> search(){
-		return null;
+	public List<UserProfile> search(){
+		return this.userList;
 	}
 	
 	public AuthenticationType getUserAuthenticationLevel(int userID) throws InvalidArgumentException{
@@ -127,7 +128,7 @@ public class UserProfileCatalogue {
 		return customer;
 	}
 
-	public ArrayList<UserProfile> getManagersByRole(AuthenticationType role){
+	public List<UserProfile> getManagersByRole(AuthenticationType role){
 		return null;
 	}
 	

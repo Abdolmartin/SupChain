@@ -1,6 +1,17 @@
 package ui.managementPanel;
 
-import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import org.json.simple.JSONObject;
 
@@ -10,16 +21,6 @@ import ui.LoggedInWindow;
 import ui.MainPortalRedirectService;
 import ui.ReturnToMainButton;
 import ui.handler.OrganisationManagementFacade;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
 
 public class CreateProductionProcessDialog extends LoggedInWindow {
 	private JTable inputsTable;
@@ -83,7 +84,7 @@ public class CreateProductionProcessDialog extends LoggedInWindow {
 	
 	void load(){
 		OrganisationManagementFacade organisationManagementFacade = new OrganisationManagementFacade();
-		ArrayList<JSONObject> allProductElements = organisationManagementFacade.productElementSearch(Constants.ANY, "", 0, Double.MAX_VALUE, false, false);
+		List<JSONObject> allProductElements = organisationManagementFacade.productElementSearch(Constants.ANY, "", 0, Double.MAX_VALUE, false, false);
 		JsonToJTableService j2tService = new JsonToJTableService();
 		inputsTable.setModel(j2tService.createJTableFromJSON(allProductElements));
 		outputsTable.setModel(j2tService.createJTableFromJSON(allProductElements));

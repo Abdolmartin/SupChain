@@ -1,7 +1,7 @@
 package salesManagement;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import supplyManagement.SupplyPath;
 import userManagement.UserProfile;
@@ -12,7 +12,7 @@ class SupplyOrder extends Order{
 	
 	public SupplyOrder(){}
 	
-	public SupplyOrder(Date orderDate, UserProfile orderingUser, ArrayList<ProductElementItem> orderedItems,
+	public SupplyOrder(Date orderDate, UserProfile orderingUser, List<ProductElementItem> orderedItems,
 			double value, OrderStatus initialStatus, SupplyPath path) {
 		super(orderDate, orderingUser, orderedItems, value, initialStatus);
 		this.path = path;

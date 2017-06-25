@@ -2,6 +2,7 @@ package salesManagement;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -12,7 +13,7 @@ import exceptions.NonExistentEntityException;
 import userManagement.Customer;
 public class ProductElementCatalogue {
 	
-	ArrayList<ProductElement> productElementList;
+	List<ProductElement> productElementList;
 	private ProductElementRepository repo = new ProductElementRepository();
 	private static ProductElementCatalogue productElementCatalogue = new ProductElementCatalogue();
 
@@ -66,8 +67,8 @@ public class ProductElementCatalogue {
 		System.out.println("&&&&&&&&&&&&&&&& "+this.repo.save(productElement));
 	}
 	
-	public ArrayList<ProductElement> search(ProductElementSearchParams searchParams){
-		ArrayList<ProductElement> results = new ArrayList<>();
+	public List<ProductElement> search(ProductElementSearchParams searchParams){
+		List<ProductElement> results = new ArrayList<>();
 		for (int i=0;i<this.productElementList.size();i++){
 			ProductElement productElement = this.productElementList.get(i);
 			if (!searchParams.type.equals(Constants.ANY) && !searchParams.type.equals(productElement.getType())){
@@ -110,9 +111,9 @@ public class ProductElementCatalogue {
 		return prElementViewer.showInfo();
 	}
 	
-	public ArrayList<JSONObject> showSearchSummary(ProductElementSearchParams searchParams){
-		ArrayList<ProductElement> searchResults = this.search(searchParams);
-		ArrayList<JSONObject> result = new ArrayList<>();
+	public List<JSONObject> showSearchSummary(ProductElementSearchParams searchParams){
+		List<ProductElement> searchResults = this.search(searchParams);
+		List<JSONObject> result = new ArrayList<>();
 		for (int i=0;i<searchResults.size();i++){
 			result.add(searchResults.get(i).showSummary());
 		}
@@ -145,7 +146,7 @@ public class ProductElementCatalogue {
 		this.repo.update(pe);
 	}
 	
-	public ArrayList<JSONObject> viewProductElementItems(int productElementID){
+	public List<JSONObject> viewProductElementItems(int productElementID){
 		ProductElement pe = this.getByID(productElementID);
 		return pe.viewItems();
 	}

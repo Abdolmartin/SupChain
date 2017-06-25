@@ -1,7 +1,7 @@
 package salesManagement;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import userManagement.UserProfile;
 
@@ -11,7 +11,7 @@ class CustomerOrder extends Order{
 	
 	public CustomerOrder(){}
 		
-	public CustomerOrder(Date orderDate, UserProfile orderingUser, ArrayList<ProductElementItem> orderedItems,
+	public CustomerOrder(Date orderDate, UserProfile orderingUser, List<ProductElementItem> orderedItems,
 			double value, OrderStatus initialStatus, String paymentCode) {
 		super(orderDate, orderingUser, orderedItems, value, initialStatus);
 		this.paymentCode = paymentCode;

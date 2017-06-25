@@ -3,13 +3,13 @@ package ui.handler;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
 import common.Constants;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
-import ui.CustomerPortal;
 import userManagement.ActionLog;
 import userManagement.ActionLogCatalogue;
 import userManagement.AuthenticationType;
@@ -134,7 +134,7 @@ public class UserFacade {
 		return Constants.SUCCESS;
 	}
 	
-	public ArrayList<JSONObject> getLogs(int userID){
+	public List<JSONObject> getLogs(int userID){
 		String userName = "";
 		try {
 			userName = UserProfileCatalogue.getCatalogue().getUsername(userID);
@@ -148,10 +148,10 @@ public class UserFacade {
 		}
 		
 	}
-	public ArrayList<JSONObject> getAllLogs() {
+	public List<JSONObject> getAllLogs() {
 		return ActionLogCatalogue.getCatalogue().showSearchResults("");
 	}
-	public ArrayList<JSONObject> getNotifications(int userID) {
+	public List<JSONObject> getNotifications(int userID) {
 		UserProfile userProfile = null;
 		try {
 			userProfile = UserProfileCatalogue.getCatalogue().getByID(userID);
