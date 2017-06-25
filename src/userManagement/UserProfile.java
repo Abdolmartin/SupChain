@@ -14,18 +14,6 @@ import common.Viewable;
 import exceptions.InvalidArgumentException;
 
 public abstract class UserProfile implements Authenticatable, Viewable{
-	
-	@Override
-	public JSONObject showInfo() {
-		JSONObject result = contactInformation.showInfo();
-		HashMap<String, String> map = new HashMap<>();
-		result.put("username", username);
-		result.put("firstName", firstName);
-		result.put("lastName", lastName);
-		result.put("id", String.valueOf(this.getId()));
-		return result;
-	}
-
 	private int id;
 	private String username, password;
 	private String firstName, lastName;
@@ -44,6 +32,18 @@ public abstract class UserProfile implements Authenticatable, Viewable{
 		this.notifications = new ArrayList<Notification>();
 		this.loggedIn = false;
 	}
+	
+	@Override
+	public JSONObject showInfo() {
+		JSONObject result = contactInformation.showInfo();
+		HashMap<String, String> map = new HashMap<>();
+		result.put("username", username);
+		result.put("firstName", firstName);
+		result.put("lastName", lastName);
+		result.put("id", String.valueOf(this.getId()));
+		return result;
+	}
+
 
 	public int getId() {
 		return this.id;

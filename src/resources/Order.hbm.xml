@@ -11,9 +11,9 @@
 		<property name="orderDate" column="ORDER_DATE" type="date" />
 		<property name="value" column="ORDER_VALUE" type="double" />
 
-		<one-to-one name="orderingUser" class="userManagement.UserProfile"
+		<many-to-one name="orderingUser" column="ORDERING_USER_ID" unique="true" class="userManagement.UserProfile"
 			cascade="save-update">
-		</one-to-one>
+		</many-to-one>
 
 		<list name="orderedItems" cascade="all">
 			<key column="ITEM_ID" />

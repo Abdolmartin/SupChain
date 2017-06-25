@@ -13,9 +13,9 @@
 		<property name="lastName" column="LAST_NAME" />
 		<property name="loggedIn" column="LOGGED_IN" type="boolean" />
 
-		<one-to-one name="contactInformation" class="userManagement.ContactInformation"
+		<many-to-one name="contactInformation" column="CONTACT_INFO_ID" unique="true" class="userManagement.ContactInformation"
 			cascade="save-update">
-		</one-to-one>
+		</many-to-one>
 
 		<list name="notifications" cascade="all">
 			<key column="RECIEVER_ID" />

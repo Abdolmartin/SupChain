@@ -4,6 +4,7 @@ import common.Constants;
 import exceptions.InvalidArgumentException;
 
 public class Component extends ProductElement{
+	private int id;
 	
 	public Component(){}
 	
@@ -21,13 +22,13 @@ public class Component extends ProductElement{
 
 	@Override
 	public void handleLowerThanBound() {
-		// TODO Auto-generated method stub
+		// TODO 
 		
 	}
 
 	@Override
 	public void changeInventory() {
-		// TODO Auto-generated method stub
+		// TODO 
 		
 	}
 	
@@ -41,6 +42,14 @@ public class Component extends ProductElement{
 		ProductElementItem productElementItem = new ComponentItem(this);
 		productElementItem.updateStatus(initialStatus);
 		this.productElementItemList.add(productElementItem);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
