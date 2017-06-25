@@ -9,4 +9,36 @@
 		</id>
 	</class>
 	
+	<class name="Product" table="PRODUCT">
+        <id name="id" column="PRODUCT_ID">
+            <generator class="native"/>
+        </id>
+        
+        <property name="finality" column="FINALITY" type="boolean" />
+        
+		<list name="reviews" cascade="all">
+			<key column="REVIEWS_ID" />
+			<list-index column="idx" />
+			<one-to-many class="ProductReview" />
+		</list>
+    </class>
+
+	<class name="ProductReview" table="PRODUCT_REVIEW">
+        <id name="id" column="PRODUCT_REVIEW_ID">
+            <generator class="native"/>
+        </id>
+        
+        <property name="body" column="BODY" />
+        <property name="score" column="SCORE" />
+        <property name="date" column="DATE" />
+        
+		<one-to-one name="customer" class="userManagement.Customer"
+			cascade="save-update">
+		</one-to-one>
+        
+		<one-to-one name="product" class="salesManagement.Product"
+			cascade="save-update">
+		</one-to-one>
+    </class>
+
 </hibernate-mapping>

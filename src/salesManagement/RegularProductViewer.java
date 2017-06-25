@@ -11,7 +11,7 @@ public class RegularProductViewer extends ProductElementViewer {
 			return null;
 		JSONObject result = productElement.showInfo();
 		Product product = (Product) productElement;
-		result.put("final?", String.valueOf(product.isFinal()));
+		result.put("final?", String.valueOf(product.isFinality()));
 		result.put("lower", String.valueOf(product.getInvLowerBound()));
 		result.put("upper", String.valueOf(product.getInvUpperBound()));
 		result.put("type", product.getType());

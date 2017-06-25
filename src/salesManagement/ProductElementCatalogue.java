@@ -88,7 +88,7 @@ public class ProductElementCatalogue {
 				System.out.println("shit4");
 				continue;
 			}
-			if (searchParams.finality && (productElement.getType().equals(Constants.COMPONENT) || ((Product)productElement).isFinal())){
+			if (searchParams.finality && (productElement.getType().equals(Constants.COMPONENT) || ((Product)productElement).isFinality())){
 				System.out.println("shit5");
 				continue;
 			}

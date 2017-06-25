@@ -3,14 +3,12 @@ package salesManagement;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.json.simple.JSONObject;
-
 import common.Constants;
 import exceptions.InvalidArgumentException;
 import userManagement.Customer;
 
 public class Product extends ProductElement{
-	
+	private int id;
 	boolean finality;
 	ArrayList<ProductReview> reviews;
 	
@@ -21,14 +19,22 @@ public class Product extends ProductElement{
 		this.finality = finality;
 	}	
 
-	public boolean isFinal() {
+	public boolean isFinality() {
 		return finality;
 	}
 
 	public void setFinality(boolean finality) {
 		this.finality = finality;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@Override
 	public boolean checkItemValidity(ProductElementItem pElementItem) {
 		if (pElementItem instanceof ProductItem)

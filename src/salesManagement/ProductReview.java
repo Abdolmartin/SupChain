@@ -5,17 +5,19 @@ import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
-import common.Constants;
 import common.Summarizable;
 import common.Viewable;
 import userManagement.Customer;
 
 public class ProductReview implements Summarizable, Viewable{
+	private int id;
 	Customer customer;
 	Product product;
 	String body;
 	int score;
 	Date date;
+	
+	public ProductReview(){}
 	
 	public ProductReview(Customer customer, Product product, String body, int score, Date date) {
 		super();
@@ -84,6 +86,14 @@ public class ProductReview implements Summarizable, Viewable{
 		map.put("score", String.valueOf(this.score));
 		map.put("date", this.date.toString());
 		return new JSONObject(map);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
