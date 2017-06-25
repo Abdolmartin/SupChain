@@ -37,18 +37,18 @@ public class JsonToJTableService {
 		};
 	}
 	
-	public void hideIDColumn(JTable table){
+	public void hideTableColumn(JTable table, String columnName){
 		try{
-			table.removeColumn(table.getColumn(Constants.ID));
+			table.removeColumn(table.getColumn(columnName));
 		}catch(IllegalArgumentException e){
 			return;
 		}
 	}
 	
-	public int getIDColumnIndex(JTable table){
+	public int getColumnIndex(JTable table, String columnName){
 		TableModel model = table.getModel();
 		for (int i=0;i<model.getColumnCount();i++){
-			if (model.getColumnName(i).equals(Constants.ID))
+			if (model.getColumnName(i).equals(columnName))
 				return i;
 		}
 		return -1;

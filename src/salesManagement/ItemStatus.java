@@ -12,6 +12,7 @@ public abstract class ItemStatus implements ItemAvailabilityStateable {
 	}
 	
 	public abstract ItemStatus clone();
+	public abstract String getName();
 
 	@Override
 	public abstract boolean isAvailable();

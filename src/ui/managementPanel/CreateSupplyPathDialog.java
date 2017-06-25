@@ -120,7 +120,7 @@ public class CreateSupplyPathDialog extends LoggedInWindow {
 		}
 		
 		JsonToJTableService j2tService = new JsonToJTableService();
-		int idColumn = j2tService.getIDColumnIndex(componentsTable);
+		int idColumn = j2tService.getColumnIndex(componentsTable, Constants.ID);
 		
 		componentIDs = new int[componentRows.length];
 		
@@ -148,7 +148,7 @@ public class CreateSupplyPathDialog extends LoggedInWindow {
 		ArrayList<JSONObject> allComponents = organisationManagementFacade.productElementSearch(Constants.COMPONENT, "", 0, Double.MAX_VALUE, false, false);
 		JsonToJTableService j2tService = new JsonToJTableService();
 		componentsTable.setModel(j2tService.createJTableFromJSON(allComponents));
-		j2tService.hideIDColumn(componentsTable);
+		j2tService.hideTableColumn(componentsTable, Constants.ID);
 	}
 
 }
