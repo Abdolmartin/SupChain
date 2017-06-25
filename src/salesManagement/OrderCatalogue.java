@@ -1,11 +1,16 @@
 package salesManagement;
 
 import java.util.ArrayList;
+import java.util.Date;
+
+import database.OrderRepository;
+import userManagement.UserProfile;
 
 public class OrderCatalogue {
 	private ArrayList<Order> orderList;
 	
 	private static OrderCatalogue orderCatalogue = new OrderCatalogue();
+	private OrderRepository repo = new OrderRepository();
 	
 	public static OrderCatalogue getCatalogue(){
 		return OrderCatalogue.orderCatalogue;
@@ -22,6 +27,17 @@ public class OrderCatalogue {
 				return currentOrder;
 		}
 		return null;
+	}
+	
+	public void addOrder(Order order){
+		this.orderList.add(order);
+		this.repo.save(order);
+	}
+	
+	public void createCustomerOrder(Date orderDate, UserProfile orderingUser, ArrayList<ProductElementItem> orderedItems,
+			double value, OrderStatus initialStatus, String paymentCode){
+		CustomerOrder order = new CustomerOrder(orderDate, orderingUser, orderedItems, value, initialStatus, paymentCode);
+		this.addOrder(order);
 	}
 	
 }

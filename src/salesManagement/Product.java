@@ -13,6 +13,8 @@ public class Product extends ProductElement{
 	
 	boolean finality;
 	ArrayList<ProductReview> reviews;
+	
+	public Product(){}
 
 	public Product(String name, int invLowerBound, int invUpperBound, String description, boolean finality) {
 		super(name, invLowerBound, invUpperBound, description);

@@ -5,6 +5,8 @@ public class Manager extends UserProfile{
 	
 	private AuthenticationType authRole;
 	
+	public Manager(){}
+	
 	public Manager(String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation, AuthenticationType authRole) {
 		super(username, password, firstName, lastName, contactInformation);

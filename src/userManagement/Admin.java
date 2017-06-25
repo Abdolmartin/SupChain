@@ -2,6 +2,9 @@ package userManagement;
 
 class Admin extends UserProfile{
 
+	
+	public Admin(){}
+	
 	public Admin(String username, String password, String firstName, String lastName,
 			ContactInformation contactInformation) {
 		super(username, password, firstName, lastName, contactInformation);

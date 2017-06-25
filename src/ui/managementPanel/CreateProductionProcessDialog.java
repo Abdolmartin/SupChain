@@ -77,7 +77,7 @@ public class CreateProductionProcessDialog extends LoggedInWindow {
 		
 		load();
 		
-		this.setBounds(500,500,500,600);
+		this.setBounds(500,500,700,500);
 		this.setVisible(true);
 	}
 	

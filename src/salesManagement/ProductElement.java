@@ -41,6 +41,8 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		return new JSONObject(map);
 	}
 	
+	public ProductElement(){}
+	
 	public ProductElement(String name, int invLowerBound, int invUpperBound, String description) {
 		this.name = name;
 		this.description = description;

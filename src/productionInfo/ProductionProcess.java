@@ -18,6 +18,8 @@ public class ProductionProcess implements Summarizable, Viewable{
 	String name;
 	ArrayList<String> departments;
 	
+	public ProductionProcess(){}
+	
 	public ProductionProcess(ArrayList<ProductElement> inputs, ArrayList<ProductElement> outputs, String name,
 			ArrayList<String> departments) {
 		super();

@@ -98,6 +98,11 @@ public class CreateSupplyPathDialog extends LoggedInWindow {
 		JButton cancelButton = new ReturnToMainButton(userID, this, "لغو فعالیت");
 		cancelButton.setBounds(261, 397, 89, 23);
 		getContentPane().add(cancelButton);
+		
+		load();
+		
+		setVisible(true);
+		setBounds(500, 500, 600, 500);
 	}
 
 	void submit() {

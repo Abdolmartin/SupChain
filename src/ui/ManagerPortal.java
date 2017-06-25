@@ -34,7 +34,7 @@ public class ManagerPortal extends LoggedInMainPortal {
 				PageTypes.CreateSupplyPath.getCaption()}));
 		
 		
-		this.setBounds(500, 500, 500, 500);
+		this.setBounds(500, 500, 500, 700);
 		setVisible(true);
 	}
 }

@@ -6,7 +6,9 @@ import common.Constants;
 import exceptions.InvalidArgumentException;
 
 public class Component extends ProductElement{
-
+	
+	public Component(){}
+	
 	public Component(String name, int invLowerBound, int invUpperBound, String description) {
 		super(name, invLowerBound, invUpperBound, description);
 		

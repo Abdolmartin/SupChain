@@ -12,6 +12,19 @@ public abstract class Order {
 	private double value;
 	private ArrayList<OrderStatus> statusHistory;
 	private int id;
+	
+	public Order(){}
+	
+	public Order(Date orderDate, UserProfile orderingUser,
+			ArrayList<ProductElementItem> orderedItems, double value, OrderStatus initialStatus) {
+		super();
+		this.orderDate = orderDate;
+		this.orderingUser = orderingUser;
+		this.orderedItems = orderedItems;
+		this.value = value;
+		this.statusHistory = new ArrayList<>();
+		this.updateStatus(initialStatus);
+	}
 
 	public Date getOrderDate() {
 		return orderDate;
