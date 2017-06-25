@@ -1,7 +1,7 @@
 package salesManagement;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import common.Constants;
 import exceptions.InvalidArgumentException;
@@ -10,7 +10,7 @@ import userManagement.Customer;
 public class Product extends ProductElement{
 	private int id;
 	boolean finality;
-	ArrayList<ProductReview> reviews;
+	List<ProductReview> reviews;
 	
 	public Product(){}
 
@@ -75,11 +75,11 @@ public class Product extends ProductElement{
 		this.addReview(review);
 	}
 
-	public ArrayList<ProductReview> getReviews() {
-		return reviews;
+	public List<ProductReview> getReviews() {
+		return  reviews;
 	}
 
-	public void setReviews(ArrayList<ProductReview> reviews) {
+	public void setReviews(List<ProductReview> reviews) {
 		this.reviews = reviews;
 	}
 
