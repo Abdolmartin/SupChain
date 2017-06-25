@@ -32,4 +32,9 @@ public class AvailableItemStatus extends ItemStatus {
 		pei.getStatusHistory().add(this);
 	}
 
+	@Override
+	public ItemStatus clone() {
+		return new AvailableItemStatus(price);
+	}
+
 }

@@ -9,6 +9,7 @@ import common.Constants;
 import exceptions.InvalidArgumentException;
 import exceptions.NonExistentEntityException;
 import productionInfo.ProductionProcessCatalogue;
+import salesManagement.AvailableItemStatus;
 import salesManagement.ProductElementCatalogue;
 import salesManagement.ProductElementSearchParams;
 import salesManagement.RegularComponentViewer;
@@ -85,5 +86,14 @@ public class OrganisationManagementFacade {
 		} catch (NonExistentEntityException e) {
 			return Constants.NO_SUCH_ENTITY;
 		}
+	}
+	
+	public String addProductElementInventory(int productElementID, int count, double price){
+		try {
+			ProductElementCatalogue.getCatalogue().createItems(productElementID, count, new AvailableItemStatus(price));
+		} catch (InvalidArgumentException e) {
+			return Constants.GHAEDATAN;
+		}
+		return Constants.SUCCESS;
 	}
 }

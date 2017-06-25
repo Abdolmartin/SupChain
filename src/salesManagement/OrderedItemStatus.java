@@ -33,4 +33,9 @@ public class OrderedItemStatus extends ItemStatus {
 		
 	}
 
+	@Override
+	public ItemStatus clone() {
+		return new OrderedItemStatus(price);
+	}
+
 }

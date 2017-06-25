@@ -32,4 +32,9 @@ public class UnAvailableItemStatus extends ItemStatus {
 		pei.getStatusHistory().add(this);
 	}
 
+	@Override
+	public ItemStatus clone() {
+		return new UnAvailableItemStatus(id);
+	}
+
 }
