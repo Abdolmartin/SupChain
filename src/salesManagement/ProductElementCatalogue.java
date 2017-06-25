@@ -136,4 +136,12 @@ public class ProductElementCatalogue {
 		((Product)pe).createReview(customer, body, score, date);
 		this.repo.update(pe);
 	}
+
+	public void createItems(int productElementID, int count, ItemStatus initialStatus) throws InvalidArgumentException {
+		ProductElement pe = this.getByID(productElementID);
+		for (int i=0;i<count;i++){
+			pe.addItem(initialStatus.clone());
+		}
+		this.repo.update(pe);
+	}
 }

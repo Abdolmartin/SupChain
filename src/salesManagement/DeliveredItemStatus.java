@@ -37,4 +37,9 @@ public class DeliveredItemStatus extends ItemStatus {
 		
 	}
 
+	@Override
+	public ItemStatus clone() {
+		return new DeliveredItemStatus(price);
+	}
+
 }

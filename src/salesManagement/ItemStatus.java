@@ -1,8 +1,8 @@
 package salesManagement;
 
 public abstract class ItemStatus implements ItemAvailabilityStateable {
-	private int id;
-	private double price;
+	protected int id;
+	protected double price;
 	
 	public ItemStatus(){}
 	
@@ -10,6 +10,8 @@ public abstract class ItemStatus implements ItemAvailabilityStateable {
 		super();
 		this.price = price;
 	}
+	
+	public abstract ItemStatus clone();
 
 	@Override
 	public abstract boolean isAvailable();

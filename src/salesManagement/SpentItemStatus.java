@@ -33,4 +33,9 @@ public class SpentItemStatus extends ItemStatus {
 		
 	}
 
+	@Override
+	public ItemStatus clone() {
+		return new SpentItemStatus(price);
+	}
+
 }
