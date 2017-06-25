@@ -17,7 +17,7 @@ public class SupplyPath implements Viewable, Summarizable{
 	String supplierName;
 	String name;
 	ArrayList<Component> componentsList;
-	int id;
+	private int id;
 	ContactInformation contactInformation;
 	
 	public SupplyPath(String supplierName, String name, ArrayList<Component> componentsList, ContactInformation contactInformation) {
@@ -60,6 +60,14 @@ public class SupplyPath implements Viewable, Summarizable{
 		this.contactInformation = contactInformation;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	@Override
 	public JSONObject showSummary() {
 		HashMap<String, String> map = new HashMap<>();

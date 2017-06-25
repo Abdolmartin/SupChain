@@ -2,6 +2,7 @@ package salesManagement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -18,7 +19,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	private String description;
 	private int invLowerBound = 0;
 	private int invUpperBound = Integer.MAX_VALUE;
-	protected ArrayList<ProductElementItem> productElementItemList;
+	protected List<ProductElementItem> productElementItemList;
 	
 	@Override
 	public JSONObject showInfo(){
@@ -73,7 +74,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		this.description = des;
 	}
 	
-	public ArrayList<ProductElementItem> getProductElementItemList() {
+	public List<ProductElementItem> getProductElementItemList() {
 		return productElementItemList;
 	}
 	
@@ -106,7 +107,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		return null;
 	}
 
-	public void setProductElementItemList(ArrayList<ProductElementItem> productElementItemList) {
+	public void setProductElementItemList(List<ProductElementItem> productElementItemList) {
 		this.productElementItemList = productElementItemList;
 	}
 	
