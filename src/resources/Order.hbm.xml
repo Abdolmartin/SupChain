@@ -3,15 +3,15 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="salesManagement">
-	<class name="Order" table="ORDER">
+	<class name="Order" table="ORDER_DB">
 		<id name="id" column="ORDER_ID">
 			<generator class="native" />
 		</id>
-		
+
 		<property name="orderDate" column="ORDER_DATE" type="date" />
 		<property name="value" column="ORDER_VALUE" type="double" />
 
-		<one-to-one name="orderingUser" class="userManagement.ProfileUser"
+		<one-to-one name="orderingUser" class="userManagement.UserProfile"
 			cascade="save-update">
 		</one-to-one>
 
@@ -27,24 +27,26 @@
 			<one-to-many class="OrderStatus" />
 		</list>
 
-		<joined-subclass name="salesManagement.CustomerOrder" table="CUSTOMER_ORDER">
+		<joined-subclass name="salesManagement.CustomerOrder"
+			table="CUSTOMER_ORDER">
 			<key column="CUSTOMER_ORDER_ID"></key>
 		</joined-subclass>
-		
-		<joined-subclass name="salesManagement.SupplyOrder" table="SUPPLY_ORDER">
+
+		<joined-subclass name="salesManagement.SupplyOrder"
+			table="SUPPLY_ORDER">
 			<key column="SUPPLY_ORDER_ID"></key>
 		</joined-subclass>
 
 	</class>
 
 	<class name="OrderStatus" table="ORDER_STATUS">
-        <id name="id" column="STATUS_ID">
-            <generator class="native"/>
-        </id>
-        
-        <property name="startDate" column="START_DATE" type="date" />
-        <property name="delivered" column="DELIVERED" type="boolean" />
-        <property name="paid" column="PAID" type="boolean" />        
-    </class>
-	
+		<id name="id" column="STATUS_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="startDate" column="START_DATE" type="date" />
+		<property name="delivered" column="DELIVERED" type="boolean" />
+		<property name="paid" column="PAID" type="boolean" />
+	</class>
+
 </hibernate-mapping>

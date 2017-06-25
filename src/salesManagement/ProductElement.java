@@ -59,7 +59,27 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	public int getId() {
 		return id;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getDescription(){
+		return this.description;
+	}
+	
+	public void setDescription(String des){
+		this.description = des;
+	}
+	
+	public ArrayList<ProductElementItem> getProductElementItemList() {
+		return productElementItemList;
+	}
 
+	public void setProductElementItemList(ArrayList<ProductElementItem> productElementItemList) {
+		this.productElementItemList = productElementItemList;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -84,13 +104,9 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		this.invUpperBound = invUpperBound;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	public abstract String getType();
 	
-	//Factory method
+	// Factory method
 	public abstract void addItem(ItemStatus initialStatus) throws InvalidArgumentException;
 	
 	public abstract boolean checkItemValidity(ProductElementItem pElementItem);
@@ -142,12 +158,12 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	public abstract void changeInventory();
 	
 	public ArrayList<ProductionProcess> getProducingProcesses(){
-		//TODO
+		// TODO 
 		return null;
 	}
 	
 	public ArrayList<ProductionProcess> getConsumingProcesses(){
-		//TODO
+		// TODO 
 		return null;
 	}
 }
