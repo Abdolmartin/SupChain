@@ -2,9 +2,6 @@ package database;
 
 import java.util.ArrayList;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,15 +10,17 @@ import userManagement.UserProfile;
 
 public class UserProfileRepository implements BasicDAO<UserProfile>{
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public ArrayList<UserProfile> getAll() {
 		Session session = null;
         ArrayList<UserProfile> result = null;
         try {
             session = HibernateUtil.getSession();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<UserProfile> query = builder.createQuery(UserProfile.class);
-            result = (ArrayList<UserProfile>)session.createQuery(query).getResultList();
+            // CriteriaBuilder builder = session.getCriteriaBuilder();
+            // CriteriaQuery<UserProfile> query = builder.createQuery(UserProfile.class);
+            // result = (ArrayList<UserProfile>)session.createQuery(query).getResultList();
+            result = (ArrayList<UserProfile>) session.createCriteria(UserProfile.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

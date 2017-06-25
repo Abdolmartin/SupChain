@@ -79,7 +79,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	
 	public ArrayList<JSONObject> viewItems(){
 		ArrayList<JSONObject> result = new ArrayList<>();
-		ArrayList<ProductElementItem> items = this.getProductElementItemList();
+		ArrayList<ProductElementItem> items = (ArrayList<ProductElementItem>) this.getProductElementItemList();
 		for (int i=0;i<items.size();i++){
 			result.add(items.get(i).showInfo());
 		}

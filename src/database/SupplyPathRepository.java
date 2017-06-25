@@ -2,9 +2,6 @@ package database;
 
 import java.util.ArrayList;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,15 +10,14 @@ import supplyManagement.SupplyPath;
 
 public class SupplyPathRepository implements BasicDAO<SupplyPath>{
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public ArrayList<SupplyPath> getAll() {
 		Session session = null;
         ArrayList<SupplyPath> result = null;
         try {
             session = HibernateUtil.getSession();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<SupplyPath> query = builder.createQuery(SupplyPath.class);
-            result = (ArrayList<SupplyPath>)session.createQuery(query).getResultList();
+            result = (ArrayList<SupplyPath>) session.createCriteria(SupplyPath.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
