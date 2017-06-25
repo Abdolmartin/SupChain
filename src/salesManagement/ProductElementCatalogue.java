@@ -63,7 +63,7 @@ public class ProductElementCatalogue {
 	
 	public void addProductElement(ProductElement productElement){
 		this.productElementList.add(productElement);
-		this.repo.save(productElement);
+		System.out.println("&&&&&&&&&&&&&&&& "+this.repo.save(productElement));
 	}
 	
 	public ArrayList<ProductElement> search(ProductElementSearchParams searchParams){
