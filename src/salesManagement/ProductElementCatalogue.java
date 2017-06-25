@@ -144,4 +144,9 @@ public class ProductElementCatalogue {
 		}
 		this.repo.update(pe);
 	}
+	
+	public ArrayList<JSONObject> viewProductElementItems(int productElementID){
+		ProductElement pe = this.getByID(productElementID);
+		return pe.viewItems();
+	}
 }

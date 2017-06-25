@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
 import common.JsonToJTableService;
 
 import java.awt.event.MouseAdapter;
@@ -60,7 +61,7 @@ public class ViewNotificationsDialog extends LoggedInWindow {
 		} else{
 			JsonToJTableService jsonToJTableService = new JsonToJTableService();
 			this.table.setModel(jsonToJTableService.createJTableFromJSON(notifsObj));
-			jsonToJTableService.hideIDColumn(table);
+			jsonToJTableService.hideTableColumn(table, Constants.ID);
 			table.setColumnSelectionAllowed(false);
 		    table.setRowSelectionAllowed(true);
 		}

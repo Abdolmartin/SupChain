@@ -1,5 +1,7 @@
 package salesManagement;
 
+import common.Constants;
+
 public class UnAvailableItemStatus extends ItemStatus {
 	private int id;
 	
@@ -35,6 +37,11 @@ public class UnAvailableItemStatus extends ItemStatus {
 	@Override
 	public ItemStatus clone() {
 		return new UnAvailableItemStatus(id);
+	}
+
+	@Override
+	public String getName() {
+		return Constants.UNAVAIL;
 	}
 
 }

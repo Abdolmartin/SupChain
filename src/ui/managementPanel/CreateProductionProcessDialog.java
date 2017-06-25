@@ -87,8 +87,8 @@ public class CreateProductionProcessDialog extends LoggedInWindow {
 		JsonToJTableService j2tService = new JsonToJTableService();
 		inputsTable.setModel(j2tService.createJTableFromJSON(allProductElements));
 		outputsTable.setModel(j2tService.createJTableFromJSON(allProductElements));
-		j2tService.hideIDColumn(inputsTable);
-		j2tService.hideIDColumn(outputsTable);
+		j2tService.hideTableColumn(inputsTable, Constants.ID);
+		j2tService.hideTableColumn(outputsTable, Constants.ID);
 	}
 	
 	void submit(){
@@ -104,7 +104,7 @@ public class CreateProductionProcessDialog extends LoggedInWindow {
 		}
 		
 		JsonToJTableService j2tService = new JsonToJTableService();
-		int idColumn = j2tService.getIDColumnIndex(inputsTable);
+		int idColumn = j2tService.getColumnIndex(inputsTable, Constants.ID);
 		
 		inputIDs = new int[inputRows.length];
 		outputIDs = new int[outputRows.length];
@@ -113,7 +113,7 @@ public class CreateProductionProcessDialog extends LoggedInWindow {
 			inputIDs[i] = Integer.parseInt((String)inputsTable.getModel().getValueAt(inputRows[i], idColumn));
 		}
 		
-		idColumn = j2tService.getIDColumnIndex(outputsTable);
+		idColumn = j2tService.getColumnIndex(outputsTable, Constants.ID);
 		
 		for (int i=0;i<outputRows.length;i++){
 			outputIDs[i] = Integer.parseInt((String)outputsTable.getModel().getValueAt(outputRows[i], idColumn));

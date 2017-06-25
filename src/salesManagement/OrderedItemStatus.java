@@ -1,5 +1,7 @@
 package salesManagement;
 
+import common.Constants;
+
 public class OrderedItemStatus extends ItemStatus {
 	private int id;
 	
@@ -36,6 +38,11 @@ public class OrderedItemStatus extends ItemStatus {
 	@Override
 	public ItemStatus clone() {
 		return new OrderedItemStatus(price);
+	}
+
+	@Override
+	public String getName() {
+		return Constants.ORDERED;
 	}
 
 }

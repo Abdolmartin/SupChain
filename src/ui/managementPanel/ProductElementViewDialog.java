@@ -135,13 +135,15 @@ public class ProductElementViewDialog extends GeneralProductElementViewDialog {
 		label_6.setBounds(206, 429, 238, 14);
 		getContentPane().add(label_6);
 		
-		JButton increaseInvButton = new JButton("افزایش موجودی");
-		increaseInvButton.setBounds(75, 456, 121, 23);
-		getContentPane().add(increaseInvButton);
-		
-		JButton decreaseInvButton = new JButton("کاهش موجودی");
-		decreaseInvButton.setBounds(75, 490, 121, 23);
-		getContentPane().add(decreaseInvButton);
+		JButton changeInvButton = new JButton("تغییر موجودی");
+		changeInvButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				goToChangeInv();
+			}
+		});
+		changeInvButton.setBounds(75, 456, 121, 23);
+		getContentPane().add(changeInvButton);
 		
 		load();
 		
@@ -175,18 +177,18 @@ public class ProductElementViewDialog extends GeneralProductElementViewDialog {
 		OrganisationManagementFacade orgManagementFacade = new OrganisationManagementFacade();
 		String result = orgManagementFacade.setInventoryBounds(productElementID, low, high);
 		if (result.equals(Constants.SUCCESS)){
-			ProductElementViewDialog.this.setVisible(false);
+			this.setVisible(false);
 			new ProductElementViewDialog(userID, productElementID, productElementType);
-			ProductElementViewDialog.this.dispatchEvent(new WindowEvent(ProductElementViewDialog.this, WindowEvent.WINDOW_CLOSING));
+			this.dispatchEvent(new WindowEvent(ProductElementViewDialog.this, WindowEvent.WINDOW_CLOSING));
 		}
 		else if (result.equals(Constants.INVALID_INFO)){
 			JOptionPane.showMessageDialog(this, "اطلاعات نادرست است.");
 		}
 		else {
 			JOptionPane.showMessageDialog(this, "خطایی رخ داده، به صفحه‌ی اصلی برگردانده می‌شوید.");
-			ProductElementViewDialog.this.setVisible(false);
+			this.setVisible(false);
 			new MainPortalRedirectService().startRelevantMainPortal(userID);
-			ProductElementViewDialog.this.dispatchEvent(new WindowEvent(ProductElementViewDialog.this, WindowEvent.WINDOW_CLOSING));
+			this.dispatchEvent(new WindowEvent(ProductElementViewDialog.this, WindowEvent.WINDOW_CLOSING));
 		}
 	}
 
@@ -215,5 +217,11 @@ public class ProductElementViewDialog extends GeneralProductElementViewDialog {
 				this.finalProductLabel.setVisible(false);
 			}
 		}
+	}
+	
+	void goToChangeInv(){
+		this.setVisible(false);
+		new AddRemoveItemDialog(userID, productElementID);
+		this.dispatchEvent(new WindowEvent(ProductElementViewDialog.this, WindowEvent.WINDOW_CLOSING));
 	}
 }

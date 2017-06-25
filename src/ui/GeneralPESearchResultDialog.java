@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
 import common.JsonToJTableService;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -53,7 +54,7 @@ public abstract class GeneralPESearchResultDialog extends LoggedInWindow {
 		JsonToJTableService j2tService = new JsonToJTableService();
 		DefaultTableModel model = j2tService.createJTableFromJSON(results);
 		this.table.setModel(model);
-		j2tService.hideIDColumn(table);
+		j2tService.hideTableColumn(table, Constants.ID);
 		table.setColumnSelectionAllowed(false);
 	    table.setRowSelectionAllowed(true);
 	}

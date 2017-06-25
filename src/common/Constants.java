@@ -19,4 +19,9 @@ public class Constants {
 	public static final String COMPONENT = "component";
 	public static final String ANY = "ANY";
 	public static final String ID = "id";
+	public static final String AVAIL = "available";
+	public static final String UNAVAIL = "unavailable";
+	public static final String ORDERED = "ordered";
+	public static final String DELIVERED = "delivered";
+	public static final String SPENT = "spent";
 }

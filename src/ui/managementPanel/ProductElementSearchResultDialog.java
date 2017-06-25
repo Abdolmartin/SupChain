@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
 import common.JsonToJTableService;
 import ui.GeneralPESearchResultDialog;
 
@@ -22,7 +23,8 @@ public class ProductElementSearchResultDialog extends GeneralPESearchResultDialo
 			JOptionPane.showMessageDialog(this, "باید یک مورد را انتخاب کنید!");
 			return;
 		}
-		int productElementID = Integer.parseInt((String)table.getModel().getValueAt(table.getSelectedRow(), new JsonToJTableService().getIDColumnIndex(table)));
+		int productElementID = Integer.parseInt((String)table.getModel().
+				getValueAt(table.getSelectedRow(), new JsonToJTableService().getColumnIndex(table, Constants.ID)));
 		System.out.println(2);
 		String productElementType = (String)table.getModel().getValueAt(table.getSelectedRow(), table.getColumn("type").getModelIndex());
 		System.out.println(3);
