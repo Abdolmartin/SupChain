@@ -19,7 +19,7 @@ public abstract class ProductElementItem implements ItemAvailabilityStateable, V
 	@Override
 	public JSONObject showInfo(){
 		Map<String, String> map = new HashMap<String, String>();
-		map.put(Constants.ID, String.valueOf(this.id));
+		map.put(Constants.ID, String.valueOf(this.getId()));
 		map.put("typeID", String.valueOf(productElementType.getId()));
 		map.put("type", productElementType.getName());
 		map.put("status", this.getCurrentStatus().getName());

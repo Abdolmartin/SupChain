@@ -2,20 +2,21 @@ package salesManagement;
 
 import org.json.simple.JSONObject;
 
+import common.Constants;
+import exceptions.InvalidArgumentException;
+
 public class RestrictedProductViewer extends ProductElementViewer {
 
 	@Override
-	public JSONObject showInfo() {
+	public JSONObject showInfo() throws InvalidArgumentException {
 		if (this.productElement == null)
 			return null;
-		JSONObject result = productElement.showInfo();
-		return result;
-	}
-
-	@Override
-	public void setProductElement(ProductElement productElement) {
-		assert productElement instanceof Product;
-		this.productElement = productElement;
+		try{
+			JSONObject result = productElement.showInfo();
+			return result;
+		}catch(Exception e){
+			throw new InvalidArgumentException(Constants.INVALID_INFO);
+		}
 	}
 
 }
