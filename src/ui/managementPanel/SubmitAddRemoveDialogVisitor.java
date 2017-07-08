@@ -59,10 +59,11 @@ public class SubmitAddRemoveDialogVisitor extends AddRemoveDialogVisitor {
 		itemIDs = new int[itemRows.length];
 		JsonToJTableService j2t = new JsonToJTableService();
 		int idColumn = j2t.getColumnIndex(otherRemoveProductDialog.getItemsTable(), Constants.ID);
+		
 		for (int i=0;i<itemRows.length;i++){
 			itemIDs[i] = Integer.parseInt((String)otherRemoveProductDialog.
 					getItemsTable().getModel().getValueAt(itemRows[i], idColumn));
-			System.out.println(itemIDs[i]);
+			// System.out.println(itemIDs[i]);
 		}
 		String result = organisationManagementFacade.changeItemStati(otherRemoveProductDialog.
 				productElementID, itemIDs, new UnAvailableItemStatus(-1));

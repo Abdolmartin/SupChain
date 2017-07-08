@@ -84,13 +84,11 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		for (int i=0;i<items.size();i++){
 			result.add(items.get(i).showInfo());
 		}
-		
 		return result;
 	}
 	
 	public void changeItemStati(int[] itemIDs, ItemStatus newStatus){
 		for (int i=0;i<itemIDs.length;i++){
-			System.out.println(itemIDs[i]);
 			ProductElementItem item = this.getItemByID(itemIDs[i]);
 			if (item!=null)
 				item.updateStatus(newStatus.clone());
