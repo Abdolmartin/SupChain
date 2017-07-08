@@ -107,10 +107,11 @@ public class UserProfileCatalogue {
 	}
 	
 	private boolean checkValidUser(String username, String password){
-		//Check for duplicate username
+		// Check for duplicate username
 		for (int i=0;i<userList.size();i++){
-			if (username.equals(userList.get(i).getUsername()))
-				return false;
+			if (username.equals(userList.get(i).getUsername())){
+					return false;
+				}
 		}
 		if (username.equals(Constants.SYSTEM_ACTOR))
 			return false;

@@ -27,7 +27,7 @@ public class Main {
 			UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("m", "12345678", "m", "n", "1", "2", "3", AuthenticationType.MANAGER);
 			UserProfile employee1 = UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("ml", "12345679998", "m", "n", "1", "2", "3", AuthenticationType.EMPLOYEE);
 			ArrayList<UserProfile> list = new UserProfileRepository().getAll();
-			System.out.println("###########"+list.size());
+			System.out.println("########### "+list.size());
 			//user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
 			ProductElement pe = ProductElementCatalogue.getCatalogue().createProductElement(Constants.PRODUCT, "p1", -1, -1, "a b c product", true);
 			System.out.println("&&&&&&&&&&&&& get id is = " + pe.getId());
