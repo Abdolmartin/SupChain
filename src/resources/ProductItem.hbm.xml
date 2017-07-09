@@ -18,11 +18,11 @@
         <property name="score" column="SCORE" />
         <property name="date" column="DATE" />
         
-		<many-to-one name="customer" column="CUSTOMER_ID" unique="true" class="userManagement.Customer"
+		<many-to-one name="customer" column="CUSTOMER_ID" class="userManagement.Customer"
 			cascade="save-update">
 		</many-to-one>
         
-		<many-to-one name="product" column="PRODUCT_ID" unique="true" class="salesManagement.Product"
+		<many-to-one name="product" column="PRODUCT_ID" class="salesManagement.Product"
 			cascade="save-update">
 		</many-to-one>
     </class>

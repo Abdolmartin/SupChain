@@ -12,7 +12,7 @@
 			cascade="save-update">
 		</many-to-one>
 
-		<list name="statusHistory" cascade="all">
+		<list name="statusHistory" cascade="all" lazy="false" fetch="select" >
 			<key column="PRODUCT_ELEMENT_ITEM_ID" />
 			<list-index column="idx" />
 			<one-to-many class="ItemStatus" />
@@ -51,7 +51,7 @@
 		<joined-subclass name="Product" table="PRODUCT">
 			<key column="PRODUCT_ID"></key>
 	        <property name="finality" column="FINALITY" type="boolean" />
-			<list name="reviews" cascade="all">
+			<list name="reviews" cascade="all" lazy="false" fetch="select" >
 				<key column="REVIEWS_ID" />
 				<list-index column="idx" />
 				<one-to-many class="ProductReview" />

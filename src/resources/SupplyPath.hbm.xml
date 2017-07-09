@@ -4,9 +4,11 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="supplyManagement">
 	<class name="SupplyPath" table="SUPPLY_PATH">
+	
 		<id name="id" column="SUPPLY_PATH_ID">
 			<generator class="native" />
 		</id>
+		
 		<property name="name" column="NAME" />
 		<property name="supplierName" column="SUPPLIER_NAME" />
 
@@ -14,10 +16,12 @@
 			cascade="save-update">
 		</many-to-one>
 
-		<list name="componentsList" cascade="all">
-			<key column="COMPONENT_ID" />
+		<list name="componentsList" cascade="all" lazy="false" fetch="select" >
+			<key column="SUPPLY_PATH_COMPONENT_ID" />
 			<list-index column="idx" />
-			<one-to-many class="salesManagement.Component" />
+			<many-to-many entity-name="salesManagement.Component">
+                <column name="COMPONENT_ID" />
+            </many-to-many>
 		</list>
 	</class>
 	
