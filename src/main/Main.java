@@ -36,7 +36,8 @@ public class Main {
 				//user1.addNotification(new Notification(false, "sup", new Date(), Constants.SYSTEM_ACTOR));
 				ProductElement pe = ProductElementCatalogue.getCatalogue().createProductElement(Constants.PRODUCT, "p1", -1, -1, "a b c product", true);
 				System.out.println("&&&&&&&&&&&&& get id is = " + pe.getId());
-				ProductElementCatalogue.getCatalogue().createItems(pe.getId(), 4, new AvailableItemStatus(10));
+				ProductElementCatalogue.getCatalogue().createItems(pe.getId(), 4, new AvailableItemStatus(10.0));
+				System.out.println(pe.getLatestPrice());
 				//OrderCatalogue.getCatalogue().addCustomerOrder(new Date(), employee1, null, 0, new UndeliveredOrderStatus(), "my very initial code");
 			}
 			catch(Exception e){

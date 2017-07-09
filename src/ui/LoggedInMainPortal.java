@@ -6,6 +6,7 @@ import ui.managementPanel.CreateProductElementDialog;
 import ui.managementPanel.CreateProductionProcessDialog;
 import ui.managementPanel.CreateSupplyPathDialog;
 import ui.managementPanel.ProductElementSearchDialog;
+import ui.managementPanel.ViewOrdersListDialog;
 import ui.salesPanel.FinalProductSearchDialog;
 import ui.userPanel.ActionHistoryDialogType;
 import ui.userPanel.CreateUserDialog;
@@ -101,6 +102,8 @@ public abstract class LoggedInMainPortal extends LoggedInWindow {
 			new CreateProductionProcessDialog(userID);
 		} else if (selection.equals(PageTypes.CreateSupplyPath.getCaption())){
 			new CreateSupplyPathDialog(userID);
+		} else if (selection.equals(PageTypes.ViewOrdersList.getCaption())){
+			new ViewOrdersListDialog(userID);
 		} else { //DEFAULT, USED IN CASE OF ERRORS
 			new MainPortalRedirectService().startRelevantMainPortal(userID);
 		}

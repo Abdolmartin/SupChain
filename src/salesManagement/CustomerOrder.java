@@ -33,4 +33,9 @@ class CustomerOrder extends Order{
 		this.paymentCode = paymentCode;
 	}
 
+	@Override
+	public String getType() {
+		return "customer";
+	}
+
 }

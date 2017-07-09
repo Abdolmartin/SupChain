@@ -34,4 +34,9 @@ class SupplyOrder extends Order{
 		this.path = path;
 	}
 
+	@Override
+	public String getType() {
+		return "supply";
+	}
+
 }

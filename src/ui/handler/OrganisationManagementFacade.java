@@ -141,4 +141,8 @@ public class OrganisationManagementFacade {
 	public void cancelOrder(int orderID) {
 		OrderCatalogue.getCatalogue().cancelOrder(orderID);
 	}
+
+	public List<JSONObject> getAllOrders() {
+		return OrderCatalogue.getCatalogue().viewAllOrders();
+	}
 }

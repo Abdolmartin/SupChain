@@ -193,7 +193,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		List<ProductElementItem> result = new ArrayList<>();
 		int[] itemIDs = new int[count];
 		int counter = 0;
-		for (int i=this.getProductElementItemList().size()-1;i>=0;i--){
+		for (int i=0;i<this.getProductElementItemList().size();i++){
 			if (counter >= count)
 				break;
 			ProductElementItem currentItem = this.getProductElementItemList().get(i);

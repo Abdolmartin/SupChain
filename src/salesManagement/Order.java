@@ -28,6 +28,9 @@ public abstract class Order implements Viewable, Summarizable{
 		map.put("user", this.getOrderingUser().getUsername());
 		map.put("value", String.valueOf(this.getValue()));
 		map.put("status", this.getCurrentStatus().toString());
+		map.put("type", this.getType());
+		map.put("element type", this.getOrderedItems().get(0).getTypeName());
+		map.put("count", String.valueOf(this.getOrderedItems().size()));
 		return new JSONObject(map);
 	}
 	
@@ -60,6 +63,8 @@ public abstract class Order implements Viewable, Summarizable{
 	public Date getOrderDate() {
 		return orderDate;
 	}
+	
+	public abstract String getType();
 
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;

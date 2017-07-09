@@ -61,7 +61,7 @@ public class OrderPaymentDialog extends LoggedInWindow {
 		});
 		cancelButton.setBounds(183, 0, 89, 23);
 		getContentPane().add(cancelButton);
-		
+		load();
 		this.setVisible(true);
 		this.setBounds(500, 500, 500, 500);
 	}

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import common.Constants;
 import database.OrderRepository;
 import exceptions.InvalidArgumentException;
@@ -99,5 +101,13 @@ public class OrderCatalogue {
 		if (order!=null){
 			order.updateStatus(new CancelledOrderStatus());
 		}
+	}
+	
+	public List<JSONObject> viewAllOrders(){
+		List<JSONObject> result = new ArrayList<>();
+		for (int i=0;i<this.orderList.size();i++){
+			result.add(this.orderList.get(i).showSummary());
+		}
+		return result;
 	}
 }

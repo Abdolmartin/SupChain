@@ -41,7 +41,7 @@ public class AvailableItemStatus extends ItemStatus {
 
 	@Override
 	public ItemStatus clone() {
-		return new AvailableItemStatus(price);
+		return new AvailableItemStatus(this.getPrice());
 	}
 
 	@Override
