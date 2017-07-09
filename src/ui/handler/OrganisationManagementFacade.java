@@ -48,8 +48,18 @@ public class OrganisationManagementFacade {
 				map.put("error", Constants.NO_SUCH_ENTITY);
 				return new JSONObject(map);
 			}
+		} else{
+			try{
+				return ProductElementCatalogue.getCatalogue().viewProductElement(new RegularProductViewer(), productElementID);
+			} catch(Exception e1){
+				try{
+					return ProductElementCatalogue.getCatalogue().viewProductElement(new RegularComponentViewer(), productElementID);
+				}catch(Exception e2){
+					map.put("error", Constants.GHAEDATAN);
+					return new JSONObject(map);
+				}
+			}
 		}
-		return null;
 	}
 	
 	public String getProductElementType(int productElementID){

@@ -31,6 +31,9 @@ public class OrderRepository implements BasicDAO<Order>{
             	for(ProductElementItem peim: orderedList){
             		Hibernate.initialize(peim);
             		Hibernate.initialize(peim.getProductElementType());
+            		Hibernate.initialize(peim.getStatusHistory());
+            		System.out.println("statusHistory.size: ");
+            		System.out.println(peim.getStatusHistory().size());
             	}
             }
             tx.commit();
@@ -41,7 +44,6 @@ public class OrderRepository implements BasicDAO<Order>{
         	e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
-            	System.out.println("******########");
                 session.close();
             }
         }

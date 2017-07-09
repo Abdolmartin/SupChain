@@ -134,9 +134,7 @@ public abstract class Order implements Viewable, Summarizable{
 	}
 	*/
 	public OrderStatus getCurrentStatus(){
-		if(this.getStatusHistory().size()==0)
-			return null;
-		return this.statusHistory.get(this.getStatusHistory().size()-1);
+		return this.getStatusHistory().get(this.getStatusHistory().size()-1);
 	}
 
 }

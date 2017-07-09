@@ -7,6 +7,8 @@ public enum PageTypes {
 	CreateUser("ایجاد کاربر جدید"),
 	CreateProductionProcess("ایجاد فرآیند تولید جدید"),
 	ViewOrdersList("مشاهده‌ی فهرست سفارش‌ها"),
+	ViewProductionProcesses("مشاهده‌ی فرآیندهای تولید"),
+	ViewSupplyPaths("مشاهده‌ی مسیرهای تامین"),
 	CreateSupplyPath("ایجاد مسیر تامین جدید");
 	
 	String caption;

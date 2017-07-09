@@ -194,7 +194,7 @@ public class ProductElementViewDialog extends GeneralProductElementViewDialog {
 
 	void load(){
 		OrganisationManagementFacade orgManagementFacade = new OrganisationManagementFacade();
-		JSONObject productElementInfo = orgManagementFacade.getProductElementInfo(productElementID, Constants.PRODUCT);
+		JSONObject productElementInfo = orgManagementFacade.getProductElementInfo(productElementID, Constants.ANY);
 		if (productElementInfo.containsKey("error")){
 			JOptionPane.showMessageDialog(this, "یافت نشد! به صفحه‌ی اصلی منتقل می‌شوید.");
 			new MainPortalRedirectService().startRelevantMainPortal(this.userID);

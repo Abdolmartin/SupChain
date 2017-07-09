@@ -32,7 +32,9 @@ public class ManagerPortal extends LoggedInMainPortal {
 				PageTypes.CreateProductElement.getCaption(),
 				PageTypes.CreateProductionProcess.getCaption(),
 				PageTypes.CreateSupplyPath.getCaption(),
-				PageTypes.ViewOrdersList.getCaption()}));
+				PageTypes.ViewOrdersList.getCaption(),
+				PageTypes.ViewProductionProcesses.getCaption(),
+				PageTypes.ViewSupplyPaths.getCaption()}));
 		
 		
 		this.setBounds(500, 500, 500, 700);
