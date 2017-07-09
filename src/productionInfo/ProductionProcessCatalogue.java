@@ -2,6 +2,7 @@ package productionInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -59,9 +60,9 @@ public class ProductionProcessCatalogue {
 		return this.productionProcessList;
 	}
 	
-	public ArrayList<JSONObject> showSearchSummary(){
-		ArrayList<ProductionProcess> searchResult = this.search();
-		ArrayList<JSONObject> results = new ArrayList<>();
+	public List<JSONObject> showSearchSummary(){
+		List<ProductionProcess> searchResult = this.search();
+		List<JSONObject> results = new ArrayList<>();
 		
 		for (int i=0;i<searchResult.size();i++){
 			results.add(searchResult.get(i).showSummary());
