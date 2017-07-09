@@ -72,28 +72,22 @@ public class ProductElementCatalogue {
 		for (int i=0;i<this.productElementList.size();i++){
 			ProductElement productElement = this.productElementList.get(i);
 			if (!searchParams.type.equals(Constants.ANY) && !searchParams.type.equals(productElement.getType())){
-				System.out.println("shit1");
 				continue;
 			}
 			if (!searchParams.name.equals("") && !searchParams.name.equals(productElement.getName())){
-				System.out.println("shit2");
 				continue;
 			}
 			if (productElement.getAvailableQuantity() > 0 &&
 					(productElement.getLatestPrice() < searchParams.priceLowBound || 
 							productElement.getLatestPrice() > searchParams.priceHighBound)){
-				System.out.println("shit3");
 				continue;
 			}
 			if (searchParams.inStock && productElement.getAvailableQuantity() == 0){
-				System.out.println("shit4");
 				continue;
 			}
 			if (searchParams.finality && (productElement.getType().equals(Constants.COMPONENT) || !((Product)productElement).isFinality())){
-				System.out.println("shit5");
 				continue;
 			}
-			System.out.println("YAY");
 			results.add(productElement);
 		}
 		return results;
