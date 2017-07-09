@@ -145,4 +145,12 @@ public class OrganisationManagementFacade {
 	public List<JSONObject> getAllOrders() {
 		return OrderCatalogue.getCatalogue().viewAllOrders();
 	}
+
+	public List<JSONObject> getAllProcesses() {
+		return ProductionProcessCatalogue.getCatalogue().showSearchSummary();
+	}
+
+	public List<JSONObject> getAllSupplyPaths() {
+		return SupplyPathCatalogue.getCatalogue().showSearchSummary();
+	}
 }

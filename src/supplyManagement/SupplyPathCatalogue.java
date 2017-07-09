@@ -1,6 +1,7 @@
 package supplyManagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -52,9 +53,9 @@ public class SupplyPathCatalogue {
 		return this.supplyPathList;
 	}
 	
-	public ArrayList<JSONObject> showSearchSummary(){
-		ArrayList<SupplyPath> searchResult = this.search();
-		ArrayList<JSONObject> results = new ArrayList<>();
+	public List<JSONObject> showSearchSummary(){
+		List<SupplyPath> searchResult = this.search();
+		List<JSONObject> results = new ArrayList<>();
 		
 		for (int i=0;i<searchResult.size();i++){
 			results.add(searchResult.get(i).showSummary());

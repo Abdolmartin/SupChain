@@ -73,6 +73,7 @@ public class OrderCatalogue {
 		if (order instanceof SupplyOrder)
 			throw new InvalidArgumentException(Constants.INVALID_INFO);
 		((CustomerOrder)order).setPaymentCode(paymentCode);
+		order.updateStatus(new UndeliveredOrderStatus());
 		this.repo.update(order);
 	}
 	
