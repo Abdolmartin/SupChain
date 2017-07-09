@@ -24,6 +24,7 @@
        <mapping resource="resources/ActionLog.hbm.xml" />
        
        <mapping resource="resources/Order.hbm.xml" />
+       <mapping resource="resources/OrderStatus.hbm.xml" />
        
        <mapping resource="resources/ProductElementItem.hbm.xml" />
        <mapping resource="resources/ComponentItem.hbm.xml" />

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="salesManagement">
+	<class name="OrderStatus" table="ORDER_STATUS">
+		<id name="id" column="ORDER_STATUS_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="startDate" column="START_DATE" type="date" />
+		<property name="delivered" column="DELIVERED" type="boolean" />
+		<property name="paid" column="PAID" type="boolean" />
+
+		<many-to-one name="order" column="ORDER_DB_ID" class="salesManagement.Order"
+			cascade="save-update">
+		</many-to-one>
+
+		<joined-subclass name="UnpaidOrderStatus" table="UNPAID_ORDER_STATUS">
+			<key column="UNPAID_ORDER_STATUS_ID"></key>
+		</joined-subclass>
+
+		<joined-subclass name="UndeliveredOrderStatus" table="UNDELIVERED_ORDER_STATUS">
+			<key column="UNDELIVERED_ORDER_STATUS_ID"></key>
+		</joined-subclass>
+
+		<joined-subclass name="DeliveredOrderStatus" table="DELIVERED_ORDER_STATUS">
+			<key column="DELIVERED_ORDER_STATUS_ID"></key>
+		</joined-subclass>
+
+		<joined-subclass name="CancelledOrderStatus" table="CANCELLED_ORDER_STATUS">
+			<key column="CANCELLED_ORDER_STATUS_ID"></key>
+		</joined-subclass>
+	</class>
+	
+</hibernate-mapping>

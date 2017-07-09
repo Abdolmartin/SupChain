@@ -31,34 +31,4 @@
 		
 	</class>
 	
-	<class name="DeliveredItemStatus" table="DELIVERED_ITEM_STATUS">
-        <id name="id" column="DELIVERED_ITEM_STATUS_ID">
-            <generator class="native"/>
-        </id>
-    </class>
-
-	<class name="AvailableItemStatus" table="AVAILABLE_ITEM_STATUS">
-        <id name="id" column="AVAILABLE_ITEM_STATUS_ID">
-            <generator class="native"/>
-        </id>
-    </class>
-
-	<class name="OrderedItemStatus" table="ORDERED_ITEM_STATUS">
-        <id name="id" column="ORDERED_ITEM_STATUS_ID">
-            <generator class="native"/>
-        </id>
-    </class>
-
-	<class name="SpentItemStatus" table="SPENT_ITEM_STATUS">
-        <id name="id" column="SPENT_ITEM_STATUS_ID">
-            <generator class="native"/>
-        </id>
-    </class>
-
-	<class name="UnAvailableItemStatus" table="UNAVAILABLE_ITEM_STATUS">
-        <id name="id" column="UNAVAILABLE_ITEM_STATUS_ID">
-            <generator class="native"/>
-        </id>
-    </class>
-	
 </hibernate-mapping>
