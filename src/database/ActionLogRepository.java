@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,6 +19,9 @@ public class ActionLogRepository implements BasicDAO<ActionLog>{
         try {
             session = HibernateUtil.getSession();
             result = (ArrayList<ActionLog>) session.createCriteria(ActionLog.class).list();
+            for(ActionLog aclg: result){
+            	Hibernate.initialize(aclg);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

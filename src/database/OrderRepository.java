@@ -1,27 +1,47 @@
 package database;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import salesManagement.Order;
+import salesManagement.ProductElementItem;
 
 public class OrderRepository implements BasicDAO<Order>{
+
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public ArrayList<Order> getAll() {
 		Session session = null;
+		Transaction tx = null;
         ArrayList<Order> result = null;
         try {
-            session = HibernateUtil.getSession();
+        	session = HibernateUtil.getSession();
+        	tx = session.beginTransaction();
             result = (ArrayList<Order>) session.createCriteria(Order.class).list();
+            for(Order ord: result){
+            	Hibernate.initialize(ord.getOrderingUser());
+            	Hibernate.initialize(ord.getOrderedItems());
+            	List<ProductElementItem> orderedList = ord.getOrderedItems();
+            	for(ProductElementItem peim: orderedList){
+            		Hibernate.initialize(peim);
+            		Hibernate.initialize(peim.getProductElementType());
+            	}
+            }
+            tx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+			if (tx != null){
+				tx.rollback();
+			}
+        	e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
+            	System.out.println("******########");
                 session.close();
             }
         }

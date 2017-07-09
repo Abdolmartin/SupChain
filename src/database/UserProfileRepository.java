@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,6 +22,9 @@ public class UserProfileRepository implements BasicDAO<UserProfile>{
             // CriteriaQuery<UserProfile> query = builder.createQuery(UserProfile.class);
             // result = (ArrayList<UserProfile>)session.createQuery(query).getResultList();
             result = (ArrayList<UserProfile>) session.createCriteria(UserProfile.class).list();
+            for(UserProfile usrPr: result){
+            	Hibernate.initialize(usrPr);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

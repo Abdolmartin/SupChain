@@ -12,7 +12,7 @@
 			cascade="save-update">
 		</many-to-one>
 
-		<list name="statusHistory" cascade="all" lazy="false" fetch="select" >
+		<list name="statusHistory" cascade="all" lazy="false" >
 			<key column="PRODUCT_ELEMENT_ITEM_ID" />
 			<list-index column="idx" />
 			<one-to-many class="ItemStatus" />
@@ -38,7 +38,7 @@
         <property name="invLowerBound" column="INV_LOWER_BOUND" />
         <property name="invUpperBound" column="INV_UPPER_BOUND" />        
         
-		<list name="productElementItemList" cascade="all" lazy="false" fetch="select" >
+		<list name="productElementItemList" cascade="all" lazy="false" >
 			<key column="PRODUCT_ELEMENT_ITEM_DB_ID" />
 			<list-index column="idx" />
 			<one-to-many class="ProductElementItem" />
@@ -51,7 +51,7 @@
 		<joined-subclass name="Product" table="PRODUCT">
 			<key column="PRODUCT_ID"></key>
 	        <property name="finality" column="FINALITY" type="boolean" />
-			<list name="reviews" cascade="all" lazy="false" fetch="select" >
+			<list name="reviews" cascade="all" lazy="false" >
 				<key column="REVIEWS_ID" />
 				<list-index column="idx" />
 				<one-to-many class="ProductReview" />

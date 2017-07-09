@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,6 +19,9 @@ public class SupplyPathRepository implements BasicDAO<SupplyPath>{
         try {
             session = HibernateUtil.getSession();
             result = (ArrayList<SupplyPath>) session.createCriteria(SupplyPath.class).list();
+            for(SupplyPath suppath: result){
+            	Hibernate.initialize(suppath);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

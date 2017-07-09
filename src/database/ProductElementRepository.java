@@ -1,12 +1,15 @@
 package database;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import salesManagement.ProductElement;
+import salesManagement.ProductElementItem;
 
 public class ProductElementRepository implements BasicDAO<ProductElement>{
 
@@ -14,12 +17,25 @@ public class ProductElementRepository implements BasicDAO<ProductElement>{
 	@Override
 	public ArrayList<ProductElement> getAll() {
 		Session session = null;
+		Transaction tx = null;
         ArrayList<ProductElement> result = null;
         try {
             session = HibernateUtil.getSession();
+            tx = session.beginTransaction();
             result = (ArrayList<ProductElement>) session.createCriteria(ProductElement.class).list();
+            for(ProductElement pelm: result){
+            	List<ProductElementItem> peimList = pelm.getProductElementItemList();
+            	for(ProductElementItem peijj: peimList){
+            		Hibernate.initialize(peijj);
+            		System.out.println(peijj.getTypeName());
+            	}
+            }
+            tx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+			if (tx != null){
+				tx.rollback();
+			}
+        	e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

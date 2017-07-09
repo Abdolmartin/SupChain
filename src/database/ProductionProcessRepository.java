@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,6 +19,9 @@ public class ProductionProcessRepository implements BasicDAO<ProductionProcess>{
         try {
             session = HibernateUtil.getSession();
             result = (ArrayList<ProductionProcess>) session.createCriteria(ProductionProcess.class).list();
+            for(ProductionProcess ppss: result){
+            	Hibernate.initialize(ppss.getInputs());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -10,7 +10,7 @@
 		
 		<property name="name" column="NAME" />
 
-		<list name="inputs" cascade="all" lazy="false" fetch="select" >
+		<list name="inputs" cascade="all" lazy="false" >
 			<key column="PRODUCTION_PROCESS_INPUT_ID" />
 			<list-index column="idx" />
 			<many-to-many entity-name="salesManagement.ProductElement">
@@ -18,7 +18,7 @@
             </many-to-many>
 		</list>
 
-		<list name="outputs" cascade="all" lazy="false" fetch="select" >
+		<list name="outputs" cascade="all" lazy="false" >
 			<key column="PRODUCTION_PROCESS_OUTPUT_ID" />
 			<list-index column="idx" />
 			<many-to-many entity-name="salesManagement.ProductElement">
@@ -26,7 +26,7 @@
             </many-to-many>
 		</list>
 
-		<list name="departments" cascade="all" lazy="false" fetch="select" >
+		<list name="departments" cascade="all" lazy="false" >
 			<key column="PRODUCTION_PROCESS_DEPARTMENT_ID" />
 			<list-index column="idx" />
 			<element column="DEPARTMENT_NAMES" type="string"></element>

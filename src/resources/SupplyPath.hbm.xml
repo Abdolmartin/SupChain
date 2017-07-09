@@ -16,7 +16,7 @@
 			cascade="save-update">
 		</many-to-one>
 
-		<list name="componentsList" cascade="all" lazy="false" fetch="select" >
+		<list name="componentsList" cascade="all" lazy="false" >
 			<key column="SUPPLY_PATH_COMPONENT_ID" />
 			<list-index column="idx" />
 			<many-to-many entity-name="salesManagement.Component">
