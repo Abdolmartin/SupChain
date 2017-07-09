@@ -2,6 +2,7 @@ package productionInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -12,11 +13,11 @@ import salesManagement.ProductElement;
 import salesManagement.ProductElementPrinterService;
 
 public class ProductionProcess implements Summarizable, Viewable{
-	int id;
-	ArrayList<ProductElement> inputs;
-	ArrayList<ProductElement> outputs;
+	private int id;
+	List<ProductElement> inputs;
+	List<ProductElement> outputs;
 	String name;
-	ArrayList<String> departments;
+	List<String> departments;
 	
 	public ProductionProcess(){}
 	
@@ -37,7 +38,7 @@ public class ProductionProcess implements Summarizable, Viewable{
 		this.id = id;
 	}
 
-	public ArrayList<ProductElement> getInputs() {
+	public List<ProductElement> getInputs() {
 		return inputs;
 	}
 
@@ -45,7 +46,7 @@ public class ProductionProcess implements Summarizable, Viewable{
 		this.inputs = inputs;
 	}
 
-	public ArrayList<ProductElement> getOutputs() {
+	public List<ProductElement> getOutputs() {
 		return outputs;
 	}
 
@@ -61,7 +62,7 @@ public class ProductionProcess implements Summarizable, Viewable{
 		this.name = name;
 	}
 
-	public ArrayList<String> getDepartments() {
+	public List<String> getDepartments() {
 		return departments;
 	}
 
@@ -74,8 +75,8 @@ public class ProductionProcess implements Summarizable, Viewable{
 		HashMap<String, String> map = new HashMap<>();
 		map.put(Constants.ID, String.valueOf(this.getId()));
 		map.put("name", this.name);
-		ArrayList<String> inputsStringList = new ProductElementPrinterService().getNamesList(inputs);
-		ArrayList<String> outputsStringList = new ProductElementPrinterService().getNamesList(outputs);
+		List<String> inputsStringList = new ProductElementPrinterService().getNamesList(inputs);
+		List<String> outputsStringList = new ProductElementPrinterService().getNamesList(outputs);
 		String inputsConcat = String.join(", ", inputsStringList);
 		String outputsConcat = String.join(", ", outputsStringList);
 		String deptsConcat = String.join(", ", departments);

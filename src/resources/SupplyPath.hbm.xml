@@ -17,7 +17,7 @@
 		<list name="componentsList" cascade="all">
 			<key column="COMPONENT_ID" />
 			<list-index column="idx" />
-			<one-to-many class="Component" />
+			<one-to-many class="salesManagement.Component" />
 		</list>
 	</class>
 	

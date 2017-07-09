@@ -30,5 +30,9 @@
        <mapping resource="resources/ProductItem.hbm.xml" />
        <mapping resource="resources/ItemStatus.hbm.xml" />
        
+       <mapping resource="resources/Component.hbm.xml" />       
+       <mapping resource="resources/SupplyPath.hbm.xml" />
+       <mapping resource="resources/ProductionProcess.hbm.xml" />
+       
     </session-factory>
 </hibernate-configuration>

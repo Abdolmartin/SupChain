@@ -2,6 +2,7 @@ package supplyManagement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -83,7 +84,7 @@ public class SupplyPath implements Viewable, Summarizable{
 		result.put(Constants.ID, String.valueOf(this.getId()));
 		result.put("name", this.name);
 		result.put("supplierName", this.supplierName);
-		ArrayList<String> componentNames = new ProductElementPrinterService().
+		List<String> componentNames = new ProductElementPrinterService().
 				getNamesList((ArrayList<ProductElement>)(ArrayList<?>)this.componentsList);
 		String componentsConcat = String.join(", ", componentNames);
 		result.put("components", componentsConcat);

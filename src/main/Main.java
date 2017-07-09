@@ -35,7 +35,7 @@ public class Main {
 			OrderCatalogue.getCatalogue().createCustomerOrder(null, employee1, null, 0, null, "my very initial code");
 			
 			new InitialPortal();
-						
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="productionInfo">
+	<class name="ProductionProcess" table="PRODUCTION_PROCESS">
+		<id name="id" column="PRODUCTION_PROCESS_ID">
+			<generator class="native" />
+		</id>
+		
+		<property name="name" column="NAME" />
+
+		<list name="inputs" cascade="all">
+			<key column="PRODUCT_ELEMENT_INPUT_ID" />
+			<list-index column="idx" />
+			<one-to-many class="salesManagement.ProductElement" />
+		</list>
+
+		<list name="outputs" cascade="all">
+			<key column="PRODUCT_ELEMENT_OUTPUT_ID" />
+			<list-index column="idx" />
+			<one-to-many class="salesManagement.ProductElement" />
+		</list>
+
+		<list name="departments" cascade="all">
+			<key column="DEPARTMENT_ID" />
+			<list-index column="idx" />
+			<element column="DEPARTMENT_NAMES" type="string"></element>
+		</list>
+
+	</class>
+</hibernate-mapping>
