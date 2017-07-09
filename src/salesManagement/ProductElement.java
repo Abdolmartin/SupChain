@@ -28,6 +28,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		map.put("price", String.valueOf(this.getLatestPrice()));
 		map.put(Constants.ID, String.valueOf(this.getId()));
 		map.put("desc", this.description);
+		map.put("inventory", String.valueOf(this.getAvailableQuantity()));
 		return new JSONObject(map);
 		
 	}
@@ -87,12 +88,16 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		return result;
 	}
 	
-	public void changeItemStati(int[] itemIDs, ItemStatus newStatus){
+	public List<ProductElementItem> changeItemStati(int[] itemIDs, ItemStatus newStatus){
+		List<ProductElementItem> result = new ArrayList<>();
 		for (int i=0;i<itemIDs.length;i++){
 			ProductElementItem item = this.getItemByID(itemIDs[i]);
-			if (item!=null)
+			if (item!=null){
 				item.updateStatus(newStatus.clone());
+				result.add(item);
+			}
 		}
+		return result;
 	}
 	
 	public ProductElementItem getItemByID(int itemID){
@@ -136,7 +141,7 @@ public abstract class ProductElement implements Viewable, Summarizable{
 	public abstract String getType();
 	
 	// Factory method
-	public abstract void addItem(ItemStatus initialStatus) throws InvalidArgumentException;
+	public abstract ProductElementItem addItem(ItemStatus initialStatus) throws InvalidArgumentException;
 	
 	public abstract boolean checkItemValidity(ProductElementItem pElementItem);
 	
@@ -182,6 +187,24 @@ public abstract class ProductElement implements Viewable, Summarizable{
 		}catch (IndexOutOfBoundsException e){
 			return -1;
 		}
+	}
+	
+	public List<ProductElementItem> getAvailableItems(int count, ItemStatus newStatus){
+		List<ProductElementItem> result = new ArrayList<>();
+		int[] itemIDs = new int[count];
+		int counter = 0;
+		for (int i=this.getProductElementItemList().size()-1;i>=0;i--){
+			if (counter >= count)
+				break;
+			ProductElementItem currentItem = this.getProductElementItemList().get(i);
+			if (currentItem.isAvailable()){
+				result.add(currentItem);
+				itemIDs[counter] = currentItem.getId();
+				counter++;
+			}
+		}
+		ProductElementCatalogue.getCatalogue().changeItemStati(this.getId(), itemIDs, newStatus);
+		return result;
 	}
 	
 	public abstract void changeInventory();

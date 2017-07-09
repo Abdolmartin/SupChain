@@ -4,6 +4,7 @@ import ui.GeneralProductElementViewDialog;
 import ui.LoggedInWindow;
 import ui.MainPortalRedirectService;
 import ui.ReturnToMainButton;
+import ui.handler.OrganisationManagementFacade;
 import ui.handler.SalesAndSupplyFacade;
 import ui.userPanel.ViewActionHistoryDialog;
 
@@ -27,6 +28,7 @@ public class FinalProductViewDialog extends GeneralProductElementViewDialog {
 	private JTextField priceField;
 	private JTextField quantityField;
 	private JTextArea descArea;
+	private JTextField invField;
 	
 	public FinalProductViewDialog(int userID, int productID) {
 		super(userID, productID);
@@ -61,6 +63,12 @@ public class FinalProductViewDialog extends GeneralProductElementViewDialog {
 		getContentPane().add(descArea);
 		
 		JButton orderButton = new JButton("\u0633\u0641\u0627\u0631\u0634");
+		orderButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				submitOrder();
+			}
+		});
 		orderButton.setBounds(102, 373, 89, 23);
 		getContentPane().add(orderButton);
 		
@@ -86,6 +94,16 @@ public class FinalProductViewDialog extends GeneralProductElementViewDialog {
 		viewReviewsButton.setBounds(88, 340, 118, 23);
 		getContentPane().add(viewReviewsButton);
 		
+		invField = new JTextField();
+		invField.setEditable(false);
+		invField.setBounds(102, 283, 298, 20);
+		getContentPane().add(invField);
+		invField.setColumns(10);
+		
+		JLabel label_5 = new JLabel("موجودی");
+		label_5.setBounds(410, 286, 46, 14);
+		getContentPane().add(label_5);
+		
 		load();
 		
 		this.setBounds(500, 500, 500, 500);
@@ -102,6 +120,31 @@ public class FinalProductViewDialog extends GeneralProductElementViewDialog {
 			this.nameField.setText((String)productInfo.get("name"));
 			this.priceField.setText((String)productInfo.get("price"));
 			this.descArea.setText((String)productInfo.get("desc"));
+			this.invField.setText((String)productInfo.get("inventory"));
+		}
+	}
+	
+	void submitOrder(){
+		int count = 0;
+		try{
+			count = Integer.parseInt(this.quantityField.getText());
+		} catch(Exception e){
+			JOptionPane.showMessageDialog(this, "تعداد. عدده. حاجی.");
+			return;
+		}
+		if (count > Integer.parseInt(this.invField.getText())){
+			JOptionPane.showMessageDialog(this, "نمی‌توانید بیش از موجودی انبار سفارش دهید.");
+			return;
+		}
+		OrganisationManagementFacade organisationManagementFacade = new OrganisationManagementFacade();
+		int orderID = organisationManagementFacade.createCustomerOrder(userID, productElementID, count);
+		if (orderID == -1){
+			JOptionPane.showMessageDialog(this, "عملیات ناموفق.");
+			return;
+		} else {
+			this.setVisible(false);
+			new OrderPaymentDialog(userID, orderID);
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
 	}
 }

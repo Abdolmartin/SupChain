@@ -2,7 +2,7 @@ package salesManagement;
 
 import java.util.Date;
 
-class OrderStatus {
+public abstract class OrderStatus {
 	private int id;
 	private boolean paid = false;
 	private boolean delivered = false;
@@ -11,8 +11,8 @@ class OrderStatus {
 	
 	public OrderStatus(){}
 	
-	public OrderStatus(boolean pain, boolean delivered, Date startDate, Order order){
-		this.paid = pain;
+	public OrderStatus(boolean paid, boolean delivered, Date startDate, Order order){
+		this.paid = paid;
 		this.delivered = delivered;
 		this.startDate = startDate;
 		this.order = order;

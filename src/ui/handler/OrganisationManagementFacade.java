@@ -12,6 +12,7 @@ import exceptions.NonExistentEntityException;
 import productionInfo.ProductionProcessCatalogue;
 import salesManagement.AvailableItemStatus;
 import salesManagement.ItemStatus;
+import salesManagement.OrderCatalogue;
 import salesManagement.ProductElement;
 import salesManagement.ProductElementCatalogue;
 import salesManagement.ProductElementSearchParams;
@@ -117,5 +118,27 @@ public class OrganisationManagementFacade {
 	
 	public List<JSONObject> getProductElementItems(int productElementID){
 		return ProductElementCatalogue.getCatalogue().viewProductElementItems(productElementID);
+	}
+
+	public int createCustomerOrder(int userID, int productID, int count) {
+		try{
+			int id = OrderCatalogue.getCatalogue().createCustomerOrder(userID, productID, count);
+			return id;
+		}catch(Exception e){
+			return -1;
+		}
+	}
+
+	public String addOrderPayment(int orderID, String paymentCode) {
+		try {
+			OrderCatalogue.getCatalogue().addPaymentCode(orderID, paymentCode);
+			return Constants.SUCCESS;
+		} catch (InvalidArgumentException e) {
+			return Constants.GHAEDATAN;
+		}
+	}
+
+	public void cancelOrder(int orderID) {
+		OrderCatalogue.getCatalogue().cancelOrder(orderID);
 	}
 }

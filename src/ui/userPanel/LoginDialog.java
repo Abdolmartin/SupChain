@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 import common.Constants;
 import ui.AdminPortal;
 import ui.CustomerPortal;
-import ui.EmployeePanel;
+import ui.EmployeePortal;
 import ui.InitialPortal;
 import ui.MainPortalRedirectService;
 import ui.ManagerPortal;

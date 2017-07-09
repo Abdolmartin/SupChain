@@ -2,17 +2,47 @@ package salesManagement;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
+import common.Constants;
+import common.Summarizable;
+import common.Viewable;
 import userManagement.UserProfile;
 
-public abstract class Order {
+public abstract class Order implements Viewable, Summarizable{
 	private Date orderDate;
 	private UserProfile orderingUser;
 	private List<ProductElementItem> orderedItems;
 	private double value;
 	private List<OrderStatus> statusHistory;
 	private int id;
+	
+	@Override
+	public JSONObject showSummary(){
+		HashMap<String, String> map = new HashMap<>();
+		map.put(Constants.ID, String.valueOf(this.getId()));
+		map.put("date", this.getOrderDate().toString());
+		map.put("user", this.getOrderingUser().getUsername());
+		map.put("value", String.valueOf(this.getValue()));
+		map.put("status", this.getCurrentStatus().toString());
+		return new JSONObject(map);
+	}
+	
+	@Override
+	public JSONObject showInfo(){
+		HashMap<String, String> map = new HashMap<>();
+		map.put(Constants.ID, String.valueOf(this.getId()));
+		map.put("date", this.getOrderDate().toString());
+		map.put("user", this.getOrderingUser().getUsername());
+		map.put("value", String.valueOf(this.getValue()));
+		map.put("status", this.getCurrentStatus().toString());
+		map.put("type", this.getOrderedItems().get(0).getTypeName());
+		map.put("count", String.valueOf(this.getOrderedItems().size()));
+		return new JSONObject(map);
+	}
 	
 	public Order(){}
 	
@@ -83,7 +113,7 @@ public abstract class Order {
 	public void addItem(ProductElementItem pElementItem){
 		this.orderedItems.add(pElementItem);
 	}
-	
+	/*
 	public void paid(){
 		OrderStatus orderStat = this.statusHistory.get(statusHistory.size()-1);
 		OrderStatus newOrderStat = new OrderStatus(orderStat);
@@ -97,7 +127,7 @@ public abstract class Order {
 		newOrderStat.setDelivered(true);
 		this.statusHistory.add(newOrderStat);
 	}
-	
+	*/
 	public OrderStatus getCurrentStatus(){
 		return this.statusHistory.get(statusHistory.size()-1);
 	}

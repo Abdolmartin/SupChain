@@ -19,7 +19,7 @@ public class MainPortalRedirectService {
 				new CustomerPortal(userID);
 				break;
 			case Constants.EMPLOYEE:
-				new EmployeePanel(userID);
+				new EmployeePortal(userID);
 				break;
 			default:
 				new ManagerPortal(userID);

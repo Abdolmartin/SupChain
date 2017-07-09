@@ -11,6 +11,11 @@ public class OrderedItemStatus extends ItemStatus {
 		super(price);
 	}
 	
+	@Override
+	public String toString(){
+		return "ordered";
+	}
+	
 	public int getId(){
 		return this.id;
 	}

@@ -10,6 +10,11 @@ public class SpentItemStatus extends ItemStatus {
 	public SpentItemStatus(double price) {
 		super(price);
 	}
+	
+	@Override
+	public String toString(){
+		return "spent";
+	}
 
 	public int getId(){
 		return this.id;

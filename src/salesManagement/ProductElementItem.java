@@ -40,6 +40,10 @@ public abstract class ProductElementItem implements ItemAvailabilityStateable, V
 	public ProductElement getProductElementType() {
 		return productElementType;
 	}
+	
+	public String getTypeName(){
+		return this.getProductElementType().getName();
+	}
 
 	public void setProductElementType(ProductElement productElementType) {
 		this.productElementType = productElementType;

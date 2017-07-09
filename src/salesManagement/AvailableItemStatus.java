@@ -11,6 +11,11 @@ public class AvailableItemStatus extends ItemStatus {
 		super(price);
 	}
 	
+	@Override
+	public String toString(){
+		return "available";
+	}
+	
 	public void setId(int id){
 		this.id = id;
 	}

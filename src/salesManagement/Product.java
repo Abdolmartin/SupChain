@@ -60,10 +60,11 @@ public class Product extends ProductElement{
 	}
 	
 	@Override
-	public void addItem(ItemStatus initialStatus) throws InvalidArgumentException {
+	public ProductElementItem addItem(ItemStatus initialStatus) throws InvalidArgumentException {
 		ProductElementItem productElementItem = new ProductItem(this);
 		productElementItem.updateStatus(initialStatus);
 		this.productElementItemList.add(productElementItem);
+		return productElementItem;
 	}
 	
 	public void addReview(ProductReview review){

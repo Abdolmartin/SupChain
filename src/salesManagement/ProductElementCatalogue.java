@@ -89,7 +89,7 @@ public class ProductElementCatalogue {
 				System.out.println("shit4");
 				continue;
 			}
-			if (searchParams.finality && (productElement.getType().equals(Constants.COMPONENT) || ((Product)productElement).isFinality())){
+			if (searchParams.finality && (productElement.getType().equals(Constants.COMPONENT) || !((Product)productElement).isFinality())){
 				System.out.println("shit5");
 				continue;
 			}
@@ -138,12 +138,15 @@ public class ProductElementCatalogue {
 		this.repo.update(pe);
 	}
 
-	public void createItems(int productElementID, int count, ItemStatus initialStatus) throws InvalidArgumentException {
+	public List<ProductElementItem> createItems(int productElementID, int count, ItemStatus initialStatus) throws InvalidArgumentException {
+		List<ProductElementItem> result = new ArrayList<>();
 		ProductElement pe = this.getByID(productElementID);
 		for (int i=0;i<count;i++){
-			pe.addItem(initialStatus.clone());
+			ProductElementItem item = pe.addItem(initialStatus.clone());
+			result.add(item);
 		}
 		this.repo.update(pe);
+		return result;
 	}
 	
 	public List<JSONObject> viewProductElementItems(int productElementID){
@@ -151,10 +154,11 @@ public class ProductElementCatalogue {
 		return pe.viewItems();
 	}
 	
-	public void changeItemStati(int productElementID, int[] itemIDs, ItemStatus newStatus){
+	public List<ProductElementItem> changeItemStati(int productElementID, int[] itemIDs, ItemStatus newStatus){
 		ProductElement pe = this.getByID(productElementID);
-		pe.changeItemStati(itemIDs, newStatus);
+		List<ProductElementItem> items = pe.changeItemStati(itemIDs, newStatus);
 		this.repo.update(pe);
+		return items;
 	}
 	
 	public void initialise(){

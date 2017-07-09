@@ -10,6 +10,11 @@ public class UnAvailableItemStatus extends ItemStatus {
 	public UnAvailableItemStatus(double price) {
 		super(price);
 	}
+	
+	@Override
+	public String toString(){
+		return "unavailable";
+	}
 
 	public int getId(){
 		return this.id;

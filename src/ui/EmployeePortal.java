@@ -2,9 +2,9 @@ package ui;
 
 import javax.swing.DefaultComboBoxModel;
 
-public class EmployeePanel extends LoggedInMainPortal {
+public class EmployeePortal extends LoggedInMainPortal {
 
-	public EmployeePanel(int userID) {
+	public EmployeePortal(int userID) {
 		super(userID);
 		this.pageComboBox.setModel(new DefaultComboBoxModel<>(new String[]{
 				PageTypes.ProductElementSearch.getCaption()}));
