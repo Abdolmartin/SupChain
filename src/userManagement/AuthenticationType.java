@@ -8,5 +8,4 @@ public enum AuthenticationType {
 	WAREHOUSE_MANAGER,
 	ADMIN,
 	UNAUTHENTICATED;
-	
 }

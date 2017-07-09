@@ -5,5 +5,7 @@ import common.Viewable;
 public abstract class ProductElementViewer implements Viewable {
 	Viewable productElement = null;
 
-	public abstract void setProductElement(ProductElement productElement);
+	public void setProductElement(ProductElement productElement) {
+		this.productElement = productElement;
+	}
 }

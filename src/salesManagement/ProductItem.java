@@ -15,6 +15,6 @@ class ProductItem extends ProductElementItem{
 
 	public void setId(int id) {
 		this.id = id;
-	}	
+	}
 
 }
