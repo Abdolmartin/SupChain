@@ -26,7 +26,7 @@ public class Main {
 			ProductElementCatalogue.getCatalogue().initialise();
 			OrderCatalogue.getCatalogue().intialise();
 			
-			// Comment this part on 2nd run and beyond.
+			// Comment this part on 2nd run and beyond 
 			try{
 				UserProfileCatalogue.getCatalogue().createCustomer("a", "12345678", "a", "b", "1", "2", "3");
 				UserProfileCatalogue.getCatalogue().createIntraOrganisationUser("m", "12345678", "m", "n", "1", "2", "3", AuthenticationType.MANAGER);
